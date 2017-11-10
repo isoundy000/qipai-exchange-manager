@@ -68,7 +68,7 @@ html, body {
     position: absolute;
     display: inline-block;
     /*float: left;*/
-    width: 8.2%;
+    width: 10%;
     height: 94.4%;
     margin-top: 2.8%;
     background-color: #2B7AD3;
@@ -104,11 +104,11 @@ html, body {
 /*nav-sub*/
 .nav-sub-box {
     position: absolute;
-    width: 8.8%;
+    width: 10%;
     height: 94.4%;
 
     margin-top: 2.8%;
-    margin-left: 8.2%;
+    margin-left: 10%;
     display: inline-block;
 
     /*box-shadow: 2px 2px #96A3A4;*/
@@ -125,10 +125,10 @@ html, body {
 /*bi*/
 .bi-box1 {
     position: absolute;
-    width: 83%;
+    width: 80%;
     height: 94.4%;
     margin-top: 2.8%;
-    margin-left: 17%;
+    margin-left: 20%;
     display: inline-block;
     background-color: red;
 

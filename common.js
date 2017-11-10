@@ -1,4 +1,4 @@
-
+var baseUrl="";
 function post(jsonObj) {
     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
     xmlhttp.open("POST", "http://47.104.17.187:8081/qipai-exchange-manager-api");
