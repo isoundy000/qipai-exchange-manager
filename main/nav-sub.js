@@ -21,9 +21,11 @@ for (var i = 0; i < navMainItems.length; i++) {
         var attribute = this.getAttribute("data-url");
         selectedItem = this.getAttribute("data-selected");
         console.log(attribute);
+        console.log(window.location.href);
         //showNavSubMenu(this.getAttribute("data-index"));
         var biIframe = window.parent.document.getElementById("bi-iframe");
-        biIframe.setAttribute("src","http://www.w3school.com.cn/");
+        biIframe.setAttribute("src","../goods/goods-list.html");
+        parent.window.test1();
 
     }
     navMainItems[i].onmouseover = function () {
@@ -97,7 +99,7 @@ function showNavSubMenu4Goods() {
 
     navSubItems[0].innerHTML = "商品列表";
     navSubItems[0].style.display = "block";
-    navSubItems[0].setAttribute("data-url", "goods-list");
+    navSubItems[0].setAttribute("data-url", "goods/goods-list.html");
     navSubItems[0].setAttribute("data-selected", "0200");
 
     navSubItems[1].innerHTML = "商品添加";

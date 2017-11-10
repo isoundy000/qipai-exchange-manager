@@ -9,50 +9,108 @@
     <!--<link rel="stylesheet" href="nav-sub.css">-->
 
 </head>
-<body class="body">
-<div id="top" class="top">
-    <span class="exit">退出系统</span>
-    <span id="username" class="username">修改密码</span>
+<body>
+<div class="root">
+    <div class="top">
+        <div class="top1"></div>
+        <div class="top-exit">退出系统</div>
+        <div class="top-change-password">修改密码</div>
 
-
-</div>
-
-<!--<div class="bottom">-->
-    <div id="nav-main" class="nav-main">
-        <ul id="nav-main-menu">
-            <li class="nav-main-item" data-index="0"><img src="../img/arrow-right-black.png">订单</li>
-            <li class="nav-main-item" data-index="1"><img src="../img/arrow-right-black.png">房卡</li>
-            <li class="nav-main-item" data-index="2"><img src="../img/arrow-right-black.png">商品</li>
-            <li class="nav-main-item" data-index="3"><img src="../img/arrow-right-black.png">库存</li>
-            <li class="nav-main-item" data-index="4"><img src="../img/arrow-right-black.png">运营</li>
-            <li class="nav-main-item" data-index="5"><img src="../img/arrow-right-black.png">财务</li>
-            <li class="nav-main-item" data-index="6"><img src="../img/arrow-right-black.png">用户管理</li>
-            <li class="nav-main-item" data-index="7"><img src="../img/arrow-right-black.png">权限管理</li>
-
-
-        </ul>
     </div>
-    <div class="nav-sub-box">
+    <div class="bottom">
+        <div class="nav-main">
+            <ul id="nav-main-menu">
+                <li id="nav-main-item0" ;class="nav-main-item" data-index="0"><img id="test100" src="../img/arrow-right-black.png">订单</li>
+                <li class="nav-main-item" data-index="1"><img src="../img/arrow-right-black.png">房卡</li>
+                <li class="nav-main-item" data-index="2"><img src="../img/arrow-right-black.png">商品</li>
+                <li class="nav-main-item" data-index="3"><img src="../img/arrow-right-black.png">库存</li>
+                <li class="nav-main-item" data-index="4"><img src="../img/arrow-right-black.png">运营</li>
+                <li class="nav-main-item" data-index="5"><img src="../img/arrow-right-black.png">财务</li>
+                <li class="nav-main-item" data-index="6"><img src="../img/arrow-right-black.png">用户管理</li>
+                <li class="nav-main-item" data-index="7"><img src="../img/arrow-right-black.png">权限管理</li>
 
-        <div style="display: inline-block;height: 60px;">
-        <img style="display: inline;width: 30px;height: 30px;margin-top: 15px;" src="../img/arrow-left-black.png"><br>
+
+            </ul>
         </div>
-        <span class="nav-sub-solid" style="margin: 0px"></span>
-        <ul id="nav-sub-menu" class="nav-sub-menu"></ul>
-        <iframe id="nav-sub-iframe" frameborder="0" scrolling="no" marginheight=0 marginwidth=0 src="nav-sub.html"
-                style="margin:0px ;padding: 0px;width: 170px;min-height: 100%;"></iframe>
+        <div class="nav-sub">
+            <div style="display: inline-block;height: 60px;">
+                <img style="display: inline;width: 30px;height: 30px;margin-top: 15px;"
+                     src="../img/arrow-left-black.png"><br>
+            </div>
+            <span class="nav-sub-solid" style="margin: 0px"></span>
+            <!--<ul id="nav-sub-menu" class="nav-sub-menu"></ul>-->
+            <!--<iframe id="nav-sub-iframe" frameborder="0" scrolling="no" marginheight=0 marginwidth=0 src="nav-sub.html"-->
+                    <!--style="margin:0px ;padding: 0px;width: 170px;min-height: 100%;"></iframe>-->
+            <div id="nav-sub" class="nav-sub" style="padding: 0px;margin: 0px">
+                <ul id="nav-sub-menu">
+                    <li id="nav-sub-item0" ;class="nav-main-item" data-index="0" hidden="hidden"></li>
+                    <li class="nav-main-item" data-index="1" hidden="hidden"></li>
+                    <li class="nav-main-item" data-index="2" hidden="hidden"></li>
+                    <li class="nav-main-item" data-index="3" hidden="hidden"></li>
+                    <li class="nav-main-item" data-index="4" hidden="hidden"></li>
+                    <li class="nav-main-item" data-index="5" hidden="hidden"></li>
+                    <li class="nav-main-item" data-index="6" hidden="hidden"></li>
+                    <li class="nav-main-item" data-index="7" hidden="hidden"></li>
+                    <li class="nav-main-item" data-index="8" hidden="hidden"></li>
+                    <li class="nav-main-item" data-index="9" hidden="hidden"></li>
+
+
+
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="bi">
+            <iframe id="bi-iframe" class="bi-iframe" ></iframe>
+        </div>
     </div>
-
-    <div class="bi-box1">
-        <iframe id="bi-iframe" class="bi-iframe" src="http://www.baidu.com"></iframe>
-    </div>
-
-
+</div>
+<!--<div id="top" class="top">-->
+<!--<span class="exit">退出系统</span>-->
+<!--<span id="username" class="username">修改密码</span>-->
 
 
-<script src="nav-main.js"></script>
+<!--</div>-->
+
+<!--&lt;!&ndash;<div class="bottom">&ndash;&gt;-->
+<!--<div id="nav-main" class="nav-main">-->
+<!--<ul id="nav-main-menu">-->
+<!--<li class="nav-main-item" data-index="0"><img src="../img/arrow-right-black.png">订单</li>-->
+<!--<li class="nav-main-item" data-index="1"><img src="../img/arrow-right-black.png">房卡</li>-->
+<!--<li class="nav-main-item" data-index="2"><img src="../img/arrow-right-black.png">商品</li>-->
+<!--<li class="nav-main-item" data-index="3"><img src="../img/arrow-right-black.png">库存</li>-->
+<!--<li class="nav-main-item" data-index="4"><img src="../img/arrow-right-black.png">运营</li>-->
+<!--<li class="nav-main-item" data-index="5"><img src="../img/arrow-right-black.png">财务</li>-->
+<!--<li class="nav-main-item" data-index="6"><img src="../img/arrow-right-black.png">用户管理</li>-->
+<!--<li class="nav-main-item" data-index="7"><img src="../img/arrow-right-black.png">权限管理</li>-->
+
+
+<!--</ul>-->
+<!--</div>-->
+<!--<div class="nav-sub-box">-->
+
+<!--<div style="display: inline-block;height: 60px;">-->
+<!--<img style="display: inline;width: 30px;height: 30px;margin-top: 15px;" src="../img/arrow-left-black.png"><br>-->
+<!--</div>-->
+<!--<span class="nav-sub-solid" style="margin: 0px"></span>-->
+<!--<ul id="nav-sub-menu" class="nav-sub-menu"></ul>-->
+<!--<iframe id="nav-sub-iframe" frameborder="0" scrolling="no" marginheight=0 marginwidth=0 src="nav-sub.html"-->
+<!--style="margin:0px ;padding: 0px;width: 170px;min-height: 100%;"></iframe>-->
+<!--</div>-->
+
+<!--<div class="bi-box1">-->
+<!--<iframe id="bi-iframe" class="bi-iframe" ></iframe>-->
+<!--&lt;!&ndash;<iframe id="bi-iframe" class="bi-iframe" src="http://www.baidu.com"></iframe>&ndash;&gt;-->
+<!--</div>-->
+
+
+<!--<script src="nav-main.js"></script>-->
+<script src="main.js"></script>
 <script src="../common.js"></script>
-
+<script>
+    //    document.getElementById("bi-iframe").setAttribute("src","../goods/goods-list.html");
+</script>
 
 </body>
 </html>
