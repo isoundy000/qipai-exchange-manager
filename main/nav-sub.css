@@ -1,0 +1,34 @@
+
+
+.nav-sub {
+    display: inline-block;
+    width: 170px;
+    min-height: 100%;
+}
+
+.nav-sub > ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+.nav-sub > ul > li {
+    list-style: none;
+    height: 50px;
+    font-size: 14px;
+    line-height: 50px;
+    margin: 0px;
+    padding-left: 16px;
+}
+
+.nav-sub > ul > li:hover {
+    background-color: #94945E;
+}
+
+.nav-sub-solid {
+    display: block;
+    width: 170px;
+    height: 2px;
+    background-color: #D4D4D4;
+
+}
+

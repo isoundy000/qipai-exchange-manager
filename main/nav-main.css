@@ -1,0 +1,38 @@
+
+.nav-main {
+    display: inline-block;
+    float: left;
+    width: 8.2%;
+    height: 100%;
+    margin: 0px;
+    background-color: #2B7AD3;
+
+}
+
+.nav-main > ul {
+    margin-top: 0px;
+    padding: 0px;
+
+}
+
+.nav-main > ul > li {
+    background-color: #2B7AD3;
+    list-style: none;
+    padding-left: 10px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+
+
+}
+
+.nav-main > ul > li > img {
+    width: 20px;
+    height: 20px;
+}
+
+.nav-main > ul > li:hover {
+    background-color: #8CD7DC;
+
+}
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>棋牌管理</title>
+    <link rel="stylesheet" href="main.css">
+    <!--<link rel="stylesheet" href="top.css">-->
+    <!--<link rel="stylesheet" href="nav-main.css">-->
+    <!--<link rel="stylesheet" href="nav-sub.css">-->
+
+</head>
+<body class="body">
+<div id="top" class="top">
+    <span class="exit">退出系统</span>
+    <span id="username" class="username">修改密码</span>
+
+
+</div>
+
+<!--<div class="bottom">-->
+    <div id="nav-main" class="nav-main">
+        <ul id="nav-main-menu">
+            <li class="nav-main-item" data-index="0"><img src="../img/arrow-right-black.png">订单</li>
+            <li class="nav-main-item" data-index="1"><img src="../img/arrow-right-black.png">房卡</li>
+            <li class="nav-main-item" data-index="2"><img src="../img/arrow-right-black.png">商品</li>
+            <li class="nav-main-item" data-index="3"><img src="../img/arrow-right-black.png">库存</li>
+            <li class="nav-main-item" data-index="4"><img src="../img/arrow-right-black.png">运营</li>
+            <li class="nav-main-item" data-index="5"><img src="../img/arrow-right-black.png">财务</li>
+            <li class="nav-main-item" data-index="6"><img src="../img/arrow-right-black.png">用户管理</li>
+            <li class="nav-main-item" data-index="7"><img src="../img/arrow-right-black.png">权限管理</li>
+
+
+        </ul>
+    </div>
+    <div class="nav-sub-box">
+
+        <div style="display: inline-block;height: 60px;">
+        <img style="display: inline;width: 30px;height: 30px;margin-top: 15px;" src="../img/arrow-left-black.png"><br>
+        </div>
+        <span class="nav-sub-solid" style="margin: 0px"></span>
+        <ul id="nav-sub-menu" class="nav-sub-menu"></ul>
+        <iframe id="nav-sub-iframe" frameborder="0" scrolling="no" marginheight=0 marginwidth=0 src="nav-sub.html"
+                style="margin:0px ;padding: 0px;width: 170px;min-height: 100%;"></iframe>
+    </div>
+
+    <div class="bi-box1">
+        <iframe id="bi-iframe" class="bi-iframe" src="http://www.baidu.com"></iframe>
+    </div>
+
+
+
+
+<script src="nav-main.js"></script>
+<script src="../common.js"></script>
+
+
+</body>
+</html>

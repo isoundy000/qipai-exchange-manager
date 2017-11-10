@@ -1,0 +1,21 @@
+.top {
+    margin: 0px;
+    padding: 0px;
+    min-width: 100%;
+    height: 10%;
+    background-color: #4FBDF9;
+    line-height: 80px;
+    box-shadow: 2px 2px #96A3A4;
+}
+
+.top > div{
+    float: right;
+    margin-right: 120px;
+    size: 18px;
+    color: white;
+    line-height: 120px;
+}
+
+.username {
+    padding-right: 20px;
+}
