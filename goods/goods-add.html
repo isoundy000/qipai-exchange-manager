@@ -4,7 +4,66 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<link rel="stylesheet" href="../common.css">
+<link rel="stylesheet" href="good-add.css">
 <body>
-<div>商品添加</div>
+<div class="root">
+    <div class="top">
+        <div class="top-sub">
+            <div class="mark"></div>
+            <span class="title">商品添加</span>
+            <div style="flex: 1"></div>
+            <div id="back" class="add">返回</div>
+
+        </div>
+
+    </div>
+    <div class="split-top"></div>
+    <div class="buttom">
+
+
+        <p class="dialog-content-line">
+            <label class="dialog-label">商品标题</label>
+            <input id="add-name" class="dialog-input" style="width: 300px">
+        </p>
+        <p class="dialog-content-line">
+            <label class="dialog-label">商品价格</label>
+            <input class="dialog-input" style="width: 200px">
+            <label style="margin-left: 10px">元宝</label>
+        </p>
+        <p class="dialog-content-line">
+            <label class="dialog-label">数量</label>
+            <label class="dialog-input">新增商品后，进行库存添加管理</label>
+        </p>
+        <p class="dialog-content-line">
+            <label class="dialog-label">排序</label>
+            <input class="dialog-input" style="width: 200px">
+        </p>
+        <p class="dialog-content-line">
+            <label class="dialog-label">商品主图</label>
+            <img class="upload-img">
+            <img class="upload-img">
+            <img class="upload-img">
+            <img class="upload-img">
+            <img class="upload-img">
+        </p>
+        <p class="dialog-content-line" style="margin-top: 70px">
+            <label class="dialog-label">详情</label>
+            <textarea style="width: 500px; height: 160px"></textarea>
+        </p>
+        <p class="dialog-content-line" style="margin-top: 136px">
+            <label class="dialog-label"></label>
+            <spac style="background-color: #F2F2F2;width: 80px;height: 26px;text-align: center">保存</spac>
+        </p>
+
+    </div>
+
+
+</div>
+
+<script src="../common.js"></script>
+<script src="good-add.js"></script>
 </body>
 </html>
+
+

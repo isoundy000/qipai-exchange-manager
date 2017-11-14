@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="../common.css">
+<link rel="stylesheet" href="goods-category.css">
+<body>
+<div class="root">
+    <div class="top">
+        <div class="top-sub">
+            <div class="mark"></div>
+            <span class="title">商品类别</span>
+            <div style="flex: 1"></div>
+            <div id="add-good" class="add">返回</div>
+
+        </div>
+
+    </div>
+    <div class="split-top"></div>
+    <div class="buttom">
+
+
+        <p class="dialog-content-line">
+            <label class="dialog-label">商品类别名称</label>
+            <input id="category-name" class="dialog-input" style="margin-right: 20px">
+            <label class="dialog-label">商品类别排序</label>
+            <input id="category-reorder" class="dialog-input" style="margin-right: 20px" type="number">
+            <span id="add"
+                  style="background-color: #F2F2F2;min-width: 80px;height: 26px;text-align: center;white-space: nowrap">添加</span>
+            <span id="add-feedback"
+                  style="background-color: green;min-width:120px;height: 26px;text-align: center;white-space: nowrap;margin-left: 16px;display: none"></span>
+        </p>
+
+        <p class="dialog-content-line">
+        <div class="table-box">
+            <table id="table" class="table" border="1px" cellspacing="0">
+                <thead>
+                <tr id="thead-tr">
+                    <th class="th">编号</th>
+                    <th class="th">商品类别名称</th>
+                    <th class="th">添加时间</th>
+                    <th class="th">排序</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+
+
+            </table>
+        </div>
+        </p>
+    </div>
+
+
+</div>
+
+<script src="../common.js"></script>
+<script src="goods-category.js"></script>
+</body>
+</html>

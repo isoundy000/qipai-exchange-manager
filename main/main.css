@@ -31,6 +31,7 @@ html, body {
     margin-top: 1.2%;
     margin-right: 40px;
     color: white;
+    white-space: nowrap;
 }
 
 .top > .top-exit {
@@ -38,6 +39,7 @@ html, body {
     margin-top: 1.2%;
     margin-right: 40px;
     color: white;
+    white-space: nowrap;
 }
 
 .bottom {
@@ -50,8 +52,8 @@ html, body {
 }
 
 .nav-main {
-    width: 160px;
-
+    width: 130px;
+    min-width: 130px;
     background-color: #2B7AD3;
 
 }
@@ -66,8 +68,8 @@ html, body {
 
     list-style: none;
     padding-left: 10px;
-    height: 60px;
-    line-height: 60px;
+    height: 50px;
+    line-height: 50px;
     font-size: 20px;
 
 }
@@ -84,7 +86,8 @@ html, body {
 
 /*nav-sub*/
 .nav-sub {
-    width: 200px;
+    width: 150px;
+    min-width: 150px;
 
 }
 
@@ -95,7 +98,7 @@ html, body {
 
 .nav-sub > ul > li {
     list-style: none;
-    height: 50px;
+    height: 46px;
     font-size: 14px;
     line-height: 50px;
     margin: 0px;
@@ -108,7 +111,7 @@ html, body {
 
 .nav-sub-solid {
     display: block;
-    width: 200px;
+    width: 150px;
     height: 2px;
     background-color: #D4D4D4;
 

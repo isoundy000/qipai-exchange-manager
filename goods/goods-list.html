@@ -4,26 +4,104 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<link rel="stylesheet" href="../common.css">
+<link rel="stylesheet" href="goods-list.css">
 <body>
-<table width="600" border="1" cellspacing="0">
-    <thead>
-    <tr>
-        <th>商品编号</th>
-        <th>缩略图</th>
-        <th>商品名</th>
-        <th>商品价格(元宝)</th>
-        <th>排序</th>
-        <th>库存</th>
-        <th>兑换量</th>
-        <th>添加时间</th>
-        <th>操作</th>
-    </tr>
 
-    </thead>
-    <tbody id="tbMain"></tbody>
-</table>
+<div class="root">
+    <div class="top">
+        <div class="top-sub">
+            <div class="mark"></div>
+            <span class="title">商品列表</span>
+            <div style="flex: 1"></div>
+            <div id="add-good" class="add">添加商品</div>
 
+        </div>
+
+    </div>
+    <div class="split-top"></div>
+    <div class="keys">
+        <label class="keys-label">输入搜索</label>
+        <input class="search-key">
+        <label class="keys-label">时间</label>
+        <input class="search-time" type="date">
+        <label class="keys-label">至</label>
+        <input id="search-time-to" class="search-time" type="date">
+        <label class="keys-label">库存</label>
+        <input class="stock">
+        <label class="keys-label">至</label>
+        <input class="stock">
+    </div>
+
+    <div class="table-box">
+        <table id="table" class="table" border="1px" cellspacing="0">
+            <thead>
+            <tr id="thead-tr">
+                <th class="th">商品编号</th>
+                <th class="th">缩略图</th>
+                <th class="th">商品名</th>
+                <th class="th">价格(元宝)</th>
+                <th class="th">会员价(元宝)</th>
+                <th class="th">黄金会员价(元宝)</th>
+                <th class="th">排序</th>
+                <th class="th">库存</th>
+                <th class="th">兑换量</th>
+                <th class="th">添加时间</th>
+                <th class="th">操作</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+            <tbody>
+            <tr>
+                <td colspan="11">
+                    <div class="page">
+                        <div style="margin-right: 20px">页</div>
+                        <input id="goto-page" class="page-input" type="number" style="width: 40px">
+                        <div style="margin-left: 10px;margin-right: 10px">调至</div>
+                        <img id="next" class="page-button" src="../img/page-right.svg">
+                        <input id="page5" class="page-input">
+                        <input id="page4" class="page-input">
+                        <input id="page3" class="page-input">
+                        <input id="page2" class="page-input">
+                        <input id="page1" class="page-input">
+                        <input id="page0" class="page-input">
+                        <img id="previous" class="page-button" src="../img/page-left.svg">
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+
+        </table>
+    </div>
+
+
+</div>
+
+
+<!--<table width="600" border="1" cellspacing="0">-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>商品编号</th>-->
+<!--<th>缩略图</th>-->
+<!--<th>商品名</th>-->
+<!--<th>商品价格(元宝)</th>-->
+<!--<th>排序</th>-->
+<!--<th>库存</th>-->
+<!--<th>兑换量</th>-->
+<!--<th>添加时间</th>-->
+<!--<th>操作</th>-->
+<!--</tr>-->
+
+<!--</thead>-->
+<!--<tbody id="tbMain"></tbody>-->
+<!--</table>-->
+
+
+<script src="../common.js"></script>
 <script src="goods-list.js"></script>
+
 </body>
 
 </html>

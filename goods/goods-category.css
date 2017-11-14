@@ -1,0 +1,108 @@
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /*overflow-y: hidden;*/
+}
+
+.root {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+}
+
+.top {
+    height: 49px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.top > .top-sub {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+
+    align-items: center;
+
+}
+
+.top > .top-sub > .mark {
+    width: 3px;
+    height: 16px;
+    margin: 0px;
+    margin-left: 8px;
+    margin-bottom: 0px;
+
+    background-color: #4FBDF9;
+}
+
+.top > .top-sub > .title {
+    margin-left: 8px;
+}
+
+.top > .top-sub > .add {
+    background-color: #2A9CF6;
+    margin-right: 40px;
+    width: 90px;
+    height: 30px;
+
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
+    /*text-align: center;*/
+
+}
+
+.split-top {
+    width: 99%;
+    height: 1px;
+    margin-left: 8px;
+    background-color: #4FBDF9;
+}
+
+.buttom {
+    flex-grow: 1;
+
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+
+}
+
+
+
+.dialog-content-line{
+    height: 40px;
+
+
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+}
+
+.dialog-label{
+    width: 100px;
+    height: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    white-space: nowrap;
+}
+
+.dialog-input{
+    height: 20px;
+}
+
+.upload-img{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+
+}

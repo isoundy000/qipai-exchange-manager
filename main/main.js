@@ -176,6 +176,11 @@ function showNavSubMenu4Goods() {
     navSubItems[1].style.display = "block";
     navSubItems[1].setAttribute("data-url", "goods/goods-add.html");
     navSubItems[1].setAttribute("data-selected", "0201");
+
+    navSubItems[2].innerHTML = "商品类别";
+    navSubItems[2].style.display = "block";
+    navSubItems[2].setAttribute("data-url", "goods/goods-category.html");
+    navSubItems[2].setAttribute("data-selected", "0202");
 }
 function showNavSubMenu4Stock() {
     //库存列表
@@ -333,5 +338,5 @@ function hidenAllNavSubItems(navSubItems) {
 }
 
 //默认
-document.getElementById("nav-main-item0").click();
+document.getElementById("nav-main-item2").click();
 document.getElementById("nav-sub-item0").click();
