@@ -31,7 +31,7 @@ var pageSize = -1;
 var totalPages = -1;
 var totalRecords = -1;
 
-requestOnePage(pageIndex, 10);
+requestOnePage(pageIndex, 20);
 
 
 function requestOnePage(index, size) {

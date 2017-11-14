@@ -16,6 +16,7 @@ html, body {
 
 .top {
     height: 49px;
+    min-height: 49px;
     display: flex;
     display: -webkit-flex;
     flex-direction: column;
@@ -69,6 +70,7 @@ html, body {
 
 .keys {
     height: 60px;
+    min-height: 60px;
 
     display: flex;
     display: -webkit-flex;
@@ -91,11 +93,12 @@ html, body {
     margin-right: 40px;
 }
 
-.keys > .search-time{
+.keys > .search-time {
     min-width: 160px;
 }
 
-.table-box{
+.table-box {
+    margin-top: 1px;
     flex-grow: 1;
     margin-left: 10px;
     margin-right: 40px;
@@ -104,9 +107,6 @@ html, body {
 .table {
     /*table-layout: fixed;*/
 
-
-
-
     /*width: 100%;*/
     /*display: flex;*/
     /*display: -webkit-flex;*/
@@ -114,18 +114,17 @@ html, body {
 
 }
 
-.table th,td{
-
+.table th, td {
 
     text-align: center;
     height: 40px;
 }
 
-.table span{
+.table span {
     margin: 10px;
 }
 
-.page{
+.page {
     margin: 0px;
     width: 100%;
     height: 100%;
@@ -136,14 +135,15 @@ html, body {
     align-items: center;
 }
 
-.page-input{
+.page-input {
     margin: 0px;
     padding: 0px;
     width: 26px;
     height: 20px;
     margin-right: 10px;
 }
-.page-marker{
+
+.page-marker {
     margin: 0px;
     padding: 0px;
     width: 28px;
@@ -157,7 +157,8 @@ html, body {
     flex-direction: column;
     justify-content: center;
 }
-.page-button{
+
+.page-button {
     border: 1px solid;
     margin: 0px;
     padding: 0px;
@@ -165,15 +166,16 @@ html, body {
     height: 22px;
     margin-right: 10px;
 }
-.page-test1{
+
+.page-test1 {
     flex-grow: 1;
     background-color: #2B7AD3;
-}.page-test2{
+}
+
+.page-test2 {
     flex-grow: 1;
     background-color: #D4D4D4;
 }
-
-
 
 #centerpoint {
     top: 50%;
