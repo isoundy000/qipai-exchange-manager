@@ -31,7 +31,7 @@ var pageSize = -1;
 var totalPages = -1;
 var totalRecords = -1;
 
-requestOnePage(pageIndex, 2);
+requestOnePage(pageIndex, 10);
 
 
 function requestOnePage(index, size) {
@@ -52,8 +52,13 @@ function requestOnePage(index, size) {
             for (var i = 0; i < json.data.length; i++) {
 
                 var tr = appendTr(tbody);
-                appendTdAndData(tr, json.data[i].id);
-                appendTdAndData(tr, "-- --");
+
+                var imgBox = appendTdAndData(tr, "");
+                var img = document.createElement("img");
+                img.setAttribute("src",JSON.stringify(json.data[i].pictures)[0]);
+                console.log(json.data[i].pictures[0]);
+                imgBox.appendChild(img);
+
                 appendTdAndData(tr, json.data[i].name);
                 appendTdAndData(tr, json.data[i].price);
                 appendTdAndData(tr, json.data[i].vipPrice);
