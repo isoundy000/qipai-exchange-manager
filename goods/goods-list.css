@@ -98,32 +98,32 @@ html, body {
     min-width: 160px;
 }
 
-.table-box {
-    margin-top: 1px;
-    flex-grow: 1;
-    margin-left: 10px;
-    margin-right: 40px;
-}
+/*.table-box {*/
+    /*margin-top: 1px;*/
+    /*flex-grow: 1;*/
+    /*margin-left: 10px;*/
+    /*margin-right: 40px;*/
+/*}*/
 
-.table {
-    /*table-layout: fixed;*/
+/*.table {*/
+    /*!*table-layout: fixed;*!*/
 
-    /*width: 100%;*/
-    /*display: flex;*/
-    /*display: -webkit-flex;*/
-    /*flex-direction: column;*/
+    /*!*width: 100%;*!*/
+    /*!*display: flex;*!*/
+    /*!*display: -webkit-flex;*!*/
+    /*!*flex-direction: column;*!*/
 
-}
+/*}*/
 
-.table th, td {
+/*.table th, td {*/
 
-    text-align: center;
-    /*height: 40px;*/
-}
+    /*text-align: center;*/
+    /*!*height: 40px;*!*/
+/*}*/
 
-.table span {
-    margin: 10px;
-}
+/*.table span {*/
+    /*margin: 10px;*/
+/*}*/
 
 .page {
     margin: 0px;
