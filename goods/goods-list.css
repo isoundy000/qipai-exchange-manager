@@ -107,7 +107,7 @@ html, body {
 
 
 
-    width: 100%;
+    /*width: 100%;*/
     /*display: flex;*/
     /*display: -webkit-flex;*/
     /*flex-direction: column;*/
@@ -115,7 +115,7 @@ html, body {
 }
 
 .table th,td{
-    white-space: nowrap;
+
 
     text-align: center;
     height: 40px;

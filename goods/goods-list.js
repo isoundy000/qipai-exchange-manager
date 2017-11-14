@@ -10,15 +10,13 @@ console.log(window.getComputedStyle(table, null).width);
 var theadCells = document.getElementById("thead-tr").getElementsByTagName("th");
 // var tbodyCells = document.getElementById("tbody-tr").getElementsByTagName("td");
 
-var width = extractPxValueNumber(window.getComputedStyle(table, null).width);
-for (var i = 0; i < theadCells.length; i++) {
-
-
-    console.log(width);
-    theadCells[i].style.width = width / 11 + "px";
-    //tbodyCells[i].style.width = width / 9 + "px";
-    //theadCells[i].style.width="160px";
-}
+// var width = extractPxValueNumber(window.getComputedStyle(table, null).width);
+// for (var i = 0; i < theadCells.length; i++) {
+//
+//
+//     console.log(width);
+//     theadCells[i].style.width = width / 11 + "px";
+// }
 
 
 window.onresize = function () {
@@ -315,7 +313,7 @@ document.getElementById("goto-page").onkeydown = function (e) {
         console.log(Number(this.value));
         if (this.value >= 0 && this.value <= totalPages) {
             clearTable();
-            requestOnePage(this.value, pageSize);
+            requestOnePage(this.value-1, pageSize);
         }
 
     }
