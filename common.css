@@ -1,3 +1,8 @@
+* {
+    font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
+    font-size: 14px;
+}
+
 .modalDialog {
     position: fixed;
     font-family: Arial, Helvetica, sans-serif;
@@ -33,9 +38,8 @@
     /*background: -o-linear-gradient(#fff, #999);*/
 }
 
-
 /*table*/
-.table-box{
+.table-box {
     flex-grow: 1;
     margin-left: 10px;
     margin-right: 40px;
@@ -44,24 +48,20 @@
 .table {
     /*table-layout: fixed;*/
 
-
-
-
     width: 100%;
     /*display: flex;*/
     /*display: -webkit-flex;*/
     /*flex-direction: column;*/
 
-    font-family: verdana,arial,sans-serif;
-    font-size:11px;
-    color:#333333;
+    font-size: 14px;
+    color: #333333;
     border-width: 1px;
     border-color: #666666;
     border-collapse: collapse;
 
 }
 
-.table th{
+.table th {
     text-align: center;
     height: 40px;
     background-color: #dedede;
@@ -70,7 +70,8 @@
     padding: 8px;
     border-style: solid;
 }
-.table td{
+
+.table td {
     text-align: center;
     height: 40px;
     border-color: #666666;
@@ -79,7 +80,6 @@
     border-style: solid;
 }
 
-
-.table span{
+.table span {
     margin: 10px;
 }

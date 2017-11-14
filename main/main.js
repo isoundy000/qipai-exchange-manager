@@ -16,7 +16,7 @@ for(var i=0;i<navMainItems.length;i++){
     }
     navMainItems[i].onmouseover=function () {
         if (window.getComputedStyle(this ,null).getPropertyValue('background-color')!=="rgb(255, 255, 255)") {
-            this.style.backgroundColor = "#8CD7DC";
+            this.style.backgroundColor = "#2A9CF6";
         }
     }
     navMainItems[i].onmouseout=function () {
@@ -86,7 +86,7 @@ for (var i = 0; i < navSubItems.length; i++) {
         for (var i = 0; i < navSubItems.length; i++) {
             navSubItems[i].style.backgroundColor = "#ffffff";
         }
-        this.style.backgroundColor = "#C5C587";
+        this.style.backgroundColor = "#E0E5EB";
 
 
         var attribute = this.getAttribute("data-url");
@@ -99,12 +99,12 @@ for (var i = 0; i < navSubItems.length; i++) {
 
     }
     navSubItems[i].onmouseover = function () {
-        if (window.getComputedStyle(this, null).getPropertyValue('background-color') !== "rgb(197, 197, 135)") {
-            this.style.backgroundColor = "#94945E";
+        if (window.getComputedStyle(this, null).getPropertyValue('background-color') !== "rgb(224, 229, 235)") {
+            this.style.backgroundColor = "#CFD7DB";
         }
     }
     navSubItems[i].onmouseout = function () {
-        if (window.getComputedStyle(this, null).getPropertyValue('background-color') !== "rgb(197, 197, 135)") {
+        if (window.getComputedStyle(this, null).getPropertyValue('background-color') !== "rgb(224, 229, 235)") {
             this.style.backgroundColor = "#ffffff";
         }
 

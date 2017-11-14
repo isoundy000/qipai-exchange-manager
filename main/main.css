@@ -17,7 +17,7 @@ html, body {
 .top {
 
     height: 60px;
-    background-color: #4FBDF9;
+    background-color: #4FC3F7;
 
     display: flex;
     display: -webkit-flex;
@@ -80,7 +80,7 @@ html, body {
 }
 
 .nav-main > ul > li:hover {
-    background-color: #8CD7DC;
+    background-color: #2A9CF6;
 
 }
 
