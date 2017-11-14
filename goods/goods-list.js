@@ -55,8 +55,10 @@ function requestOnePage(index, size) {
 
                 var imgBox = appendTdAndData(tr, "");
                 var img = document.createElement("img");
-                img.setAttribute("src",JSON.stringify(json.data[i].pictures)[0]);
-                console.log(json.data[i].pictures[0]);
+                img.setAttribute("src",JSON.parse(json.data[i].pictures));
+                img.style.width="50px"
+                img.style.height="50px"
+
                 imgBox.appendChild(img);
 
                 appendTdAndData(tr, json.data[i].name);
