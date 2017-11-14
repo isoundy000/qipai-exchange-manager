@@ -311,9 +311,11 @@ document.getElementById("goto-page").onkeydown = function (e) {
     if (e.which == 13) {
         console.log(this.value);
         console.log(Number(this.value));
-        if (this.value >= 0 && this.value <= totalPages) {
+        if (this.value >= 1 && this.value <= totalPages) {
             clearTable();
             requestOnePage(this.value-1, pageSize);
+        }else {
+            alert("请输入有效的页码");
         }
 
     }
