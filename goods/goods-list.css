@@ -143,6 +143,20 @@ html, body {
     height: 20px;
     margin-right: 10px;
 }
+.page-marker{
+    margin: 0px;
+    padding: 0px;
+    width: 28px;
+    height: 22px;
+    margin-right: 10px;
+    text-align: center;
+    border: 1px solid;
+    display: none;
+    /*display: flex;*/
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .page-button{
     border: 1px solid;
     margin: 0px;
