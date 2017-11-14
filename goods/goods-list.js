@@ -65,9 +65,9 @@ function requestOnePage(index, size) {
                 appendTdAndData(tr, json.data[i].price);
                 appendTdAndData(tr, json.data[i].vipPrice);
                 appendTdAndData(tr, json.data[i].goldVipPrice);
-                appendTdAndData(tr, "-- --");
+                appendTdAndData(tr, "-");
                 appendTdAndData(tr, json.data[i].stock);
-                appendTdAndData(tr, "-- --");
+                appendTdAndData(tr, "-");
                 appendTdAndData(tr, new Date(json.data[i].dtCreate).Format("yyyy-MM-dd"));
                 var cell = appendTd(tr);
                 var show = document.createElement("span");
