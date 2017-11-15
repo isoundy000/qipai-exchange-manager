@@ -53,23 +53,33 @@ function requestOnePage(index, size) {
 
                 var tr = appendTr(tbody);
 
-                if((i%2)!=0){
-                    tr.style.backgroundColor="#f4f4f4";
+
+                if ((i % 2) != 0) {
+                    tr.style.backgroundColor = "#f4f4f4";
+                    tr.setAttribute("data-even-marker","0");
+                } else {
+                    tr.setAttribute("data-even-marker","1");
                 }
 
-                tr.onmouseover=function () {
-                    this.style.backgroundColor="#4FC3F7";
+                tr.onmouseover = function () {
+                    this.style.backgroundColor = "#4FC3F7";
                 };
-                tr.onmouseout=function () {
-                    this.style.backgroundColor="#ffffff";
+                tr.onmouseout = function () {
+                    if (this.getAttribute("data-even-marker") == "0") {
+                        this.style.backgroundColor = "#f4f4f4";
+                    }
+                    if (this.getAttribute("data-even-marker") == "1") {
+                        this.style.backgroundColor = "#ffffff";
+                    }
+
                 };
 
 
                 var imgBox = appendTdAndData(tr, "");
                 var img = document.createElement("img");
-                img.setAttribute("src",JSON.parse(json.data[i].pictures));
-                img.style.width="50px"
-                img.style.height="50px"
+                img.setAttribute("src", JSON.parse(json.data[i].pictures));
+                img.style.width = "50px"
+                img.style.height = "50px"
 
                 imgBox.appendChild(img);
 
@@ -84,8 +94,13 @@ function requestOnePage(index, size) {
                 var cell = appendTd(tr);
                 var show = document.createElement("a");
                 var edit = document.createElement("a");
-                edit.style.margin="8px";
+                edit.style.margin = "8px";
                 var del = document.createElement("a");
+
+                show.setAttribute("href","javascript:void(0)");
+                edit.setAttribute("href","javascript:void(0)");
+                del.setAttribute("href","javascript:void(0)");
+
 
                 show.innerHTML = "查看";
                 edit.innerHTML = "编辑";
@@ -205,8 +220,6 @@ function updatePageMarkers() {
         }
 
 
-
-
         switch (pageIndex) {
             case 0:
                 page1.style.backgroundColor = "#8CD7DC";
@@ -246,7 +259,7 @@ function updatePageMarkers() {
             page4.innerText = 4;
             page5.innerText = 5;
 
-            switch (pageIndex){
+            switch (pageIndex) {
                 case 0:
                     page1.style.backgroundColor = "#8CD7DC";
                     break;
@@ -263,16 +276,16 @@ function updatePageMarkers() {
             page2.innerText = totalPages - 3;
             page3.innerText = totalPages - 2;
             page4.innerText = totalPages - 1;
-            page5.innerText = totalPages ;
+            page5.innerText = totalPages;
 
-            switch (pageIndex){
-                case totalPages-1:
+            switch (pageIndex) {
+                case totalPages - 1:
                     page5.style.backgroundColor = "#8CD7DC";
                     break;
-                case totalPages-2:
+                case totalPages - 2:
                     page4.style.backgroundColor = "#8CD7DC";
                     break;
-                case totalPages-3:
+                case totalPages - 3:
                     page3.style.backgroundColor = "#8CD7DC";
                     break
             }
@@ -333,8 +346,8 @@ document.getElementById("goto-page").onkeydown = function (e) {
         console.log(Number(this.value));
         if (this.value >= 1 && this.value <= totalPages) {
             clearTable();
-            requestOnePage(this.value-1, pageSize);
-        }else {
+            requestOnePage(this.value - 1, pageSize);
+        } else {
             alert("请输入有效的页码");
         }
 

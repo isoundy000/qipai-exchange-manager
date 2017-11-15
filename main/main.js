@@ -121,7 +121,7 @@ function showNavSubMenu4Order() {
     if (selectedItem.substr(0,2)=="00"){
         var i=-1;
         i=selectedItem.substr(2,2);
-        navSubItems[Number(i)].style.backgroundColor = "#C5C587";
+        navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
     navSubItems[0].innerHTML = "商品订单列表";
@@ -147,7 +147,7 @@ function showNavSubMenu4RoomCard() {
     if (selectedItem.substr(0,2)=="01"){
         var i=-1;
         i=selectedItem.substr(2,2);
-        navSubItems[Number(i)].style.backgroundColor = "#C5C587";
+        navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
     navSubItems[0].innerHTML = "房卡列表";
@@ -164,7 +164,7 @@ function showNavSubMenu4Goods() {
     if (selectedItem.substr(0,2)=="02"){
         var i=-1;
         i=selectedItem.substr(2,2);
-        navSubItems[Number(i)].style.backgroundColor = "#C5C587";
+        navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
     navSubItems[0].innerHTML = "商品列表";
@@ -191,7 +191,7 @@ function showNavSubMenu4Stock() {
     if (selectedItem.substr(0,2)=="03"){
         var i=-1;
         i=selectedItem.substr(2,2);
-        navSubItems[Number(i)].style.backgroundColor = "#C5C587";
+        navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
     navSubItems[0].innerHTML = "库存列表";
@@ -216,7 +216,7 @@ function showNavSubMenu4Operate() {
     if (selectedItem.substr(0,2)=="04"){
         var i=-1;
         i=selectedItem.substr(2,2);
-        navSubItems[Number(i)].style.backgroundColor = "#C5C587";
+        navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
     navSubItems[0].innerHTML = "banner管理";
@@ -253,7 +253,7 @@ function showNavSubMenu4Finance() {
     if (selectedItem.substr(0,2)=="05"){
         var i=-1;
         i=selectedItem.substr(2,2);
-        navSubItems[Number(i)].style.backgroundColor = "#C5C587";
+        navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
     navSubItems[0].innerHTML = "入账列表";
@@ -275,7 +275,7 @@ function showNavSubMenu4UserManagement() {
     if (selectedItem.substr(0,2)=="06"){
         var i=-1;
         i=selectedItem.substr(2,2);
-        navSubItems[Number(i)].style.backgroundColor = "#C5C587";
+        navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
     navSubItems[0].innerHTML = "用户列表";
@@ -300,7 +300,7 @@ function showNavSubMenu4PermissionsManagement() {
     if (selectedItem.substr(0,2)=="07"){
         var i=-1;
         i=selectedItem.substr(2,2);
-        navSubItems[Number(i)].style.backgroundColor = "#C5C587";
+        navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
     navSubItems[0].innerHTML = "部门列表";
