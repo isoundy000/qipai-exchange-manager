@@ -1,8 +1,8 @@
-var addGood = document.getElementById("add-good");
-addGood.onclick = function () {
-    window.parent.window.document.getElementById("nav-main-item2").click();
-    window.parent.window.document.getElementById("nav-sub-item1").click();
-};
+// var addGood = document.getElementById("add-good");
+// addGood.onclick = function () {
+//     window.parent.window.document.getElementById("nav-main-item2").click();
+//     window.parent.window.document.getElementById("nav-sub-item1").click();
+// };
 
 
 var table = document.getElementById("table");
@@ -53,6 +53,18 @@ function requestOnePage(index, size) {
 
                 var tr = appendTr(tbody);
 
+                if((i%2)!=0){
+                    tr.style.backgroundColor="#f4f4f4";
+                }
+
+                tr.onmouseover=function () {
+                    this.style.backgroundColor="#4FC3F7";
+                };
+                tr.onmouseout=function () {
+                    this.style.backgroundColor="#ffffff";
+                };
+
+
                 var imgBox = appendTdAndData(tr, "");
                 var img = document.createElement("img");
                 img.setAttribute("src",JSON.parse(json.data[i].pictures));
@@ -70,9 +82,10 @@ function requestOnePage(index, size) {
                 appendTdAndData(tr, "-");
                 appendTdAndData(tr, new Date(json.data[i].dtCreate).Format("yyyy-MM-dd"));
                 var cell = appendTd(tr);
-                var show = document.createElement("span");
-                var edit = document.createElement("span");
-                var del = document.createElement("span");
+                var show = document.createElement("a");
+                var edit = document.createElement("a");
+                edit.style.margin="8px";
+                var del = document.createElement("a");
 
                 show.innerHTML = "查看";
                 edit.innerHTML = "编辑";
