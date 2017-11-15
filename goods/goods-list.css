@@ -98,6 +98,19 @@ html, body {
     min-width: 160px;
 }
 
+.search-button{
+    background-color: #4FC3F7;
+    margin-left: 40px;
+    width: 90px;
+    height: 30px;
+
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
+}
+
 /*.table-box {*/
     /*margin-top: 1px;*/
     /*flex-grow: 1;*/
