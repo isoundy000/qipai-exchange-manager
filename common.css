@@ -55,7 +55,7 @@
 
     font-size: 14px;
     color: #333333;
-    border-width: 1px;
+    border-width: 0px;
     border-color: #666666;
     border-collapse: collapse;
 
@@ -64,20 +64,20 @@
 .table th {
     text-align: center;
     height: 40px;
-    background-color: #dedede;
-    border-color: #666666;
-    border-width: 1px;
-    padding: 8px;
-    border-style: solid;
+    /*background-color: #dedede;*/
+    /*border-color: #666666;*/
+    /*border-width: 1px;*/
+    /*padding: 8px;*/
+    /*border-style: solid;*/
 }
 
 .table td {
     text-align: center;
     height: 40px;
-    border-color: #666666;
-    border-width: 1px;
-    padding: 8px;
-    border-style: solid;
+    /*border-color: #666666;*/
+    /*border-width: 1px;*/
+    /*padding: 8px;*/
+    /*border-style: solid;*/
 }
 
 .table span {
