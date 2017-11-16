@@ -17,6 +17,7 @@ html, body {
 
 .top {
     height: 49px;
+    min-height: 49px;
     display: flex;
     display: -webkit-flex;
     flex-direction: column;
@@ -64,6 +65,7 @@ html, body {
 .split-top {
     width: 99%;
     height: 1px;
+    min-height: 1px;
     margin-left: 8px;
     background-color: #4FBDF9;
 }
@@ -77,32 +79,65 @@ html, body {
 
 }
 
-
-
-.dialog-content-line{
+.dialog-content-line {
     height: 40px;
 
-
+    min-height: 40px;
     display: flex;
     display: -webkit-flex;
     flex-direction: row;
+    margin-top: 10px;
 }
 
-.dialog-label{
+.photo-content-line {
+    height: 100px;
+
+    min-height: 100px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.detail-content-line {
+    height: 100px;
+
+    min-height: 100px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+.dialog-label {
+    white-space: nowrap;
     width: 100px;
     height: 20px;
     margin-left: 20px;
     margin-right: 20px;
 }
 
-.dialog-input{
+.dialog-input {
     height: 20px;
 }
 
-.upload-img{
+.upload-img {
     width: 100px;
     height: 100px;
     margin-right: 10px;
 }
 
+.upload-button {
+    white-space: nowrap;
+    margin-left: 20px;
+    display: inline;
+}
 
+.select{
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px; /*css3属性IE不支持*/
+    padding-left:5px;
+}

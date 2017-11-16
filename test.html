@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<select name="timezones" id="timezones">
+    <option value="1">Pacific/Auckland +12:00 </option>
+    <option value="2">Australia/Brisbane +10:00 </option>
+    <option value="3">Aust +10:00 </option>
+    <option value="3">A +10:00 </option>
+</select>
+
+<script>
+//    window.setTimeout(function () {
+//        var timezones = document.getElementById("timezones");
+//        timezones.options[0].text="2";
+//    },5000);
+
+var timezones = document.getElementById("timezones");
+timezones.onchange = function () {
+    console.log("fds");
+}
+</script>
+</body>
+</html>

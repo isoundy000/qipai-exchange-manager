@@ -12,6 +12,20 @@ function post(jsonObj) {
 
 }
 
+function upload(formData) {
+    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+    xmlhttp.open("POST", "http://47.104.17.187:8082/micro-file-server");
+    // xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    // xmlhttp.setRequestHeader("Content-type","multipart/form-data");
+    xmlhttp.send(formData);
+
+
+    return xmlhttp;
+
+
+
+}
+
 
 Date.prototype.Format = function (fmt) { //author: meizz
     var o = {

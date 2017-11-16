@@ -53,7 +53,7 @@ html, body {
 
 .nav-main {
     width: 130px;
-    min-width: 130px;
+    /*min-width: 130px;*/
     background-color: #2B7AD3;
 
 }

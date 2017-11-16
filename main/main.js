@@ -1,27 +1,29 @@
+
+
 var navMainItems = document.getElementById("nav-main-menu").getElementsByTagName("li");
 
-var subItemSelected=-1;
+var subItemSelected = -1;
 
-for(var i=0;i<navMainItems.length;i++){
-    navMainItems[i].onclick=function () {
-        for(var i=0;i<navMainItems.length;i++){
-            navMainItems[i].style.backgroundColor="#2B7AD3";
-            navMainItems[i].getElementsByTagName("img")[0].setAttribute("src","../img/arrow-right-black.png")
+for (var i = 0; i < navMainItems.length; i++) {
+    navMainItems[i].onclick = function () {
+        for (var i = 0; i < navMainItems.length; i++) {
+            navMainItems[i].style.backgroundColor = "#2B7AD3";
+            navMainItems[i].getElementsByTagName("img")[0].setAttribute("src", "../img/triangle-right-black.png")
         }
-        this.style.backgroundColor="#ffffff";
-        this.getElementsByTagName("img")[0].setAttribute("src","../img/arrow-bottom-black.png")
+        this.style.backgroundColor = "#ffffff";
+        this.getElementsByTagName("img")[0].setAttribute("src", "../img/triangle-bottom-black.png")
 
         showNavSubMenu(this.getAttribute("data-index"));
 
     }
-    navMainItems[i].onmouseover=function () {
-        if (window.getComputedStyle(this ,null).getPropertyValue('background-color')!=="rgb(255, 255, 255)") {
+    navMainItems[i].onmouseover = function () {
+        if (window.getComputedStyle(this, null).getPropertyValue('background-color') !== "rgb(255, 255, 255)") {
             this.style.backgroundColor = "#2A9CF6";
         }
     }
-    navMainItems[i].onmouseout=function () {
-        if (window.getComputedStyle(this ,null).getPropertyValue('background-color')!=="rgb(255, 255, 255)") {
-            this.style.backgroundColor="#2B7AD3";
+    navMainItems[i].onmouseout = function () {
+        if (window.getComputedStyle(this, null).getPropertyValue('background-color') !== "rgb(255, 255, 255)") {
+            this.style.backgroundColor = "#2B7AD3";
         }
 
     }
@@ -29,7 +31,7 @@ for(var i=0;i<navMainItems.length;i++){
 
 function showNavSubMenu(index) {
 
-    switch (index){
+    switch (index) {
         case "0":
             //window.frames["nav-sub-iframe"].contentWindow.showNavSubMenu4Order();
             showNavSubMenu4Order();
@@ -70,13 +72,6 @@ function showNavSubMenu(index) {
 // nav-sub
 
 
-
-
-
-
-
-
-
 var navSubItems = document.getElementById("nav-sub-menu").getElementsByTagName("li");
 
 var selectedItem = "-1";
@@ -94,7 +89,7 @@ for (var i = 0; i < navSubItems.length; i++) {
         console.log(attribute);
         //showNavSubMenu(this.getAttribute("data-index"));
         var biIframe = document.getElementById("bi-iframe");
-        biIframe.setAttribute("src","../"+attribute);
+        biIframe.setAttribute("src", "../" + attribute);
         //parent.window.test1();
 
     }
@@ -118,9 +113,9 @@ function showNavSubMenu4Order() {
     var navSubItems = document.getElementById("nav-sub-menu").getElementsByTagName("li");
     hidenAllNavSubItems(navSubItems);
 
-    if (selectedItem.substr(0,2)=="00"){
-        var i=-1;
-        i=selectedItem.substr(2,2);
+    if (selectedItem.substr(0, 2) == "00") {
+        var i = -1;
+        i = selectedItem.substr(2, 2);
         navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
@@ -144,9 +139,9 @@ function showNavSubMenu4RoomCard() {
     var navSubItems = document.getElementById("nav-sub-menu").getElementsByTagName("li");
     hidenAllNavSubItems(navSubItems);
 
-    if (selectedItem.substr(0,2)=="01"){
-        var i=-1;
-        i=selectedItem.substr(2,2);
+    if (selectedItem.substr(0, 2) == "01") {
+        var i = -1;
+        i = selectedItem.substr(2, 2);
         navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
@@ -161,9 +156,9 @@ function showNavSubMenu4Goods() {
     var navSubItems = document.getElementById("nav-sub-menu").getElementsByTagName("li");
     hidenAllNavSubItems(navSubItems);
 
-    if (selectedItem.substr(0,2)=="02"){
-        var i=-1;
-        i=selectedItem.substr(2,2);
+    if (selectedItem.substr(0, 2) == "02") {
+        var i = -1;
+        i = selectedItem.substr(2, 2);
         navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
@@ -177,10 +172,20 @@ function showNavSubMenu4Goods() {
     navSubItems[1].setAttribute("data-url", "goods/goods-add.html");
     navSubItems[1].setAttribute("data-selected", "0201");
 
-    navSubItems[2].innerHTML = "商品类别";
+    navSubItems[2].innerHTML = "商品详情";
     navSubItems[2].style.display = "block";
-    navSubItems[2].setAttribute("data-url", "goods/goods-category.html");
+    navSubItems[2].setAttribute("data-url", "goods/goods-detail.html");
     navSubItems[2].setAttribute("data-selected", "0202");
+
+    navSubItems[3].innerHTML = "商品修改";
+    navSubItems[3].style.display = "block";
+    navSubItems[3].setAttribute("data-url", "goods/goods-update.html");
+    navSubItems[3].setAttribute("data-selected", "0203");
+
+    navSubItems[4].innerHTML = "商品类别";
+    navSubItems[4].style.display = "block";
+    navSubItems[4].setAttribute("data-url", "goods/goods-category.html");
+    navSubItems[4].setAttribute("data-selected", "0204");
 }
 function showNavSubMenu4Stock() {
     //库存列表
@@ -188,9 +193,9 @@ function showNavSubMenu4Stock() {
     var navSubItems = document.getElementById("nav-sub-menu").getElementsByTagName("li");
     hidenAllNavSubItems(navSubItems);
 
-    if (selectedItem.substr(0,2)=="03"){
-        var i=-1;
-        i=selectedItem.substr(2,2);
+    if (selectedItem.substr(0, 2) == "03") {
+        var i = -1;
+        i = selectedItem.substr(2, 2);
         navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
@@ -213,9 +218,9 @@ function showNavSubMenu4Operate() {
     var navSubItems = document.getElementById("nav-sub-menu").getElementsByTagName("li");
     hidenAllNavSubItems(navSubItems);
 
-    if (selectedItem.substr(0,2)=="04"){
-        var i=-1;
-        i=selectedItem.substr(2,2);
+    if (selectedItem.substr(0, 2) == "04") {
+        var i = -1;
+        i = selectedItem.substr(2, 2);
         navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
@@ -250,9 +255,9 @@ function showNavSubMenu4Finance() {
     var navSubItems = document.getElementById("nav-sub-menu").getElementsByTagName("li");
     hidenAllNavSubItems(navSubItems);
 
-    if (selectedItem.substr(0,2)=="05"){
-        var i=-1;
-        i=selectedItem.substr(2,2);
+    if (selectedItem.substr(0, 2) == "05") {
+        var i = -1;
+        i = selectedItem.substr(2, 2);
         navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
@@ -272,9 +277,9 @@ function showNavSubMenu4UserManagement() {
     var navSubItems = document.getElementById("nav-sub-menu").getElementsByTagName("li");
     hidenAllNavSubItems(navSubItems);
 
-    if (selectedItem.substr(0,2)=="06"){
-        var i=-1;
-        i=selectedItem.substr(2,2);
+    if (selectedItem.substr(0, 2) == "06") {
+        var i = -1;
+        i = selectedItem.substr(2, 2);
         navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
@@ -297,9 +302,9 @@ function showNavSubMenu4PermissionsManagement() {
     var navSubItems = document.getElementById("nav-sub-menu").getElementsByTagName("li");
     hidenAllNavSubItems(navSubItems);
 
-    if (selectedItem.substr(0,2)=="07"){
-        var i=-1;
-        i=selectedItem.substr(2,2);
+    if (selectedItem.substr(0, 2) == "07") {
+        var i = -1;
+        i = selectedItem.substr(2, 2);
         navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
@@ -340,3 +345,24 @@ function hidenAllNavSubItems(navSubItems) {
 //默认
 document.getElementById("nav-main-item2").click();
 document.getElementById("nav-sub-item0").click();
+
+
+var toHide = document.getElementById("to-hide-main-nav");
+var toShow = document.getElementById("to-show-main-nav");
+
+toHide.onclick = function () {
+    this.style.display = "none";
+    toShow.style.display = "inline";
+
+    document.getElementById("nav-main").style.display = "none";
+
+
+};
+toShow.onclick = function () {
+    this.style.display = "none";
+    toHide.style.display = "inline";
+
+    document.getElementById("nav-main").style.display = "block";
+
+};
+
