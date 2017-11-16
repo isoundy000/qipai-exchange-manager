@@ -56,9 +56,9 @@ function requestOnePage(index, size) {
 
                 if ((i % 2) != 0) {
                     tr.style.backgroundColor = "#f4f4f4";
-                    tr.setAttribute("data-even-marker","0");
+                    tr.setAttribute("data-even-marker", "0");
                 } else {
-                    tr.setAttribute("data-even-marker","1");
+                    tr.setAttribute("data-even-marker", "1");
                 }
 
                 tr.onmouseover = function () {
@@ -77,7 +77,13 @@ function requestOnePage(index, size) {
 
                 var imgBox = appendTdAndData(tr, "");
                 var img = document.createElement("img");
-                img.setAttribute("src", JSON.parse(json.data[i].pictures));
+
+                console.log(json.data[i].pictures);
+                if (json.data[i].pictures.length > 0) {
+                    img.setAttribute("src", JSON.parse(json.data[i].pictures));
+                }
+
+
                 img.style.width = "50px"
                 img.style.height = "50px"
 
@@ -97,9 +103,9 @@ function requestOnePage(index, size) {
                 edit.style.margin = "8px";
                 var del = document.createElement("a");
 
-                show.setAttribute("href","javascript:void(0)");
-                edit.setAttribute("href","javascript:void(0)");
-                del.setAttribute("href","javascript:void(0)");
+                show.setAttribute("href", "javascript:void(0)");
+                edit.setAttribute("href", "javascript:void(0)");
+                del.setAttribute("href", "javascript:void(0)");
 
 
                 show.innerHTML = "查看";
@@ -109,6 +115,19 @@ function requestOnePage(index, size) {
                 cell.appendChild(edit);
                 cell.appendChild(del);
 
+                show.setAttribute("data-opeate",json.data[i].id);
+                edit.setAttribute("data-opeate",json.data[i].id);
+                del.setAttribute("data-opeate",json.data[i].id);
+
+                show.onclick=function () {
+                    alert(this.getAttribute("data-opeate"));
+                }
+                edit.onclick=function () {
+                    alert(this.getAttribute("data-opeate"));
+                }
+                del.onclick=function () {
+                    alert(this.getAttribute("data-opeate"));
+                }
 
             }
 
