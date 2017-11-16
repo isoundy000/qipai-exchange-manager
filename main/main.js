@@ -149,6 +149,16 @@ function showNavSubMenu4RoomCard() {
     navSubItems[0].style.display = "block";
     navSubItems[0].setAttribute("data-url", "room-card/room-card-list.html");
     navSubItems[0].setAttribute("data-selected", "0100");
+
+    navSubItems[1].innerHTML = "添加房卡";
+    navSubItems[1].style.display = "block";
+    navSubItems[1].setAttribute("data-url", "room-card/room-card-add.html");
+    navSubItems[1].setAttribute("data-selected", "0101");
+
+    navSubItems[2].innerHTML = "编辑房卡";
+    navSubItems[2].style.display = "block";
+    navSubItems[2].setAttribute("data-url", "room-card/room-card-edit.html");
+    navSubItems[2].setAttribute("data-selected", "0102");
 }
 function showNavSubMenu4Goods() {
     //商品列表
@@ -199,15 +209,20 @@ function showNavSubMenu4Stock() {
         navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
-    navSubItems[0].innerHTML = "库存列表";
+    navSubItems[0].innerHTML = "入库列表";
     navSubItems[0].style.display = "block";
-    navSubItems[0].setAttribute("data-url", "stock/stock-list.html");
+    navSubItems[0].setAttribute("data-url", "stock/stock-in-list.html");
     navSubItems[0].setAttribute("data-selected", "0300");
 
-    navSubItems[1].innerHTML = "新增入库";
+    navSubItems[1].innerHTML = "出库列表";
     navSubItems[1].style.display = "block";
-    navSubItems[1].setAttribute("data-url", "stock/stock-add.html");
+    navSubItems[1].setAttribute("data-url", "stock/stock-out-list.html");
     navSubItems[1].setAttribute("data-selected", "0301");
+
+    navSubItems[2].innerHTML = "新增入库";
+    navSubItems[2].style.display = "block";
+    navSubItems[2].setAttribute("data-url", "stock/stock-add.html");
+    navSubItems[2].setAttribute("data-selected", "0302");
 }
 function showNavSubMenu4Operate() {
     //banner管理
@@ -343,7 +358,7 @@ function hidenAllNavSubItems(navSubItems) {
 }
 
 //默认
-document.getElementById("nav-main-item1").click();
+document.getElementById("nav-main-item4").click();
 document.getElementById("nav-sub-item0").click();
 
 

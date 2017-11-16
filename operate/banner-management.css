@@ -1,0 +1,115 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /*overflow-y: hidden;*/
+}
+
+.root {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+}
+
+.top {
+    height: 49px;
+    min-height: 49px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.top > .top-sub {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+
+    align-items: center;
+
+}
+
+.top > .top-sub > .mark {
+    width: 3px;
+    height: 16px;
+    margin: 0px;
+    margin-left: 8px;
+    margin-bottom: 0px;
+
+    background-color: #4FBDF9;
+}
+
+.top > .top-sub > .title {
+    margin-left: 8px;
+}
+
+.top > .top-sub > .add {
+    background-color: #4FC3F7;
+    margin-right: 40px;
+    width: 90px;
+    height: 30px;
+
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
+    /*text-align: center;*/
+
+}
+
+.split-top {
+    width: 99%;
+    height: 1px;
+    min-height: 1px;
+    margin-left: 8px;
+    background-color: #4FBDF9;
+}
+
+
+.bottom{
+    display:flex;
+    flex-direction: row;
+    flex-grow: 1;
+    width:100%;
+
+
+
+}
+.line>.title-line{
+    display: flex;
+    height: 50px;
+    margin-top: 25px;
+    font-size: 22px;
+
+}
+.line{
+    display: flex;
+    height: 50px;
+    margin:0px 0px 0px  50px;
+
+
+}
+.line>span,input{
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+    margin-top: 20px;
+
+}
+.line>span{
+    white-space: nowrap;
+}
+
+.line>.action-button{
+    display: flex;
+    margin-top: 20px;
+}
+.line>input{
+    display: flex;
+    width: 600px;
+}
+
