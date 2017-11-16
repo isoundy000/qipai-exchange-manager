@@ -343,7 +343,7 @@ function hidenAllNavSubItems(navSubItems) {
 }
 
 //默认
-document.getElementById("nav-main-item2").click();
+document.getElementById("nav-main-item1").click();
 document.getElementById("nav-sub-item0").click();
 
 
