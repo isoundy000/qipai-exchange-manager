@@ -182,20 +182,10 @@ function showNavSubMenu4Goods() {
     navSubItems[1].setAttribute("data-url", "goods/goods-add.html");
     navSubItems[1].setAttribute("data-selected", "0201");
 
-    navSubItems[2].innerHTML = "商品详情";
+    navSubItems[2].innerHTML = "商品类别";
     navSubItems[2].style.display = "block";
-    navSubItems[2].setAttribute("data-url", "goods/goods-detail.html");
+    navSubItems[2].setAttribute("data-url", "goods/goods-category.html");
     navSubItems[2].setAttribute("data-selected", "0202");
-
-    navSubItems[3].innerHTML = "商品修改";
-    navSubItems[3].style.display = "block";
-    navSubItems[3].setAttribute("data-url", "goods/goods-update.html");
-    navSubItems[3].setAttribute("data-selected", "0203");
-
-    navSubItems[4].innerHTML = "商品类别";
-    navSubItems[4].style.display = "block";
-    navSubItems[4].setAttribute("data-url", "goods/goods-category.html");
-    navSubItems[4].setAttribute("data-selected", "0204");
 }
 function showNavSubMenu4Stock() {
     //库存列表
@@ -358,7 +348,7 @@ function hidenAllNavSubItems(navSubItems) {
 }
 
 //默认
-document.getElementById("nav-main-item4").click();
+document.getElementById("nav-main-item2").click();
 document.getElementById("nav-sub-item0").click();
 
 

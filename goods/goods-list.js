@@ -30,6 +30,7 @@ var pageIndex = 0;
 var pageSize = -1;
 var totalPages = -1;
 var totalRecords = -1;
+var operateId = "";
 
 requestOnePage(pageIndex, 8);
 
@@ -115,18 +116,53 @@ function requestOnePage(index, size) {
                 cell.appendChild(edit);
                 cell.appendChild(del);
 
-                show.setAttribute("data-opeate",json.data[i].id);
-                edit.setAttribute("data-opeate",json.data[i].id);
-                del.setAttribute("data-opeate",json.data[i].id);
+                show.setAttribute("data-opeate", json.data[i].id);
+                edit.setAttribute("data-opeate", json.data[i].id);
+                del.setAttribute("data-opeate", json.data[i].id);
 
-                show.onclick=function () {
-                    alert(this.getAttribute("data-opeate"));
+                show.onclick = function () {
+                    console.log(this.getAttribute("data-opeate"));
+                    operateId = this.getAttribute("data-opeate");
+                    layer.open({
+                        type: 1
+                        , area: ['1000px', '600px']
+                        , title: '商品详情'
+                        , shade: 0.6
+                        , maxmin: false
+                        , anim: 1
+                        , content: $(".detail")
+                    });
+
+                    showDetail();
                 }
-                edit.onclick=function () {
-                    alert(this.getAttribute("data-opeate"));
+                edit.onclick = function () {
+                    //alert(this.getAttribute("data-opeate"));
+                    operateId = this.getAttribute("data-opeate");
+                    layer.open({
+                        type: 1
+                        , area: ['1000px', '600px']
+                        , title: '商品编辑'
+                        , shade: 0.6
+                        , maxmin: false
+                        , anim: 1
+                        , content: $(".update")
+                    });
+
+                    showDetailBeforeUpdate();
                 }
-                del.onclick=function () {
-                    alert(this.getAttribute("data-opeate"));
+                del.onclick = function () {
+                    //alert(this.getAttribute("data-opeate"));
+                    operateId = this.getAttribute("data-opeate");
+                    layer.open({
+                        type: 1
+                        , area: ['500px', '300px']
+                        , title: '确定删除该商品吗？'
+                        , shade: 0.6
+                        , maxmin: false
+                        , anim: 1
+                        , content: $("#confirm-del")
+                    });
+
                 }
 
             }
@@ -394,4 +430,128 @@ document.getElementById("page4").onclick = function () {
 document.getElementById("page5").onclick = function () {
     clearTable();
     requestOnePage(Number(this.innerText) - 1, pageSize);
+}
+
+
+document.getElementById("confirm-del").onclick = function () {
+
+
+    var params = {
+        "apiName": "Goods_QueryDetail_Api",
+        "goodsId": operateId
+    }
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(xmlhttp.responseText);
+            var json = JSON.parse(xmlhttp.responseText);
+
+            if (json.code == 0) {
+                layer.closeAll();
+                clearTable();
+                requestOnePage(pageIndex, 8);
+            }
+
+
+        }
+    }
+
+
+}
+
+function showDetail() {
+    var params = {
+        "apiName": "Goods_QueryDetail_Api",
+        "goodsId": operateId
+    }
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(xmlhttp.responseText);
+            var json = JSON.parse(xmlhttp.responseText);
+
+            if (json.code == 0) {
+                document.getElementById("add-name").value = json.data.name;
+                // document.getElementById("add-category-id")
+                document.getElementById("add-price").value = json.data.price;
+                document.getElementById("add-vip-price").value = json.data.vipPrice;
+                document.getElementById("add-gold-vip-price").value = json.data.goldVipPrice;
+                document.getElementById("add-stock").value = json.data.stock;
+                document.getElementById("add-create-time").value = new Date(json.data.dtCreate).Format("yyyy-MM-dd hh:mm:ss");
+                document.getElementById("add-is-delete").value = (json.data.isDelete) == 0 ? "正常" : "已删除";
+                document.getElementById("add-detail").value = json.data.detail;
+
+                var images = JSON.parse(json.data.pictures);
+                if (images.length >= 1) {
+                    document.getElementById("upload-img1").setAttribute("src", images[0]);
+                }
+                if (images.length >= 2) {
+                    document.getElementById("upload-img2").setAttribute("src", images[1]);
+                }
+                if (images.length >= 3) {
+                    document.getElementById("upload-img3").setAttribute("src", images[2]);
+                }
+                if (images.length >= 4) {
+                    document.getElementById("upload-img4").setAttribute("src", images[3]);
+                }
+                if (images.length >= 5) {
+                    document.getElementById("upload-img5").setAttribute("src", images[4]);
+                }
+
+
+            }
+
+
+        }
+    }
+}
+
+function showDetailBeforeUpdate() {
+    var params = {
+        "apiName": "Goods_QueryDetail_Api",
+        "goodsId": operateId
+    }
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(xmlhttp.responseText);
+            var json = JSON.parse(xmlhttp.responseText);
+
+            if (json.code == 0) {
+                document.getElementById("update-name").value = json.data.name;
+                // document.getElementById("add-category-id")
+                document.getElementById("update-price").value = json.data.price;
+                document.getElementById("update-vip-price").value = json.data.vipPrice;
+                document.getElementById("update-gold-vip-price").value = json.data.goldVipPrice;
+                document.getElementById("update-detail").value = json.data.detail;
+
+                var images = JSON.parse(json.data.pictures);
+                if (images.length >= 1) {
+                    document.getElementById("update-upload-img1").setAttribute("src", images[0]);
+                }
+                if (images.length >= 2) {
+                    document.getElementById("update-upload-img2").setAttribute("src", images[1]);
+                }
+                if (images.length >= 3) {
+                    document.getElementById("update-upload-img3").setAttribute("src", images[2]);
+                }
+                if (images.length >= 4) {
+                    document.getElementById("update-upload-img4").setAttribute("src", images[3]);
+                }
+                if (images.length >= 5) {
+                    document.getElementById("update-upload-img5").setAttribute("src", images[4]);
+                }
+
+
+            }
+
+
+        }
+    }
 }

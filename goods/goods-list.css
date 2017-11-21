@@ -207,3 +207,78 @@ html, body {
     height: 400px;
     margin-top: -200px;
 }
+
+/*详情*/
+.detail {
+    flex-grow: 1;
+
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+
+}
+
+.dialog-content-line {
+    height: 40px;
+
+    min-height: 40px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.photo-content-line {
+    height: 100px;
+
+    min-height: 100px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.detail-content-line {
+    height: 100px;
+
+    min-height: 100px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+.dialog-label {
+    white-space: nowrap;
+    width: 100px;
+    height: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.dialog-input {
+    height: 20px;
+}
+
+.upload-img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.upload-button {
+    white-space: nowrap;
+    margin-left: 20px;
+    display: inline;
+}
+
+.select{
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px; /*css3属性IE不支持*/
+    padding-left:5px;
+}
+
+/*编辑*/
