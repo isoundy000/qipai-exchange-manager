@@ -67,7 +67,110 @@
 </div>
 
 
+<div id="dialog-del" class="modal" style="display: none">
+    <div class="modal-content" style="border: 1px solid">
+        <div style="width: 220px;height: 80px;display: flex;align-items: center;justify-content: center;font-size: 20px;border-bottom: 1px solid">
+            确定删除该数据吗？
+        </div>
+        <div style="display: flex;flex-direction: row">
+            <div id="dialog-del-ok"
+                 style="width: 110px;height: 40px;border-right: 1px solid;display: flex;align-items: center;justify-content: center;">
+                确定
+            </div>
+            <div id="dialog-del-cancel"
+                 style="width: 110px;height: 40px;border-left: 1px solid;display: flex;align-items: center;justify-content: center;">
+                取消
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="detail" style="display: none">
+
+
+    <div class="dialog-content-line">
+        <label class="dialog-label">商品标题</label>
+        <input id="add-name" class="dialog-input" style="width: 500px" placeholder="请输入商品标题">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">商品类别</label>
+        <input id="add-category-id" class="dialog-input" style="width: 300px">
+        <!--<select id="select" class="select" style="width: 300px">-->
+        </select>
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">商品价格</label>
+        <input id="add-price" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">会员价</label>
+        <input id="add-vip-price" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">黄金会员价</label>
+        <input id="add-gold-vip-price" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">库存</label>
+        <input id="add-stock" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">创建时间</label>
+        <input id="add-create-time" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">状态</label>
+        <input id="add-is-delete" class="dialog-input" style="width: 300px">
+    </div>
+
+    <div class="photo-content-line" style="height: 100px;align-items: center">
+        <label class="dialog-label">商品主图</label>
+        <img id="upload-img1" class="upload-img">
+        <img id="upload-img2" class="upload-img">
+        <img id="upload-img3" class="upload-img">
+        <img id="upload-img4" class="upload-img">
+        <img id="upload-img5" class="upload-img">
+
+
+    </div>
+
+
+    <div class="detail-content-line">
+        <label class="dialog-label">详情</label>
+        <textarea id="add-detail" style="width: 500px;height: 94px;margin: 0px;display: inline"></textarea>
+    </div>
+
+
+</div>
+
+<div class="update" style="display: none">
+
+
+    <div class="dialog-content-line">
+        <label class="dialog-label">房卡标题</label>
+        <input id="update-price" class="dialog-input" style="width: 300px" >
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">价格(元)</label>
+        <input id="update-vip-price" class="dialog-input" style="width: 300px" type="number" value="0">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">金币</label>
+        <input id="update-gold-vip-price" class="dialog-input" style="width: 300px" type="number" value="0">
+    </div>
+
+
+
+    <div class="dialog-content-line">
+        <label class="dialog-label"></label>
+        <span class="action-button" id="save">保存</span>
+    </div>
+
+</div>
+
+
+<script src="../jquery-3.2.1.min.js"></script>
+<script src="../layer/layer.js"></script>
 <script src="../common.js"></script>
 <script src="room-card-list.js"></script>
 </body>

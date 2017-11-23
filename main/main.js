@@ -155,10 +155,7 @@ function showNavSubMenu4RoomCard() {
     navSubItems[1].setAttribute("data-url", "room-card/room-card-add.html");
     navSubItems[1].setAttribute("data-selected", "0101");
 
-    navSubItems[2].innerHTML = "编辑房卡";
-    navSubItems[2].style.display = "block";
-    navSubItems[2].setAttribute("data-url", "room-card/room-card-edit.html");
-    navSubItems[2].setAttribute("data-selected", "0102");
+
 }
 function showNavSubMenu4Goods() {
     //商品列表
@@ -239,7 +236,7 @@ function showNavSubMenu4Operate() {
     navSubItems[1].setAttribute("data-url", "operate/focus-photo-management.html");
     navSubItems[1].setAttribute("data-selected", "0401");
 
-    navSubItems[2].innerHTML = "搜索推荐管理";
+    navSubItems[2].innerHTML = "热点词管理";
     navSubItems[2].style.display = "block";
     navSubItems[2].setAttribute("data-url", "operate/search-management.html");
     navSubItems[2].setAttribute("data-selected", "0402");
@@ -348,8 +345,8 @@ function hidenAllNavSubItems(navSubItems) {
 }
 
 //默认
-document.getElementById("nav-main-item2").click();
-document.getElementById("nav-sub-item0").click();
+document.getElementById("nav-main-item4").click();
+document.getElementById("nav-sub-item2").click();
 
 
 var toHide = document.getElementById("to-hide-main-nav");

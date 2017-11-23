@@ -125,7 +125,7 @@ function requestOnePage(index, size) {
                     operateId = this.getAttribute("data-opeate");
                     layer.open({
                         type: 1
-                        , area: ['1000px', '600px']
+                        , area: ['800px', '600px']
                         , title: '商品详情'
                         , shade: 0.6
                         , maxmin: false
@@ -140,7 +140,7 @@ function requestOnePage(index, size) {
                     operateId = this.getAttribute("data-opeate");
                     layer.open({
                         type: 1
-                        , area: ['1000px', '600px']
+                        , area: ['800px', '600px']
                         , title: '商品编辑'
                         , shade: 0.6
                         , maxmin: false
@@ -153,15 +153,8 @@ function requestOnePage(index, size) {
                 del.onclick = function () {
                     //alert(this.getAttribute("data-opeate"));
                     operateId = this.getAttribute("data-opeate");
-                    layer.open({
-                        type: 1
-                        , area: ['500px', '300px']
-                        , title: '确定删除该商品吗？'
-                        , shade: 0.6
-                        , maxmin: false
-                        , anim: 1
-                        , content: $("#confirm-del")
-                    });
+                    var dialogDel = document.getElementById("dialog-del");
+                    dialogDel.style.display = "block";
 
                 }
 
@@ -433,11 +426,11 @@ document.getElementById("page5").onclick = function () {
 }
 
 
-document.getElementById("confirm-del").onclick = function () {
+document.getElementById("dialog-del-ok").onclick = function () {
 
 
     var params = {
-        "apiName": "Goods_QueryDetail_Api",
+        "apiName": "Goods_Delete_Api",
         "goodsId": operateId
     }
     var xmlhttp = post(params);
@@ -452,13 +445,18 @@ document.getElementById("confirm-del").onclick = function () {
                 layer.closeAll();
                 clearTable();
                 requestOnePage(pageIndex, 8);
+
+                var dialogDel = document.getElementById("dialog-del");
+                dialogDel.style.display = "none";
             }
 
 
         }
     }
-
-
+}
+document.getElementById("dialog-del-cancel").onclick = function () {
+    var dialogDel = document.getElementById("dialog-del");
+    dialogDel.style.display = "none";
 }
 
 function showDetail() {
@@ -476,7 +474,7 @@ function showDetail() {
 
             if (json.code == 0) {
                 document.getElementById("add-name").value = json.data.name;
-                // document.getElementById("add-category-id")
+                document.getElementById("add-category-id").value = json.data.categoryName;
                 document.getElementById("add-price").value = json.data.price;
                 document.getElementById("add-vip-price").value = json.data.vipPrice;
                 document.getElementById("add-gold-vip-price").value = json.data.goldVipPrice;
@@ -525,7 +523,35 @@ function showDetailBeforeUpdate() {
 
             if (json.code == 0) {
                 document.getElementById("update-name").value = json.data.name;
-                // document.getElementById("add-category-id")
+
+                document.getElementById("add-category-id")
+                var params1 = {
+                    "apiName": "GoodsCategory_QueryAll_Api"
+                };
+                var xmlhttp1 = post(params1);
+
+                xmlhttp1.onreadystatechange = function () {
+                    console.log(xmlhttp1.responseText);
+                    if (xmlhttp1.readyState == 4 && xmlhttp1.status == 200) {
+                        var json1 = JSON.parse(xmlhttp1.responseText);
+
+                        var select1 = document.getElementById("select");
+                        if (json1.code == 0) {
+                            for (var i = 0; i < json1.data.length; i++) {
+                                var option1 = document.createElement("option");
+                                option1.value = json1.data[i].id;
+                                option1.innerText = json1.data[i].name;
+                                select1.appendChild(option1);
+
+                                if ((json1.data[i].id) == json.data.categoryId) {
+                                    select1.selectedIndex = i;
+                                }
+                            }
+                        }
+                    }
+                };
+
+
                 document.getElementById("update-price").value = json.data.price;
                 document.getElementById("update-vip-price").value = json.data.vipPrice;
                 document.getElementById("update-gold-vip-price").value = json.data.goldVipPrice;
@@ -555,3 +581,183 @@ function showDetailBeforeUpdate() {
         }
     }
 }
+
+var uploaded = -1;
+var pictures = [];
+
+
+document.getElementById("update-upload-img1").onclick = function () {
+    document.getElementById("upload1").click();
+
+};
+
+document.getElementById("update-upload-img2").onclick = function () {
+    document.getElementById("upload2").click();
+
+};
+document.getElementById("update-upload-img3").onclick = function () {
+    document.getElementById("upload3").click();
+
+};
+document.getElementById("update-upload-img4").onclick = function () {
+    document.getElementById("upload4").click();
+
+};
+document.getElementById("update-upload-img5").onclick = function () {
+    document.getElementById("upload5").click();
+
+};
+
+document.getElementById("upload1").onchange = function () {
+    var file = document.getElementById("upload1").files[0];
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById("update-upload-img1").setAttribute("src", e.target.result);
+        document.getElementById("update-upload-img1").setAttribute("title", file.name);
+    };
+
+    reader.readAsDataURL(file);
+};
+document.getElementById("upload1").onchange = function () {
+    var file = document.getElementById("upload1").files[0];
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById("update-upload-img1").setAttribute("src", e.target.result);
+        document.getElementById("update-upload-img1").setAttribute("title", file.name);
+    };
+
+    reader.readAsDataURL(file);
+};
+document.getElementById("upload2").onchange = function () {
+    var file = document.getElementById("upload2").files[0];
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById("update-upload-img2").setAttribute("src", e.target.result);
+        document.getElementById("update-upload-img2").setAttribute("title", file.name);
+    };
+
+    reader.readAsDataURL(file);
+};
+document.getElementById("upload3").onchange = function () {
+    var file = document.getElementById("upload3").files[0];
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById("update-upload-img3").setAttribute("src", e.target.result);
+        document.getElementById("update-upload-img3").setAttribute("title", file.name);
+    };
+
+    reader.readAsDataURL(file);
+};
+document.getElementById("upload4").onchange = function () {
+    var file = document.getElementById("upload4").files[0];
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById("update-upload-img4").setAttribute("src", e.target.result);
+        document.getElementById("update-upload-img4").setAttribute("title", file.name);
+    };
+
+    reader.readAsDataURL(file);
+};
+document.getElementById("upload5").onchange = function () {
+    var file = document.getElementById("upload5").files[0];
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById("update-upload-img5").setAttribute("src", e.target.result);
+        document.getElementById("update-upload-img5").setAttribute("title", file.name);
+    };
+
+    reader.readAsDataURL(file);
+};
+
+document.getElementById("upload-button").onclick = function () {
+    // document.getElementById("myform").submit();
+    var file1 = document.getElementById("upload1").files[0];
+    var file2 = document.getElementById("upload2").files[0];
+    var file3 = document.getElementById("upload3").files[0];
+    var file4 = document.getElementById("upload4").files[0];
+    var file5 = document.getElementById("upload5").files[0];
+
+
+    var formData = new FormData();
+    formData.append("file1", file1);
+    formData.append("file2", file2);
+    formData.append("file3", file3);
+    formData.append("file4", file4);
+    formData.append("file5", file5);
+    var xmlhttp = upload(formData);
+
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(xmlhttp.responseText);
+
+            var json = JSON.parse(xmlhttp.responseText);
+            if (json.code == 0) {
+                uploaded = 1;
+                for (var i = 0; i < json.data.length; i++) {
+                    // console.log(json.data[0].url);
+                    pictures[i] = json.data[i].url;
+                    // console.log("fsfs"+pictures.toString())
+                }
+
+            }
+
+        }
+    }
+
+
+};
+document.getElementById("save").onclick = function () {
+    var select = document.getElementById("select");
+    var name = document.getElementById("update-name");
+    var price = document.getElementById("update-price");
+    var vipPrice = document.getElementById("update-vip-price");
+    var goldVipPrice = document.getElementById("update-gold-vip-price");
+    var reorder = document.getElementById("update-reorder");
+    var detail = document.getElementById("update-detail");
+
+    if (name.value == "") {
+        console.log("yes");
+
+
+        return;
+
+    }
+
+    console.log("name:" + name.value);
+    console.log(detail.value);
+    console.log(pictures);
+
+    var params = {
+        "apiName": "Goods_Add_Api",
+        "categoryId": select.options[select.selectedIndex].value,
+        "name": name.value,
+        "price": price.value,
+        "vipPrice": vipPrice.value,
+        "goldVipPrice": goldVipPrice.value,
+        "reorder": reorder.value,
+        "stock": 0,
+        "pictures": pictures,
+        "detail": detail.value
+    };
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var json = JSON.parse(xmlhttp.responseText);
+
+            layer.closeAll();
+            clearTable();
+            requestOnePage(pageIndex, 8);
+
+
+        }
+    };
+};

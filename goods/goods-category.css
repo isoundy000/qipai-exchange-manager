@@ -77,18 +77,16 @@ html, body {
 
 }
 
-
-
-.dialog-content-line{
+.dialog-content-line {
     height: 40px;
-
 
     display: flex;
     display: -webkit-flex;
     flex-direction: row;
+    align-items: center;
 }
 
-.dialog-label{
+.dialog-label {
     width: 100px;
     height: 20px;
     margin-left: 20px;
@@ -96,11 +94,11 @@ html, body {
     white-space: nowrap;
 }
 
-.dialog-input{
+.dialog-input {
     height: 20px;
 }
 
-.upload-img{
+.upload-img {
     width: 100px;
     height: 100px;
     margin-right: 10px;

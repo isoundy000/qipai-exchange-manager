@@ -4,6 +4,7 @@ var pageIndex = 0;
 var pageSize = -1;
 var totalPages = -1;
 var totalRecords = -1;
+var operateId = "";
 
 requestOnePage(pageIndex, 8);
 
@@ -48,7 +49,6 @@ function requestOnePage(index, size) {
                 };
 
 
-
                 appendTdAndData(tr, i);
                 appendTdAndData(tr, json.data[i].name);
                 appendTdAndData(tr, json.data[i].price);
@@ -56,35 +56,48 @@ function requestOnePage(index, size) {
                 appendTdAndData(tr, json.data[i].salesVolume);
                 appendTdAndData(tr, json.data[i].enable);
                 var cell = appendTd(tr);
-                var show = document.createElement("a");
+                //var show = document.createElement("a");
                 var edit = document.createElement("a");
                 edit.style.margin = "8px";
                 var del = document.createElement("a");
 
-                show.setAttribute("href", "javascript:void(0)");
+                //show.setAttribute("href", "javascript:void(0)");
                 edit.setAttribute("href", "javascript:void(0)");
                 del.setAttribute("href", "javascript:void(0)");
 
 
-                show.innerHTML = "查看";
+                //show.innerHTML = "查看";
                 edit.innerHTML = "编辑";
                 del.innerHTML = "删除";
-                cell.appendChild(show);
+                //cell.appendChild(show);
                 cell.appendChild(edit);
                 cell.appendChild(del);
 
-                show.setAttribute("data-opeate",json.data[i].id);
-                edit.setAttribute("data-opeate",json.data[i].id);
-                del.setAttribute("data-opeate",json.data[i].id);
+                //show.setAttribute("data-opeate",json.data[i].id);
+                edit.setAttribute("data-opeate", json.data[i].id);
+                del.setAttribute("data-opeate", json.data[i].id);
 
-                show.onclick=function () {
-                    alert(this.getAttribute("data-opeate"));
+                // show.onclick=function () {
+                //     alert(this.getAttribute("data-opeate"));
+                // }
+                edit.onclick = function () {
+                    operateId = this.getAttribute("data-opeate");
+                    layer.open({
+                        type: 1
+                        , area: ['600px', '300px']
+                        , title: '房卡编辑'
+                        , shade: 0.6
+                        , maxmin: false
+                        , anim: 1
+                        , content: $(".update")
+                    });
+
+                    showDetailBeforeUpdate();
                 }
-                edit.onclick=function () {
-                    alert(this.getAttribute("data-opeate"));
-                }
-                del.onclick=function () {
-                    alert(this.getAttribute("data-opeate"));
+                del.onclick = function () {
+                    operateId = this.getAttribute("data-opeate");
+                    var dialogDel = document.getElementById("dialog-del");
+                    dialogDel.style.display = "block";
                 }
 
             }
@@ -355,3 +368,88 @@ document.getElementById("page5").onclick = function () {
     requestOnePage(Number(this.innerText) - 1, pageSize);
 }
 // 表格分页>
+
+
+document.getElementById("dialog-del-ok").onclick = function () {
+
+
+    var params = {
+        "apiName": "RoomCard_Delete_Api",
+        "roomCardId": operateId
+    }
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(xmlhttp.responseText);
+            var json = JSON.parse(xmlhttp.responseText);
+
+            if (json.code == 0) {
+                layer.closeAll();
+                clearTable();
+                requestOnePage(pageIndex, 8);
+
+                var dialogDel = document.getElementById("dialog-del");
+                dialogDel.style.display = "none";
+            }
+
+
+        }
+    }
+}
+document.getElementById("dialog-del-cancel").onclick = function () {
+    var dialogDel = document.getElementById("dialog-del");
+    dialogDel.style.display = "none";
+}
+
+function showDetailBeforeUpdate() {
+    // var params = {
+    //     "apiName": "Goods_QueryDetail_Api",
+    //     "goodsId": operateId
+    // }
+    // var xmlhttp = post(params);
+    //
+    // xmlhttp.onreadystatechange = function () {
+    //     console.log(xmlhttp.responseText);
+    //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //         console.log(xmlhttp.responseText);
+    //         var json = JSON.parse(xmlhttp.responseText);
+    //
+    //         if (json.code == 0) {
+    //
+    //         }
+    //
+    //
+    //     }
+    // }
+}
+
+document.getElementById("save").onclick = function () {
+    var params = {
+        "apiName": "RoomCard_Update_Api",
+        "roomCardId": operateId,
+        "name": name1.value,
+        "price": Number(price.value),
+        "goldCoin": Number(goldCoin.value)
+    }
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(xmlhttp.responseText);
+            var json = JSON.parse(xmlhttp.responseText);
+
+            if (json.code == 0) {
+
+                layer.closeAll();
+                clearTable();
+                requestOnePage(pageIndex, 8);
+
+            }
+
+
+        }
+    }
+}
