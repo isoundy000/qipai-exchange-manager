@@ -1,0 +1,89 @@
+
+
+
+.bottom{
+    display:flex;
+    flex-direction: row;
+    flex-grow: 1;
+    width:100%;
+
+
+
+}
+.line>.title-line{
+    display: flex;
+    height: 50px;
+    margin-top: 25px;
+    font-size: 22px;
+
+}
+.line{
+    display: flex;
+    height: 50px;
+    margin:0px 0px 0px  50px;
+
+
+}
+.line>span,input{
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+    margin-top: 20px;
+
+}
+.line>span{
+    white-space: nowrap;
+}
+
+.line>.button{
+    display: flex;
+    margin-top: 20px;
+}
+.line>input{
+    display: flex;
+    width: 600px;
+}
+
+.dialog-content-line {
+    height: 40px;
+
+    min-height: 40px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.photo-content-line {
+    height: 100px;
+
+    min-height: 100px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.detail-content-line {
+    height: 100px;
+
+    min-height: 100px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+.dialog-label {
+    white-space: nowrap;
+    width: 100px;
+    height: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.dialog-input {
+    height: 20px;
+}

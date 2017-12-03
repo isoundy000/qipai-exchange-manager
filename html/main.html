@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>棋牌管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../common-web/common.css">
+    <link rel="stylesheet" href="../global/global.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="root">
+    <div class="top">
+        <div class="top1"></div>
+        <a class="top-exit" href="javascript:void(0)">退出系统</a>
+        <a class="top-change-password" href="javascript:void(0)">修改密码</a>
+
+    </div>
+    <div class="bottom">
+        <div id="nav-main" class="nav-main">
+            <ul id="nav-main-menu">
+                <li id="nav-main-item0" ;class="nav-main-item" data-index="0"><img id="test100"
+                                                                                   src="../img/triangle-right-black.png">订单
+                </li>
+                <li id="nav-main-item1" class="nav-main-item" data-index="1"><img src="../img/triangle-right-black.png">房卡
+                </li>
+                <li id="nav-main-item2" class="nav-main-item" data-index="2"><img src="../img/triangle-right-black.png">商品
+                </li>
+                <li id="nav-main-item3" class="nav-main-item" data-index="3"><img src="../img/triangle-right-black.png">库存
+                </li>
+                <li id="nav-main-item4" class="nav-main-item" data-index="4"><img src="../img/triangle-right-black.png">运营
+                </li>
+                <li id="nav-main-item5" class="nav-main-item" data-index="5"><img src="../img/triangle-right-black.png">财务
+                </li>
+                <li id="nav-main-item6" class="nav-main-item" data-index="6"><img src="../img/triangle-right-black.png">用户管理
+                </li>
+                <li id="nav-main-item7" class="nav-main-item" data-index="7"><img src="../img/triangle-right-black.png">权限管理
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="nav-sub">
+            <!--<div style="display: inline-block;height: 50px;cursor: pointer">-->
+            <div style="display: flex;flex-direction: row;width: 100%;height: 50px">
+                <img id="to-hide-main-nav" style="display: inline;width: 30px;height: 30px;margin-top: 15px;"
+                     src="../img/arrow-left-black1.png"><br>
+                <img id="to-show-main-nav" style="display: none;width: 30px;height: 30px;margin-top: 15px;"
+                     src="../img/arrow-right-black1.png"><br>
+            </div>
+            <span class="nav-sub-solid" style="margin: 0px"></span>
+            <!--<ul id="nav-sub-menu" class="nav-sub-menu"></ul>-->
+            <!--<iframe id="nav-sub-iframe" frameborder="0" scrolling="no" marginheight=0 marginwidth=0 src="nav-sub.html"-->
+            <!--style="margin:0px ;padding: 0px;width: 170px;min-height: 100%;"></iframe>-->
+            <div id="nav-sub" class="nav-sub" style="padding: 0px;margin: 0px">
+                <ul id="nav-sub-menu">
+                    <li id="nav-sub-item0" ;class="nav-main-item" data-index="0" hidden="hidden"></li>
+                    <li id="nav-sub-item1" class="nav-main-item" data-index="1" hidden="hidden"></li>
+                    <li id="nav-sub-item2" class="nav-main-item" data-index="2" hidden="hidden"></li>
+                    <li id="nav-sub-item3" class="nav-main-item" data-index="3" hidden="hidden"></li>
+                    <li id="nav-sub-item4" class="nav-main-item" data-index="4" hidden="hidden"></li>
+                    <li id="nav-sub-item5" class="nav-main-item" data-index="5" hidden="hidden"></li>
+                    <li id="nav-sub-item6" class="nav-main-item" data-index="6" hidden="hidden"></li>
+                    <li id="nav-sub-item7" class="nav-main-item" data-index="7" hidden="hidden"></li>
+                    <li id="nav-sub-item8" class="nav-main-item" data-index="8" hidden="hidden"></li>
+                    <li id="nav-sub-item9" class="nav-main-item" data-index="9" hidden="hidden"></li>
+
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="title">
+                <div class="top-sub">
+                    <div class="mark"></div>
+                    <span id="title" class="title">sd</span>
+                    <div style="flex: 1"></div>
+                    <!--<div id="add-good" class="add">添加商品</div>-->
+
+                </div>
+
+            </div>
+            <div class="title-split-line"></div>
+            <iframe id="bi-iframe" class="bi-iframe"></iframe>
+            <div style="min-height: 20px"></div>
+        </div>
+    </div>
+</div>
+<script src="../common-web/common.js"></script>
+<script src="../global/global.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

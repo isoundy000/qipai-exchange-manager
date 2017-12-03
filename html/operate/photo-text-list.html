@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图文列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../common-web/common.css">
+    <link rel="stylesheet" href="../../global/global.css">
+    <link rel="stylesheet" href="../../css/operate/photo-text-list.css">
+</head>
+<body>
+<div class="root">
+
+    <div class="table-box">
+        <table id="table" class="table" cellspacing="0" border="0">
+            <thead>
+            <tr id="thead-tr">
+
+                <th class="th">序号</th>
+                <th class="th" style="width: 300px">标题</th>
+                <th class="th">时间</th>
+                <th class="th" style="min-width: 150px">操作</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+            <tbody>
+            <tr>
+                <td colspan="11">
+                    <div class="page">
+                        <div style="margin-right: 20px">页</div>
+                        <input id="goto-page" class="page-input" type="number" style="width: 40px" value="1">
+                        <div style="margin-left: 10px;margin-right: 10px">跳至</div>
+                        <div id="total" style="margin-left: 10px;margin-right: 10px"></div>
+                        <div id="end" class="page-marker" style="width: 34px;cursor: pointer">尾页</div>
+                        <img id="next" class="page-button" src="../../img/page-right.svg" style="cursor: pointer">
+                        <div id="page5" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page4" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page3" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page2" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page1" class="page-marker" style="cursor: pointer"></div>
+                        <img id="previous" class="page-button" src="../../img/page-left.svg" style="cursor: pointer">
+                        <div id="first" class="page-marker" style="width: 34px;cursor: pointer">首页</div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+</div>
+
+
+
+
+<div id="dialog-del" class="modal" style="display: none">
+    <div class="modal-content" style="border: 1px solid">
+        <div style="width: 220px;height: 80px;display: flex;align-items: center;justify-content: center;font-size: 20px;border-bottom: 1px solid">
+            确定删除该数据吗？
+        </div>
+        <div style="display: flex;flex-direction: row">
+            <div id="dialog-del-ok"
+                 style="width: 110px;height: 40px;border-right: 1px solid;display: flex;align-items: center;justify-content: center;">
+                确定
+            </div>
+            <div id="dialog-del-cancel"
+                 style="width: 110px;height: 40px;border-left: 1px solid;display: flex;align-items: center;justify-content: center;">
+                取消
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="detail" style="display: none">
+
+
+    <div class="dialog-content-line">
+        <label class="dialog-label">商品标题</label>
+        <input id="add-name" class="dialog-input" style="width: 500px" placeholder="请输入商品标题">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">商品类别</label>
+        <input id="add-category-id" class="dialog-input" style="width: 300px">
+        <!--<select id="select" class="select" style="width: 300px">-->
+        </select>
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">商品价格</label>
+        <input id="add-price" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">会员价</label>
+        <input id="add-vip-price" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">黄金会员价</label>
+        <input id="add-gold-vip-price" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">库存</label>
+        <input id="add-stock" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">创建时间</label>
+        <input id="add-create-time" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">状态</label>
+        <input id="add-is-delete" class="dialog-input" style="width: 300px">
+    </div>
+
+    <div class="photo-content-line" style="height: 100px;align-items: center">
+        <label class="dialog-label">商品主图</label>
+        <img id="upload-img1" class="upload-img">
+        <img id="upload-img2" class="upload-img">
+        <img id="upload-img3" class="upload-img">
+        <img id="upload-img4" class="upload-img">
+        <img id="upload-img5" class="upload-img">
+
+
+    </div>
+
+
+    <div class="detail-content-line">
+        <label class="dialog-label">详情</label>
+        <textarea id="add-detail" style="width: 500px;height: 94px;margin: 0px;display: inline"></textarea>
+    </div>
+
+
+</div>
+
+<div class="update" style="display: none">
+
+
+    <div class="dialog-content-line">
+        <label class="dialog-label">房卡标题</label>
+        <input id="update-price" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">价格(元)</label>
+        <input id="update-vip-price" class="dialog-input" style="width: 300px" type="number" value="0">
+    </div>
+    <div class="dialog-content-line">
+        <label class="dialog-label">金币</label>
+        <input id="update-gold-vip-price" class="dialog-input" style="width: 300px" type="number" value="0">
+    </div>
+
+
+    <div class="dialog-content-line">
+        <label class="dialog-label"></label>
+        <span class="action-button" id="save">保存</span>
+    </div>
+
+</div>
+
+
+<script src="../../common-web/common.js"></script>
+<script src="../../global/global.js"></script>
+<script src="../../js/operate/photo-text-list.js"></script>
+</body>
+</html>

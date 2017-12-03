@@ -1,0 +1,35 @@
+
+
+.filter-box {
+    height: 80px;
+    min-height: 80px;
+
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.filter-box > label {
+    margin-left: 10px;
+    margin-right: 10px;
+    white-space: nowrap;
+
+}
+
+input,select{
+    margin-right: 40px;
+}
+select{
+    width: 160px;
+}
+
+.space{
+    height: 100%;
+    flex-grow: 1;
+}
+
+#add-room-card{
+    margin-right: 40px;
+
+}

@@ -1,0 +1,164 @@
+:root {
+    --content-margin-top: 20px;
+    --content-margin-left: 30px;
+    --table-margin-left: 10px;
+}
+
+* {
+    font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
+    font-size: 14px;
+}
+
+.button {
+    background-color: #4FC3F7;
+    width: 70px;
+    height: 30px;
+    color: white;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+input {
+
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px; /*css3属性IE不支持*/
+    padding-left: 5px;
+
+}
+
+/*table*/
+.table-box {
+    flex-grow: 1;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+.table {
+    /*table-layout: fixed;*/
+
+    width: 100%;
+    /*display: flex;*/
+    /*display: -webkit-flex;*/
+    /*flex-direction: column;*/
+
+    font-size: 14px;
+    color: #333333;
+    border-width: 0px;
+    border-color: #666666;
+    border-collapse: collapse;
+
+}
+
+.table th {
+    text-align: center;
+    height: 40px;
+    background-color: #dedede;
+    /*border-color: #666666;*/
+    /*border-width: 1px;*/
+    /*padding: 8px;*/
+    /*border-style: solid;*/
+}
+
+.table td {
+    text-align: center;
+    height: 40px;
+    /*border-color: #666666;*/
+    /*border-width: 1px;*/
+    /*padding: 8px;*/
+    /*border-style: solid;*/
+}
+
+.table span {
+    margin: 10px;
+}
+
+.page {
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.page-input {
+    margin: 0px;
+    padding: 0px;
+    width: 26px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.page-marker {
+    margin: 0px;
+    padding: 0px;
+    width: 28px;
+    height: 22px;
+    margin-right: 10px;
+    text-align: center;
+    border: 1px solid;
+    display: none;
+    /*display: flex;*/
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.page-button {
+    border: 1px solid;
+    margin: 0px;
+    padding: 0px;
+    width: 28px;
+    height: 22px;
+    margin-right: 10px;
+}
+
+.page-test1 {
+    flex-grow: 1;
+    background-color: #2B7AD3;
+}
+
+.page-test2 {
+    flex-grow: 1;
+    background-color: #D4D4D4;
+}
+
+select {
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px; /*css3属性IE不支持*/
+    padding-left: 5px;
+}
+
+textarea {
+    width: 600px;
+}
+
+.modal-del {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-del > .modal-content {
+    background-color: #fefefe;
+    border: 1px solid #888;
+    margin: auto;
+    width: 220px;
+    height: 120px;
+}

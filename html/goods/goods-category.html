@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品类别</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../common-web/common.css">
+    <link rel="stylesheet" href="../../global/global.css">
+    <link rel="stylesheet" href="../../css/goods/goods-category.css">
+</head>
+<body>
+<div class="root">
+
+    <div class="filter-box">
+        <label>商品类别名称</label>
+        <input id="category-name" placeholder="">
+        <label>商品类别排序</label>
+        <input id="category-reorder" placeholder="">
+        <span id="add" class="button"
+              style="">添加</span>
+        <span id="add-feedback"
+              style="background-color: green;min-width:120px;height: 26px;text-align: center;white-space: nowrap;margin-left: 16px;display: none"></span>
+    </div>
+
+
+    <div class="table-box">
+        <table id="table" class="table" border="1px" cellspacing="0">
+            <thead>
+            <tr id="thead-tr">
+                <th class="th">编号</th>
+                <th class="th">商品类别名称</th>
+                <th class="th">排序</th>
+                <th class="th" style="min-width: 100px">添加时间</th>
+                <th class="th" style="min-width: 150px">操作</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+            <tbody hidden="hidden">
+            <tr>
+                <td colspan="11">
+                    <div class="page">
+                        <div style="margin-right: 20px">页</div>
+                        <input id="goto-page" class="page-input" type="number" style="width: 40px" value="1">
+                        <div style="margin-left: 10px;margin-right: 10px">跳至</div>
+                        <div id="total" style="margin-left: 10px;margin-right: 10px"></div>
+                        <div id="end" class="page-marker" style="width: 34px;cursor: pointer">尾页</div>
+                        <img id="next" class="page-button" src="../../img/page-right.svg" style="cursor: pointer">
+                        <div id="page5" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page4" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page3" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page2" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page1" class="page-marker" style="cursor: pointer"></div>
+                        <img id="previous" class="page-button" src="../../img/page-left.svg" style="cursor: pointer">
+                        <div id="first" class="page-marker" style="width: 34px;cursor: pointer">首页</div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+</div>
+
+<div id="modal-del" class="modal-del" style="display: none">
+    <div class="modal-content" style="border: 1px solid">
+        <div style="width: 220px;height: 80px;display: flex;align-items: center;justify-content: center;font-size: 20px;border-bottom: 1px solid">
+            确定删除该数据吗？
+        </div>
+        <div style="display: flex;flex-direction: row">
+            <div id="modal-del-ok"
+                 style="width: 110px;height: 40px;border-right: 1px solid;display: flex;align-items: center;justify-content: center;">
+                确定
+            </div>
+            <div id="modal-del-cancel"
+                 style="width: 110px;height: 40px;border-left: 1px solid;display: flex;align-items: center;justify-content: center;">
+                取消
+            </div>
+        </div>
+    </div>
+</div>
+<div class="update" style="display: none">
+
+    <div class="dialog-content-line" style="margin-top: 20px">
+        <label class="dialog-label">商品类别名称</label>
+        <input id="update-name" class="dialog-input" style="width: 300px">
+    </div>
+    <div class="dialog-content-line" style="margin-top: 10px">
+        <label class="dialog-label">排序</label>
+        <input id="update-reorder" class="dialog-input" style="width: 300px" type="number" value="0">
+    </div>
+
+    <div class="dialog-content-line" style="margin-top: 20px">
+        <label class="dialog-label"></label>
+        <span class="button" id="save">保存</span>
+    </div>
+
+</div>
+<script src="../../jquery-3.2.1.min.js"></script>
+<script src="../../layer/layer.js"></script>
+<script src="../../common-web/common.js"></script>
+<script src="../../global/global.js"></script>
+<script src="../../js/goods/goods-category.js"></script>
+<script src="../../global/table.js"></script>
+</body>
+</html>

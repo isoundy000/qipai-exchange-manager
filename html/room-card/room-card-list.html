@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>房卡列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../common-web/common.css">
+    <link rel="stylesheet" href="../../global/global.css">
+    <link rel="stylesheet" href="../../global/modal.css">
+    <link rel="stylesheet" href="../../css/room-card/room-card-list.css">
+</head>
+<body>
+<div class="root">
+    <div class="filter-box">
+        <div class="space"></div>
+        <div id="add-room-card" class="button">添加房卡</div>
+    </div>
+
+    <div class="table-box">
+        <table id="table" class="table" cellspacing="0" border="0">
+            <thead>
+            <tr id="thead-tr">
+
+                <th class="th">编号</th>
+                <th class="th" style="width: 300px">房卡标题</th>
+                <th class="th">价格(元)</th>
+                <th class="th">金币</th>
+                <th class="th">销售数量</th>
+                <th class="th">状态</th>
+                <th class="th" style="min-width: 150px">操作</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+            <tbody>
+            <tr>
+                <td colspan="11">
+                    <div class="page">
+                        <div style="margin-right: 20px">页</div>
+                        <input id="goto-page" class="page-input" type="number" style="width: 40px" value="1">
+                        <div style="margin-left: 10px;margin-right: 10px">跳至</div>
+                        <div id="total" style="margin-left: 10px;margin-right: 10px"></div>
+                        <div id="end" class="page-marker" style="width: 34px;cursor: pointer">尾页</div>
+                        <img id="next" class="page-button" src="../../img/page-right.svg" style="cursor: pointer">
+                        <div id="page5" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page4" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page3" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page2" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page1" class="page-marker" style="cursor: pointer"></div>
+                        <img id="previous" class="page-button" src="../../img/page-left.svg" style="cursor: pointer">
+                        <div id="first" class="page-marker" style="width: 34px;cursor: pointer">首页</div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+</div>
+
+
+<div class="modal-add" style="display: none">
+
+
+
+
+    <div class="line">
+        <span>房卡标题</span>
+        <input id="add-name">
+    </div>
+    <div class="line">
+        <span>价格(元)</span>
+        <input id="add-price" type="number" value="0">
+    </div>
+    <div class="line">
+        <span>位金币</span>
+        <input id="add-gold-coin" type="number" value="0">
+    </div>
+    <div class="line upload-line">
+        <span>封面图</span>
+        <img id="add-img"  src="../../img/upload-default.png">
+        <form hidden="hidden" id="add-form" enctype="multipart/form-data" method="post"
+              action="http://47.104.17.187:8082/micro-file-server" target="#no-iframe">
+            <input type="file" name="file1" id="add-img-file" hidden="hidden">
+        </form>
+        <div id="add-upload-button" class="button upload-button">上传</div>
+    </div>
+    <div class="line">
+        <span></span>
+        <div id="add" class="button">添加</div>
+    </div>
+
+</div>
+
+
+
+
+
+
+<div id="modal-del" class="modal-del" style="display: none">
+    <div class="modal-content" style="border: 1px solid">
+        <div style="width: 220px;height: 80px;display: flex;align-items: center;justify-content: center;font-size: 20px;border-bottom: 1px solid">
+            确定删除该数据吗？
+        </div>
+        <div style="display: flex;flex-direction: row">
+            <div id="modal-del-ok"
+                 style="width: 110px;height: 40px;border-right: 1px solid;display: flex;align-items: center;justify-content: center;">
+                确定
+            </div>
+            <div id="modal-del-cancel"
+                 style="width: 110px;height: 40px;border-left: 1px solid;display: flex;align-items: center;justify-content: center;">
+                取消
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-update" style="display: none">
+
+    <div class="line">
+        <span>房卡标题</span>
+        <input id="update-name">
+    </div>
+    <div class="line">
+        <span>价格(元)</span>
+        <input id="update-price" type="number" value="0">
+    </div>
+    <div class="line">
+        <span>位金币</span>
+        <input id="update-gold-coin" type="number" value="0">
+    </div>
+    <div class="line upload-line">
+        <span>封面图</span>
+        <img id="update-img"  src="../../img/upload-default.png">
+        <form hidden="hidden" id="update-form" enctype="multipart/form-data" method="post"
+              action="http://47.104.17.187:8082/micro-file-server" target="#no-iframe">
+            <input type="file" name="file1" id="update-img-file" hidden="hidden">
+        </form>
+        <div id="update-upload-button" class="button upload-button">新上传</div>
+    </div>
+    <div class="line">
+        <span></span>
+        <div id="update" class="button">更改</div>
+    </div>
+
+
+
+</div>
+
+<!--<div class="update" style="display: none">-->
+
+
+    <!--<div class="dialog-content-line">-->
+        <!--<label class="dialog-label">房卡标题</label>-->
+        <!--<input id="update-price" class="dialog-input" style="width: 300px">-->
+    <!--</div>-->
+    <!--<div class="dialog-content-line">-->
+        <!--<label class="dialog-label">价格(元)</label>-->
+        <!--<input id="update-vip-price" class="dialog-input" style="width: 300px" type="number" value="0">-->
+    <!--</div>-->
+    <!--<div class="dialog-content-line">-->
+        <!--<label class="dialog-label">金币</label>-->
+        <!--<input id="update-gold-vip-price" class="dialog-input" style="width: 300px" type="number" value="0">-->
+    <!--</div>-->
+
+
+    <!--<div class="dialog-content-line">-->
+        <!--<label class="dialog-label"></label>-->
+        <!--<span class="action-button" id="save">保存</span>-->
+    <!--</div>-->
+
+<!--</div>-->
+<script src="../../jquery-3.2.1.min.js"></script>
+<script src="../../layer/layer.js"></script>
+<script src="../../common-web/common.js"></script>
+<script src="../../global/global.js"></script>
+<script src="../../js/room-card/room-card-list.js"></script>
+<script src="../../global/table.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据库管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../common-web/common.css">
+    <link rel="stylesheet" href="../../global/global.css">
+    <link rel="stylesheet" href="../../css/permission/db-management.css">
+</head>
+<body>
+<div class="root">
+    <div class="table-box">
+        <table id="table" class="table" cellspacing="0" border="0">
+            <thead>
+            <tr id="thead-tr">
+
+                <th class="th">备份文件名</th>
+                <th class="th">版本号</th>
+                <th class="th">大小(字节)</th>
+                <th class="th">IP</th>
+                <th class="th">操作记录</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+            <tbody>
+            <tr>
+                <td colspan="11">
+                    <div class="page">
+                        <div style="margin-right: 20px">页</div>
+                        <input id="goto-page" class="page-input" type="number" style="width: 40px" value="1">
+                        <div style="margin-left: 10px;margin-right: 10px">跳至</div>
+                        <div id="total" style="margin-left: 10px;margin-right: 10px"></div>
+                        <div id="end" class="page-marker" style="width: 34px;cursor: pointer">尾页</div>
+                        <img id="next" class="page-button" src="../../img/page-right.svg" style="cursor: pointer">
+                        <div id="page5" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page4" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page3" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page2" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page1" class="page-marker" style="cursor: pointer"></div>
+                        <img id="previous" class="page-button" src="../../img/page-left.svg" style="cursor: pointer">
+                        <div id="first" class="page-marker" style="width: 34px;cursor: pointer">首页</div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
+<script src="../../common-web/common.js"></script>
+<script src="../../global/global.js"></script>
+<script src="../../js/permission/db-management.js"></script>
+</body>
+</html>

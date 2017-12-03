@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+            width: 2200px;
+        }
+    </style>
+</head>
+<body>
+<div style="position: fixed;width: 50px;height: 964px;background-color: #4FBDF9"></div>
+<div style="position: fixed;right: 0px;width: 50px;height: 964px;background-color: #4FBDF9"></div>
+<div id="div1" style="width:198px; height:66px;padding:10px;border:1px solid #aaaaaa;margin-left: 1920px"></div>
+<img id="drag1" src="http://www.w3school.com.cn/i/eg_dragdrop_w3school.gif" style="margin-top: 30px;margin-left: 50px">
+
+<script>
+//    document.getElementById("drag1").onclick=function(){
+//        console.log(this.getAttribute("draggable"));
+//    }
+
+//    document.getElementById("drag1").ondragstart=function (ev) {
+//        ev.dataTransfer.setData("Text",ev.target.id);
+//    }
+
+    document.getElementById("div1").ondragover=function (ev) {
+        ev.preventDefault();
+    }
+
+    document.getElementById("div1").ondrop=function (ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("Text");
+
+
+        //ev.target.appendChild(document.getElementById(data));
+        ev.target.appendChild(document.getElementById("drag1"));
+    }
+</script>
+</body>
+</html>

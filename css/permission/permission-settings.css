@@ -1,0 +1,54 @@
+.line{
+    height: 80px;
+    margin-left: 20px;
+    margin-right: 40px;
+    margin-top: 20px;
+
+}
+
+.head{
+    height: 50px;
+    border: 1px solid ;
+    background-color: #F0F0F0;
+}
+
+.head{
+    border-collapse:collapse;
+    width: 100%;
+}
+.head td{
+    width: 16.67%;
+    height: 50px;
+    text-align: center;
+}
+.head td > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body
+{
+    border-collapse:collapse;
+    width: 100%;
+}
+
+.body,.body td,.body th
+{
+    border:1px solid black;
+}
+.body td{
+    width: 16.67%;
+    height: 30px;
+    text-align: center;
+}
+.body td > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button{
+    margin-top: 40px;
+    margin-left: 60px;
+}

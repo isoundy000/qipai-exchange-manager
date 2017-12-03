@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            height: 1500px;
+            width: 1920px;
+        }
+    </style>
+</head>
+<body>
+<div style="position: fixed">a</div>
+
+<script>
+    var div = document.getElementsByTagName("body")[0];
+
+    div.onclick = function () {
+        window.scroll(0, 0);
+    }
+
+    var isBottom = -1;
+
+    window.onmousewheel = function (e) {
+        console.log("onmousewheel")
+        if (e.wheelDelta < 0 && isBottom == 1) {
+            alert("翻页")
+        }
+    };
+    window.onscroll = function (ev) {
+        console.log("onscroll")
+        var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+        if (document.documentElement.scrollHeight == document.documentElement.clientHeight + scrollTop) {
+            console.log("到底了")
+            isBottom = 1;
+        } else {
+            isBottom = 0;
+        }
+    };
+
+    window.onresize=function () {
+        var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+
+        console.log(scrollTop)
+        if (document.documentElement.scrollHeight == document.documentElement.clientHeight + scrollTop) {
+            console.log("在底部")
+        }
+    }
+</script>
+</body>
+</html>

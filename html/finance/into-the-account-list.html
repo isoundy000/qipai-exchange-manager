@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>入账管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../common-web/common.css">
+    <link rel="stylesheet" href="../../global/global.css">
+    <link rel="stylesheet" href="../../css/finance/into-the-account-list.css">
+</head>
+<body>
+<div class="root">
+    <div class="filter-box">
+        <label class="keys-label">输入搜索</label>
+        <input class="search-key" placeholder="订单编号">
+        <div class="button" style="cursor: pointer;margin-left: 40px">搜索</div>
+    </div>
+
+    <div class="table-box">
+        <table id="table" class="table" cellspacing="0" border="0">
+            <thead>
+            <tr id="thead-tr">
+
+                <th class="th">序号</th>
+                <th class="th">订单编号</th>
+                <th class="th">流水号</th>
+                <th class="th">订单金额(元)</th>
+                <th class="th">支付时间</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+            <tbody>
+            <tr>
+                <td colspan="11">
+                    <div class="page">
+                        <div style="margin-right: 20px">页</div>
+                        <input id="goto-page" class="page-input" type="number" style="width: 40px" value="1">
+                        <div style="margin-left: 10px;margin-right: 10px">跳至</div>
+                        <div id="total" style="margin-left: 10px;margin-right: 10px"></div>
+                        <div id="end" class="page-marker" style="width: 34px;cursor: pointer">尾页</div>
+                        <img id="next" class="page-button" src="../../img/page-right.svg" style="cursor: pointer">
+                        <div id="page5" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page4" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page3" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page2" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page1" class="page-marker" style="cursor: pointer"></div>
+                        <img id="previous" class="page-button" src="../../img/page-left.svg" style="cursor: pointer">
+                        <div id="first" class="page-marker" style="width: 34px;cursor: pointer">首页</div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+
+        </table>
+    </div>
+
+
+</div>
+<script src="../../common-web/common.js"></script>
+<script src="../../global/global.js"></script>
+<script src="../../js/finance/into-the-account-list.js"></script>
+</body>
+</html>
