@@ -1,0 +1,45 @@
+.root {
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box {
+    width: 500px;
+    height: 280px;
+    border: solid 0.5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.line {
+    display: flex;
+    margin-top: 20px;
+
+}
+
+.label {
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 20px;
+
+}
+
+input {
+    width: 260px;
+}
+
+
+
+#login {
+    margin-top: 40px;
+}

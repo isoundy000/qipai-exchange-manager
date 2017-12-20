@@ -18,6 +18,12 @@
     flex-direction: row-reverse;
 }
 
+.top>#username{
+    color: white;
+    margin-top: 1.2%;
+    margin-right: 40px;
+}
+
 .top > .top-change-password {
 
     margin-top: 1.2%;

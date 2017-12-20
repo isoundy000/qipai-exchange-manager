@@ -93,3 +93,31 @@ function after(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
+HTMLElement.prototype.load=function (url) {
+    var container=this;
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", url, true);
+    xmlhttp.setRequestHeader('Content-type', 'text/html');
+    xmlhttp.send();
+
+    xmlhttp.onreadystatechange = function (e) {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            container.innerHTML = xmlhttp.responseText;
+        }
+    }
+};
+
+function getEnumValueByKey(e, key) {
+    var virtualKey = "a" + key;
+    for (i in e) {
+        if (i == virtualKey) {
+            return e[i];
+        }
+
+    }
+}
+
+function getLoginData(){
+    return JSON.parse(localStorage.getItem("login-data"));
+}

@@ -1,35 +1,52 @@
-.line {
+.modal .line {
     display: flex;
     margin: 20px 0px 0px 0px;
     padding-left: 50px;
     height: 50px;
     align-items: center;
 
-
 }
 
-.upload-line{
+.modal .upload-line {
     height: 100px;
 }
 
-.title-line{
+.modal .title-line {
     margin-top: 20px;
 }
-.detail-line{
+
+.modal .detail-line {
     height: 100px;
 }
 
-.title {
+.modal .sub-line {
+    height: 340px;
+}
+
+.modal .sub-line .sub-item-box {
+    flex-grow: 1;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.modal .sub-line .sub-item-box select {
+    width: 600px;
+    margin-bottom: 20px;
+}
+
+.modal .title {
     display: flex;
     height: 50px;
     margin-top: 25px;
     font-size: 22px;
 
 }
+
 /*margin-top*/
 
-
-.line span {
+.modal .line span {
     display: flex;
     align-items: center;
     margin-right: 30px;
@@ -38,28 +55,27 @@
     width: 80px;
 }
 
-.line img{
+.modal .line > img {
     width: 100px;
     height: 100px;
 }
 
-input {
+.modal input {
     display: flex;
     align-items: center;
     width: 600px;
 
-
 }
 
-.button {
+.modal .button {
     display: flex;
 }
 
-textarea{
+.modal textarea {
     width: 600px;
     height: 100px;
 }
 
-.upload-button{
+.modal .upload-button {
     margin-left: 30px;
 }

@@ -1,3 +1,12 @@
+// var loginData
+//
+// window.onload = function () {
+//     loginData=JSON.parse(localStorage.getItem("login-data"));
+//
+// }
+document.getElementById("username").innerHTML="您好! "+getLoginData().name;
+
+
 var title = document.getElementById("title");
 
 var navMainItems = document.getElementById("nav-main-menu").getElementsByTagName("li");
@@ -183,19 +192,26 @@ function showNavSubMenu4Goods() {
     navSubItems[0].setAttribute("data-selected", "0200");
     navSubItems[0].setAttribute("data-title", title);
 
-    var title = "商品添加";
+    var title = "商品类别";
     navSubItems[1].innerHTML = title;
     navSubItems[1].style.display = "block";
-    navSubItems[1].setAttribute("data-url", "goods/goods-add.html");
+    navSubItems[1].setAttribute("data-url", "goods/goods-category.html");
     navSubItems[1].setAttribute("data-selected", "0201");
     navSubItems[1].setAttribute("data-title", title);
 
-    var title = "商品类别";
+    var title = "优选商品";
     navSubItems[2].innerHTML = title;
     navSubItems[2].style.display = "block";
-    navSubItems[2].setAttribute("data-url", "goods/goods-category.html");
+    navSubItems[2].setAttribute("data-url", "goods/vip-goods.html");
     navSubItems[2].setAttribute("data-selected", "0202");
     navSubItems[2].setAttribute("data-title", title);
+
+    // var title = "礼包";
+    // navSubItems[2].innerHTML = title;
+    // navSubItems[2].style.display = "block";
+    // navSubItems[2].setAttribute("data-url", "goods/giftpack.html");
+    // navSubItems[2].setAttribute("data-selected", "0202");
+    // navSubItems[2].setAttribute("data-title", title);
 }
 function showNavSubMenu4Stock() {
     //库存列表
@@ -209,26 +225,24 @@ function showNavSubMenu4Stock() {
         navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
     }
 
-    var title = "入库列表";
+
+    var title = "出库列表";
     navSubItems[0].innerHTML = title;
     navSubItems[0].style.display = "block";
-    navSubItems[0].setAttribute("data-url", "stock/stock-in-list.html");
+    navSubItems[0].setAttribute("data-url", "stock/stock-out-list.html");
     navSubItems[0].setAttribute("data-selected", "0300");
     navSubItems[0].setAttribute("data-title", title);
 
-    var title = "出库列表";
+    var title = "入库列表";
     navSubItems[1].innerHTML = title;
     navSubItems[1].style.display = "block";
-    navSubItems[1].setAttribute("data-url", "stock/stock-out-list.html");
+    navSubItems[1].setAttribute("data-url", "stock/stock-in-list.html");
     navSubItems[1].setAttribute("data-selected", "0301");
     navSubItems[1].setAttribute("data-title", title);
 
-    var title = "新增入库";
-    navSubItems[2].innerHTML = title;
-    navSubItems[2].style.display = "block";
-    navSubItems[2].setAttribute("data-url", "stock/stock-add.html");
-    navSubItems[2].setAttribute("data-selected", "0302");
-    navSubItems[2].setAttribute("data-title", title);
+
+
+
 }
 function showNavSubMenu4Operate() {
     //banner管理
@@ -273,12 +287,7 @@ function showNavSubMenu4Operate() {
     navSubItems[2].setAttribute("data-selected", "0402");
     navSubItems[2].setAttribute("data-title", title);
 
-    var title = "添加图文";
-    navSubItems[3].innerHTML = title;
-    navSubItems[3].style.display = "block";
-    navSubItems[3].setAttribute("data-url", "operate/add-photo-text.html");
-    navSubItems[3].setAttribute("data-selected", "0403");
-    navSubItems[3].setAttribute("data-title", title);
+
 }
 function showNavSubMenu4Finance() {
     //入账列表
@@ -361,26 +370,20 @@ function showNavSubMenu4PermissionsManagement() {
     navSubItems[1].setAttribute("data-selected", "0701");
     navSubItems[1].setAttribute("data-title", title);
 
-    var title = "权限设置";
+
+    var title = "操作日志";
     navSubItems[2].innerHTML = title;
     navSubItems[2].style.display = "block";
-    navSubItems[2].setAttribute("data-url", "permission/permission-settings.html");
+    navSubItems[2].setAttribute("data-url", "permission/operate-log.html");
     navSubItems[2].setAttribute("data-selected", "0702");
     navSubItems[2].setAttribute("data-title", title);
 
-    var title = "操作日志";
-    navSubItems[3].innerHTML = title;
-    navSubItems[3].style.display = "block";
-    navSubItems[3].setAttribute("data-url", "permission/operate-log.html");
-    navSubItems[3].setAttribute("data-selected", "0703");
-    navSubItems[3].setAttribute("data-title", title);
-
-    var title = "数据库管理";
-    navSubItems[4].innerHTML = title;
-    navSubItems[4].style.display = "block";
-    navSubItems[4].setAttribute("data-url", "permission/db-management.html");
-    navSubItems[4].setAttribute("data-selected", "0704");
-    navSubItems[4].setAttribute("data-title", title);
+    // var title = "数据库管理";
+    // navSubItems[4].innerHTML = title;
+    // navSubItems[4].style.display = "block";
+    // navSubItems[4].setAttribute("data-url", "permission/db-management.html");
+    // navSubItems[4].setAttribute("data-selected", "0704");
+    // navSubItems[4].setAttribute("data-title", title);
 }
 
 function hidenAllNavSubItems(navSubItems) {
@@ -392,8 +395,8 @@ function hidenAllNavSubItems(navSubItems) {
 }
 
 //默认
-document.getElementById("nav-main-item4").click();
-document.getElementById("nav-sub-item0").click();
+document.getElementById("nav-main-item3").click();
+document.getElementById("nav-sub-item1").click();
 
 
 var toHide = document.getElementById("to-hide-main-nav");

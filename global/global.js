@@ -30,3 +30,12 @@ function feedback(elementId, msg) {
     }, 1000);
 
 }
+
+var OrderStatus = {
+    "a1": "待付款",
+    "a2": "待发货",
+    "a3": "待收货",
+    "a4": "已完成",
+    "a5": "已关闭"
+};
+

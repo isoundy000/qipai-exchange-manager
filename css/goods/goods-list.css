@@ -1,3 +1,4 @@
+
 .filter-box {
     height: 80px;
     min-height: 80px;
@@ -15,105 +16,25 @@
 
 }
 
-input,select{
-    margin-right: 40px;
-}
-select{
+.filter-box > select {
     width: 160px;
 }
-.space{
+
+.filter-box > .space20-fixed {
+    height: 100%;
+    width: 20px;
+    min-width: 20px;
+}
+.filter-box > .space20 {
     height: 100%;
     flex-grow: 1;
+    min-width: 20px;
 }
-#add-goods{
+
+#add-room-card {
     margin-right: 40px;
-}
-
-
-
-
-#centerpoint {
-    top: 50%;
-    left: 50%;
-    position: absolute;
-}
-
-#dialog {
-    position: relative;
-
-    width: 600px;
-    margin-left: -300px;
-
-    height: 400px;
-    margin-top: -200px;
-}
-
-/*详情*/
-.detail {
-    flex-grow: 1;
-
-    display: flex;
-    display: -webkit-flex;
-    flex-direction: column;
 
 }
 
-.dialog-content-line {
-    height: 40px;
-
-    min-height: 40px;
-    display: flex;
-    display: -webkit-flex;
-    flex-direction: row;
-    margin-top: 10px;
-}
-
-.photo-content-line {
-    height: 100px;
-
-    min-height: 100px;
-    display: flex;
-    display: -webkit-flex;
-    flex-direction: row;
-    margin-top: 10px;
-}
-
-.detail-content-line {
-    height: 100px;
-
-    min-height: 100px;
-    display: flex;
-    display: -webkit-flex;
-    flex-direction: row;
-    margin-top: 10px;
-    margin-bottom: 20px;
-
-}
-
-.dialog-label {
-    white-space: nowrap;
-    width: 100px;
-    height: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.dialog-input {
-    height: 20px;
-}
-
-.upload-img {
-    width: 100px;
-    height: 100px;
-    margin-right: 10px;
-}
-
-.upload-button {
-    white-space: nowrap;
-    margin-left: 20px;
-    display: inline;
-}
 
 
-
-/*编辑*/

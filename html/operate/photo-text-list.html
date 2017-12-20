@@ -6,19 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../common-web/common.css">
     <link rel="stylesheet" href="../../global/global.css">
+    <link rel="stylesheet" href="../../global/modal.css">
     <link rel="stylesheet" href="../../css/operate/photo-text-list.css">
 </head>
 <body>
 <div class="root">
+    <div class="filter-box">
 
+        <div class="space"></div>
+        <div id="add-imageText" class="button" style="margin-right: 40px">添加图文</div>
+    </div>
     <div class="table-box">
         <table id="table" class="table" cellspacing="0" border="0">
             <thead>
             <tr id="thead-tr">
-
-                <th class="th">序号</th>
                 <th class="th" style="width: 300px">标题</th>
-                <th class="th">时间</th>
+                <th class="th">创建时间</th>
+                <th class="th">内容</th>
                 <th class="th" style="min-width: 150px">操作</th>
             </tr>
             </thead>
@@ -55,17 +59,17 @@
 
 
 
-<div id="dialog-del" class="modal" style="display: none">
+<div id="modal-del" class="modal-del" style="display: none">
     <div class="modal-content" style="border: 1px solid">
         <div style="width: 220px;height: 80px;display: flex;align-items: center;justify-content: center;font-size: 20px;border-bottom: 1px solid">
             确定删除该数据吗？
         </div>
         <div style="display: flex;flex-direction: row">
-            <div id="dialog-del-ok"
+            <div id="modal-del-ok"
                  style="width: 110px;height: 40px;border-right: 1px solid;display: flex;align-items: center;justify-content: center;">
                 确定
             </div>
-            <div id="dialog-del-cancel"
+            <div id="modal-del-cancel"
                  style="width: 110px;height: 40px;border-left: 1px solid;display: flex;align-items: center;justify-content: center;">
                 取消
             </div>
@@ -73,90 +77,47 @@
     </div>
 </div>
 
-<div class="detail" style="display: none">
+<div id="modal-add" class="modal" style="display: none">
 
-
-    <div class="dialog-content-line">
-        <label class="dialog-label">商品标题</label>
-        <input id="add-name" class="dialog-input" style="width: 500px" placeholder="请输入商品标题">
+    <div class="line">
+        <span>标题</span>
+        <input id="add-title">
     </div>
-    <div class="dialog-content-line">
-        <label class="dialog-label">商品类别</label>
-        <input id="add-category-id" class="dialog-input" style="width: 300px">
-        <!--<select id="select" class="select" style="width: 300px">-->
-        </select>
+    <div class="line">
+        <span>内容</span>
+        <input id="add-content">
     </div>
-    <div class="dialog-content-line">
-        <label class="dialog-label">商品价格</label>
-        <input id="add-price" class="dialog-input" style="width: 300px">
-    </div>
-    <div class="dialog-content-line">
-        <label class="dialog-label">会员价</label>
-        <input id="add-vip-price" class="dialog-input" style="width: 300px">
-    </div>
-    <div class="dialog-content-line">
-        <label class="dialog-label">黄金会员价</label>
-        <input id="add-gold-vip-price" class="dialog-input" style="width: 300px">
-    </div>
-    <div class="dialog-content-line">
-        <label class="dialog-label">库存</label>
-        <input id="add-stock" class="dialog-input" style="width: 300px">
-    </div>
-    <div class="dialog-content-line">
-        <label class="dialog-label">创建时间</label>
-        <input id="add-create-time" class="dialog-input" style="width: 300px">
-    </div>
-    <div class="dialog-content-line">
-        <label class="dialog-label">状态</label>
-        <input id="add-is-delete" class="dialog-input" style="width: 300px">
-    </div>
-
-    <div class="photo-content-line" style="height: 100px;align-items: center">
-        <label class="dialog-label">商品主图</label>
-        <img id="upload-img1" class="upload-img">
-        <img id="upload-img2" class="upload-img">
-        <img id="upload-img3" class="upload-img">
-        <img id="upload-img4" class="upload-img">
-        <img id="upload-img5" class="upload-img">
-
-
-    </div>
-
-
-    <div class="detail-content-line">
-        <label class="dialog-label">详情</label>
-        <textarea id="add-detail" style="width: 500px;height: 94px;margin: 0px;display: inline"></textarea>
+    <div class="line">
+        <span></span>
+        <div id="add-save" class="button">添加</div>
     </div>
 
 
 </div>
 
-<div class="update" style="display: none">
 
+<div id="modal-update" class="modal" style="display: none">
 
-    <div class="dialog-content-line">
-        <label class="dialog-label">房卡标题</label>
-        <input id="update-price" class="dialog-input" style="width: 300px">
+    <div class="line">
+        <span>标题</span>
+        <input id="update-title">
     </div>
-    <div class="dialog-content-line">
-        <label class="dialog-label">价格(元)</label>
-        <input id="update-vip-price" class="dialog-input" style="width: 300px" type="number" value="0">
+    <div class="line">
+        <span>内容</span>
+        <input id="update-content">
     </div>
-    <div class="dialog-content-line">
-        <label class="dialog-label">金币</label>
-        <input id="update-gold-vip-price" class="dialog-input" style="width: 300px" type="number" value="0">
+    <div class="line">
+        <span></span>
+        <div id="update-save" class="button">保存</div>
     </div>
 
-
-    <div class="dialog-content-line">
-        <label class="dialog-label"></label>
-        <span class="action-button" id="save">保存</span>
-    </div>
 
 </div>
 
-
+<script src="../../jquery-3.2.1.min.js"></script>
+<script src="../../layer/layer.js"></script>
 <script src="../../common-web/common.js"></script>
+<script src="../../common-web/table-page.js"></script>
 <script src="../../global/global.js"></script>
 <script src="../../js/operate/photo-text-list.js"></script>
 </body>

@@ -1,13 +1,26 @@
+var searchKeyword;
+var searchTransportReceiver;
+var searchBeginTimestamp;
+var searchEndTimestamp;
+var searchStatus;
+
+
+function getParamsForSearch() {
+    searchKeyword = document.getElementById("searchKeyword").value;
+    searchTransportReceiver = document.getElementById("searchTransportReceiver").value;
+    searchBeginTimestamp = new Date(document.getElementById("searchBeginTimestamp").value).getTime();
+    searchEndTimestamp = new Date(document.getElementById("searchEndTimestamp").value).getTime();
+    searchStatus = document.getElementById("searchStatus").value;
+}
+
+document.getElementById("search").onclick = function () {
+    clearTable();
+    requestOnePage(pageIndex, 8);
+};
+
+
 var table = document.getElementById("table");
 
-//分页变量
-var isFirstPage = -1;
-var isLastPage = -1;
-var pageIndex = 0;
-var pageSize = -1;
-var totalPages = -1;
-var totalRecords = -1;
-var operateId = "";
 
 requestOnePage(pageIndex, 8);
 function requestOnePage(index, size) {
@@ -16,11 +29,26 @@ function requestOnePage(index, size) {
         "pageIndex": index,
         "pageSize": size
     }
+
+    getParamsForSearch();
+
+    params["searchKeyword"] = searchKeyword;
+    params["searchTransportReceiver"] = searchTransportReceiver;
+    if (!isNaN(searchBeginTimestamp)) {
+        params["searchBeginTimestamp"] = searchBeginTimestamp;
+    }
+    if (!isNaN(searchEndTimestamp)) {
+        params["searchEndTimestamp"] = searchEndTimestamp;
+    }
+    params["searchStatus"] = searchStatus;
+
+    console.log(params)
+
     var xmlhttp = post(params);
 
     xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            //console.log(xmlhttp.responseText);
             var json = JSON.parse(xmlhttp.responseText);
 
             var tbody = document.getElementById("tbody");
@@ -50,19 +78,19 @@ function requestOnePage(index, size) {
                 };
 
 
-                var imgBox = appendTdAndData(tr, "");
-                var img = document.createElement("img");
-
-                console.log(json.data[i].pictures);
-                if (json.data[i].pictures.length > 0) {
-                    img.setAttribute("src", JSON.parse(json.data[i].pictures));
-                }
-
-
-                img.style.width = "50px"
-                img.style.height = "50px"
-
-                imgBox.appendChild(img);
+                // var imgBox = appendTdAndData(tr, "");
+                // var img = document.createElement("img");
+                //
+                // console.log(json.data[i].pictures);
+                // if (json.data[i].pictures.length > 0) {
+                //     img.setAttribute("src", JSON.parse(json.data[i].pictures));
+                // }
+                //
+                //
+                // img.style.width = "50px"
+                // img.style.height = "50px"
+                //
+                // imgBox.appendChild(img);
 
                 appendTdAndData(tr, json.data[i].name);
                 appendTdAndData(tr, json.data[i].price);

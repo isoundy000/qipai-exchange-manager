@@ -20,6 +20,8 @@
     align-items: center;
     justify-content: center;
     white-space: nowrap;
+
+    cursor: pointer;
 }
 
 input {
@@ -161,4 +163,8 @@ textarea {
     margin: auto;
     width: 220px;
     height: 120px;
+}
+
+img.ewe_ta_edit_button {
+    display: none;
 }

@@ -17,9 +17,10 @@ function requestOnePage(index, size) {
     var xmlhttp = post(params);
 
     xmlhttp.onreadystatechange = function () {
+        //console.log(xmlhttp.responseText);
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             //document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
-            //console.log(xmlhttp.responseText);
+
             var json = JSON.parse(xmlhttp.responseText);
 
             var tbody = document.getElementById("tbody");
@@ -50,36 +51,56 @@ function requestOnePage(index, size) {
 
 
                 appendTdAndData(tr, i);
+
+
+                var imgBox = appendTdAndData(tr, "");
+                var img = document.createElement("img");
+                img.setAttribute("src", json.data[i].coverImgUrl);
+                img.style.width = "50px"
+                img.style.height = "50px"
+                imgBox.appendChild(img);
+
                 appendTdAndData(tr, json.data[i].name);
                 appendTdAndData(tr, json.data[i].price);
                 appendTdAndData(tr, json.data[i].goldCoin);
                 appendTdAndData(tr, json.data[i].salesVolume);
-                appendTdAndData(tr, json.data[i].enable);
+                appendTdAndData(tr, (json.data[i].enable) == 1 ? "启用" : "禁用");
                 var cell = appendTd(tr);
-                //var show = document.createElement("a");
+                var show = document.createElement("a");
                 var edit = document.createElement("a");
                 edit.style.margin = "8px";
                 var del = document.createElement("a");
 
-                //show.setAttribute("href", "javascript:void(0)");
+                show.setAttribute("href", "javascript:void(0)");
                 edit.setAttribute("href", "javascript:void(0)");
                 del.setAttribute("href", "javascript:void(0)");
 
 
-                //show.innerHTML = "查看";
+                show.innerHTML = "查看";
                 edit.innerHTML = "编辑";
                 del.innerHTML = "删除";
-                //cell.appendChild(show);
+                cell.appendChild(show);
                 cell.appendChild(edit);
                 cell.appendChild(del);
 
-                //show.setAttribute("data-opeate",json.data[i].id);
+                show.setAttribute("data-opeate", json.data[i].id);
                 edit.setAttribute("data-opeate", json.data[i].id);
                 del.setAttribute("data-opeate", json.data[i].id);
 
-                // show.onclick=function () {
-                //     alert(this.getAttribute("data-opeate"));
-                // }
+                show.onclick = function () {
+                    operateId = this.getAttribute("data-opeate");
+                    layer.open({
+                        type: 1
+                        , area: ['800px', '600px']
+                        , title: '房卡详情'
+                        , shade: 0.6
+                        , maxmin: false
+                        , anim: 1
+                        , content: $("#modal-detail")
+                    });
+
+                    showDetail();
+                }
                 edit.onclick = function () {
                     operateId = this.getAttribute("data-opeate");
                     layer.open({
@@ -170,14 +191,11 @@ document.getElementById("add-upload-button").onclick = function () {
             var json = JSON.parse(xmlhttp.responseText);
             if (json.code == 0) {
                 uploaded = 1;
-                for (var i = 0; i < json.data.length; i++) {
-                    // console.log(json.data[0].url);
-                    pictures[i] = json.data[i].url;
-                    // console.log("fsfs"+pictures.toString())
-                    //alert(pictures[0])
-                }
 
-                feedback("add-upload-button","上传成功");
+                pictures[0] = json.data.url;
+
+
+                feedback("add-upload-button", "上传成功");
 
 
             }
@@ -207,16 +225,15 @@ document.getElementById("add").onclick = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var json = JSON.parse(xmlhttp.responseText);
 
-            var span = document.createElement("span");
-            span.innerHTML = "添加成功";
-            after(span, document.getElementById("add"));
-
+            feedback("add", "添加成功");
 
 
             window.setTimeout(function () {
-                span.style.display = "none";
-                window.location.reload();
-            }, 1000);
+                // window.location.reload();
+                layer.closeAll();
+                clearTable();
+                requestOnePage(pageIndex, 8);
+            }, 2000);
 
         }
     };
@@ -256,53 +273,127 @@ document.getElementById("modal-del-cancel").onclick = function () {
     dialogDel.style.display = "none";
 }
 
-function showDetailBeforeUpdate() {
-    // var params = {
-    //     "apiName": "Goods_QueryDetail_Api",
-    //     "goodsId": operateId
-    // }
-    // var xmlhttp = post(params);
-    //
-    // xmlhttp.onreadystatechange = function () {
-    //     console.log(xmlhttp.responseText);
-    //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-    //         console.log(xmlhttp.responseText);
-    //         var json = JSON.parse(xmlhttp.responseText);
-    //
-    //         if (json.code == 0) {
-    //
-    //         }
-    //
-    //
-    //     }
-    // }
+
+function showDetail() {
+    var params = {
+        "apiName": "RoomCard_QueryDetail_Api",
+        "roomCardId": operateId
+    }
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var json = JSON.parse(xmlhttp.responseText);
+
+            if (json.code == 0) {
+                document.getElementById("detail-name").value = json.data.name;
+                document.getElementById("detail-price").value = json.data.price;
+                document.getElementById("detail-gold-coin").value = json.data.goldCoin;
+                document.getElementById("detail-sales-volume").value = json.data.salesVolume;
+                document.getElementById("detail-state").value = (json.data.enable) == 1 ? "启用" : "禁用";
+                document.getElementById("detail-img").src = json.data.coverImgUrl;
+
+
+            }
+
+
+        }
+    }
 }
 
-// document.getElementById("update").onclick = function () {
-//     var params = {
-//         "apiName": "RoomCard_Update_Api",
-//         "roomCardId": operateId,
-//         "name": name1.value,
-//         "price": Number(price.value),
-//         "goldCoin": Number(goldCoin.value)
-//     }
-//     var xmlhttp = post(params);
-//
-//     xmlhttp.onreadystatechange = function () {
-//         console.log(xmlhttp.responseText);
-//         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-//             console.log(xmlhttp.responseText);
-//             var json = JSON.parse(xmlhttp.responseText);
-//
-//             if (json.code == 0) {
-//
-//                 layer.closeAll();
-//                 clearTable();
-//                 requestOnePage(pageIndex, 8);
-//
-//             }
-//
-//
-//         }
-//     }
-// }
+
+function showDetailBeforeUpdate() {
+    var params = {
+        "apiName": "RoomCard_QueryDetail_Api",
+        "roomCardId": operateId
+    }
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var json = JSON.parse(xmlhttp.responseText);
+
+            if (json.code == 0) {
+                pictures[0] = json.data.coverImgUrl;
+
+
+                document.getElementById("update-name").value = json.data.name;
+                document.getElementById("update-price").value = json.data.price;
+                document.getElementById("update-gold-coin").value = json.data.goldCoin;
+                // document.getElementById("detail-sales-volume").value=json.data.salesVolume;
+                // document.getElementById("detail-state").value=(json.data.enable)==1?"启用":"禁用";
+                document.getElementById("update-img").src = json.data.coverImgUrl;
+
+
+            }
+
+
+        }
+    }
+}
+
+addUploadFunctionToImg("update-img");
+
+document.getElementById("update-upload-button").onclick = function () {
+    var file1 = document.getElementById("update-img-file").files[0];
+    var formData = new FormData();
+    formData.append("file1", file1);
+
+    var xmlhttp = upload(formData);
+
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(xmlhttp.responseText);
+
+            var json = JSON.parse(xmlhttp.responseText);
+            if (json.code == 0) {
+                uploaded = 1;
+                pictures[0] = json.data.url;
+
+                feedback("update-upload-button", "上传成功");
+
+
+            }
+
+        }
+    }
+
+
+};
+
+document.getElementById("update").onclick = function () {
+    var name1 = document.getElementById("update-name");
+    var price = document.getElementById("update-price");
+    var goldCoin = document.getElementById("update-gold-coin");
+
+
+    var params = {
+        "apiName": "RoomCard_Add_Api",
+        "name": name1.value,
+        "price": Number(price.value),
+        "goldCoin": Number(goldCoin.value),
+        "coverImgUrl": pictures[0]
+    };
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var json = JSON.parse(xmlhttp.responseText);
+
+            feedback("update", "保存成功");
+
+
+            window.setTimeout(function () {
+                // window.location.reload();
+                layer.closeAll();
+                clearTable();
+                requestOnePage(pageIndex, 8);
+            }, 2000);
+
+        }
+    };
+}

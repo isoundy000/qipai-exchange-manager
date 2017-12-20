@@ -30,10 +30,11 @@ requestOnePage(pageIndex, 8);
 function requestOnePage(index, size) {
     var params = {
         "apiName": "Goods_QueryList_Api",
-        "type": 1,
+        "type": 2,
         "pageIndex": index,
         "pageSize": size
-    };
+    }
+
 
     getParamsForSearch();
 
@@ -700,7 +701,7 @@ function showDetailBeforeStock() {
 }
 
 
-document.getElementById("stock-save").onclick = function () {
+document.getElementById("prefer-save").onclick = function () {
     var stock = document.getElementById("stock-amount");
 
 
@@ -716,7 +717,7 @@ document.getElementById("stock-save").onclick = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var json = JSON.parse(xmlhttp.responseText);
 
-            feedback("stock-save", "新增库存成功");
+            feedback("update-save", "新增库存成功");
 
 
             window.setTimeout(function () {

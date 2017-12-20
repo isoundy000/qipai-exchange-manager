@@ -2,32 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>房卡列表</title>
+    <title>礼包</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../common-web/common.css">
     <link rel="stylesheet" href="../../global/global.css">
     <link rel="stylesheet" href="../../global/modal.css">
-    <link rel="stylesheet" href="../../css/room-card/room-card-list.css">
+    <link rel="stylesheet" href="../../css/goods/giftpack.css">
 </head>
 <body>
 <div class="root">
     <div class="filter-box">
-        <div class="space"></div>
-        <div id="add-room-card" class="button">添加房卡</div>
-    </div>
 
+        <div class="space"></div>
+        <div id="add-giftPack" class="button" style="margin-right: 40px">添加礼包</div>
+    </div>
     <div class="table-box">
         <table id="table" class="table" cellspacing="0" border="0">
             <thead>
             <tr id="thead-tr">
-
-                <th class="th">编号</th>
                 <th class="th">缩略图</th>
-                <th class="th" style="width: 300px">房卡标题</th>
-                <th class="th">价格(元)</th>
-                <th class="th">金币</th>
-                <th class="th">销售数量</th>
-                <th class="th">状态</th>
+                <th class="th">礼包名称</th>
+                <th class="th">创建时间</th>
+                <th class="th">价格</th>
                 <th class="th" style="min-width: 150px">操作</th>
             </tr>
             </thead>
@@ -57,42 +53,7 @@
 
         </table>
     </div>
-
-
 </div>
-
-
-<div class="modal-add" class="modal" style="display: none">
-
-
-    <div class="line">
-        <span>房卡标题</span>
-        <input id="add-name">
-    </div>
-    <div class="line">
-        <span>价格(元)</span>
-        <input id="add-price" type="number" value="0">
-    </div>
-    <div class="line">
-        <span>位金币</span>
-        <input id="add-gold-coin" type="number" value="0">
-    </div>
-    <div class="line upload-line">
-        <span>封面图</span>
-        <img id="add-img" src="../../img/upload-default.png">
-        <form hidden="hidden" id="add-form" enctype="multipart/form-data" method="post"
-              action="http://47.104.17.187:8082/micro-file-server" target="#no-iframe">
-            <input type="file" name="file1" id="add-img-file" hidden="hidden">
-        </form>
-        <div id="add-upload-button" class="button upload-button">上传</div>
-    </div>
-    <div class="line">
-        <span></span>
-        <div id="add" class="button">添加</div>
-    </div>
-
-</div>
-
 
 <div id="modal-del" class="modal-del" style="display: none">
     <div class="modal-content" style="border: 1px solid">
@@ -112,53 +73,99 @@
     </div>
 </div>
 
+<div id="modal-add" class="modal" style="display: none">
 
-<div id="modal-detail" class="modal" style="display: none">
-
     <div class="line">
-        <span>房卡标题</span>
-        <input id="detail-name" readonly="readonly">
+        <span>名称</span>
+        <input id="add-name">
     </div>
     <div class="line">
-        <span>价格(元)</span>
-        <input id="detail-price" readonly="readonly">
-    </div>
-    <div class="line">
-        <span>金币</span>
-        <input id="detail-gold-coin" readonly="readonly">
-    </div>
-    <div class="line">
-        <span>销售量</span>
-        <input id="detail-sales-volume" readonly="readonly">
-    </div>
-    <div class="line">
-        <span>状态</span>
-        <input id="detail-state" readonly="readonly">
+        <span>价格</span>
+        <input id="add-price" type="number" value="0">
     </div>
     <div class="line upload-line">
         <span>封面图</span>
-        <img id="detail-img" src="">
+        <img id="add-img" src="../../img/upload-default.png">
+        <form hidden="hidden" id="add-form" enctype="multipart/form-data" method="post"
+              action="http://47.104.17.187:8082/micro-file-server" target="#no-iframe">
+            <input type="file" name="file1" id="add-img-file" hidden="hidden">
+        </form>
+        <div id="add-upload-button" class="button upload-button">上传</div>
+    </div>
+    <div class="line sub-line">
+        <span>添加商品</span>
+        <div class="sub-item-box">
+            <select id="add-select0"></select>
+            <select id="add-select1"></select>
+            <select id="add-select2"></select>
+            <select id="add-select3"></select>
+            <select id="add-select4"></select>
+            <select id="add-select5"></select>
+        </div>
 
+    </div>
+    <div class="line">
+        <span></span>
+        <div id="add-save" class="button">添加</div>
     </div>
 
 
 </div>
 
+<div id="modal-detail" class="modal" style="display: none">
+
+    <div class="line">
+        <span>名称</span>
+        <input id="detail-name">
+    </div>
+    <div class="line">
+        <span>价格</span>
+        <input id="detail-price" type="number" value="0">
+    </div>
+
+    <div class="line">
+        <span>商品1</span>
+        <input id="detail-good1">
+    </div>
+
+    <div class="line">
+        <span>商品2</span>
+        <input id="detail-good2">
+    </div>
+
+    <div class="line">
+        <span>商品3</span>
+        <input id="detail-good3">
+    </div>
+
+    <div class="line">
+        <span>商品4</span>
+        <input id="detail-good4">
+    </div>
+
+    <div class="line">
+        <span>商品5</span>
+        <input id="detail-good5">
+    </div>
+
+    <div class="line" style="margin-bottom: 20px">
+        <span>商品6</span>
+        <input id="detail-good6">
+    </div>
+
+</div>
 
 <div id="modal-update" class="modal" style="display: none">
 
     <div class="line">
-        <span>房卡标题</span>
+        <span>名称</span>
         <input id="update-name">
     </div>
     <div class="line">
-        <span>价格(元)</span>
+        <span>价格</span>
         <input id="update-price" type="number" value="0">
     </div>
-    <div class="line">
-        <span>位金币</span>
-        <input id="update-gold-coin" type="number" value="0">
-    </div>
+
     <div class="line upload-line">
         <span>封面图</span>
         <img id="update-img" src="../../img/upload-default.png">
@@ -166,22 +173,34 @@
               action="http://47.104.17.187:8082/micro-file-server" target="#no-iframe">
             <input type="file" name="file1" id="update-img-file" hidden="hidden">
         </form>
-        <div id="update-upload-button" class="button upload-button">新上传</div>
+        <div id="update-upload-button" class="button upload-button">上传</div>
+    </div>
+    <div class="line sub-line">
+        <span>添加商品</span>
+        <div class="sub-item-box">
+            <select id="update-select0"></select>
+            <select id="update-select1"></select>
+            <select id="update-select2"></select>
+            <select id="update-select3"></select>
+            <select id="update-select4"></select>
+            <select id="update-select5"></select>
+        </div>
+
     </div>
     <div class="line">
         <span></span>
-        <div id="update" class="button">更改</div>
+        <div id="update-save" class="button">保存</div>
     </div>
 
-
 </div>
+
 
 
 <script src="../../jquery-3.2.1.min.js"></script>
 <script src="../../layer/layer.js"></script>
 <script src="../../common-web/common.js"></script>
+<script src="../../common-web/table-page.js"></script>
 <script src="../../global/global.js"></script>
-<script src="../../js/room-card/room-card-list.js"></script>
-<script src="../../global/table.js"></script>
+<script src="../../js/goods/giftpack.js"></script>
 </body>
 </html>

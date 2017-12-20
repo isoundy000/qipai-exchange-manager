@@ -6,54 +6,428 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../common-web/common.css">
     <link rel="stylesheet" href="../../global/global.css">
+    <link rel="stylesheet" href="../../global/modal.css">
     <link rel="stylesheet" href="../../css/permission/department-management.css">
+    <link rel="stylesheet" href="../../global/switch.css">
 </head>
 <body>
-    <div class="root">
-        <div class="table-box">
-            <table id="table" class="table" cellspacing="0" border="0">
-                <thead>
-                <tr id="thead-tr">
+<div class="root">
+    <div class="filter-box">
 
-                    <th class="th">序号</th>
-                    <th class="th">部门名称</th>
-                    <th class="th">职能描述</th>
-                    <th class="th">成员数量</th>
-                    <th class="th">添加时间</th>
-                    <th class="th">是否启用</th>
-                    <th class="th">操作</th>
-                </tr>
-                </thead>
-                <tbody id="tbody">
-                </tbody>
-                <tbody>
-                <tr>
-                    <td colspan="11">
-                        <div class="page">
-                            <div style="margin-right: 20px">页</div>
-                            <input id="goto-page" class="page-input" type="number" style="width: 40px" value="1">
-                            <div style="margin-left: 10px;margin-right: 10px">跳至</div>
-                            <div id="total" style="margin-left: 10px;margin-right: 10px"></div>
-                            <div id="end" class="page-marker" style="width: 34px;cursor: pointer">尾页</div>
-                            <img id="next" class="page-button" src="../../img/page-right.svg" style="cursor: pointer">
-                            <div id="page5" class="page-marker" style="cursor: pointer"></div>
-                            <div id="page4" class="page-marker" style="cursor: pointer"></div>
-                            <div id="page3" class="page-marker" style="cursor: pointer"></div>
-                            <div id="page2" class="page-marker" style="cursor: pointer"></div>
-                            <div id="page1" class="page-marker" style="cursor: pointer"></div>
-                            <img id="previous" class="page-button" src="../../img/page-left.svg" style="cursor: pointer">
-                            <div id="first" class="page-marker" style="width: 34px;cursor: pointer">首页</div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
+        <div class="space"></div>
+        <div id="add-department" class="button" style="margin-right: 40px">添加部门</div>
+    </div>
+    <div class="table-box">
+        <table id="table" class="table" cellspacing="0" border="0">
+            <thead>
+            <tr id="thead-tr">
+                <th class="th">部门名称</th>
+                <th class="th">职能描述</th>
+                <th class="th">添加时间</th>
+                <th class="th">是否启用</th>
+                <th class="th">操作</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+            <tbody>
+            <tr>
+                <td colspan="11">
+                    <div class="page">
+                        <div style="margin-right: 20px">页</div>
+                        <input id="goto-page" class="page-input" type="number" style="width: 40px" value="1">
+                        <div style="margin-left: 10px;margin-right: 10px">跳至</div>
+                        <div id="total" style="margin-left: 10px;margin-right: 10px"></div>
+                        <div id="end" class="page-marker" style="width: 34px;cursor: pointer">尾页</div>
+                        <img id="next" class="page-button" src="../../img/page-right.svg" style="cursor: pointer">
+                        <div id="page5" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page4" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page3" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page2" class="page-marker" style="cursor: pointer"></div>
+                        <div id="page1" class="page-marker" style="cursor: pointer"></div>
+                        <img id="previous" class="page-button" src="../../img/page-left.svg" style="cursor: pointer">
+                        <div id="first" class="page-marker" style="width: 34px;cursor: pointer">首页</div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
 
 
-            </table>
+        </table>
+    </div>
+</div>
+
+
+<div id="modal-del" class="modal-del" style="display: none">
+    <div class="modal-content" style="border: 1px solid">
+        <div style="width: 220px;height: 80px;display: flex;align-items: center;justify-content: center;font-size: 20px;border-bottom: 1px solid">
+            确定删除该数据吗？
+        </div>
+        <div style="display: flex;flex-direction: row">
+            <div id="modal-del-ok"
+                 style="width: 110px;height: 40px;border-right: 1px solid;display: flex;align-items: center;justify-content: center;">
+                确定
+            </div>
+            <div id="modal-del-cancel"
+                 style="width: 110px;height: 40px;border-left: 1px solid;display: flex;align-items: center;justify-content: center;">
+                取消
+            </div>
         </div>
     </div>
-    <script src="../../common-web/common.js"></script>
-    <script src="../../global/global.js"></script>
-    <script src="../../js/permission/department-management.js"></script>
+</div>
+
+<div id="modal-update" class="modal" style="display: none">
+
+    <div class="line">
+        <span>部门名称</span>
+        <input id="update-name">
+    </div>
+    <div class="line">
+        <span>职能描述</span>
+        <input id="update-desc">
+    </div>
+    <div class="line">
+        <span></span>
+        <div id="update-save" class="button">保存</div>
+    </div>
+
+
+</div>
+
+<div id="modal-add" class="modal" style="display: none">
+
+    <div class="line">
+        <span>部门名称</span>
+        <input id="add-name">
+    </div>
+    <div class="line">
+        <span>职能描述</span>
+        <input id="add-desc">
+    </div>
+    <div class="line">
+        <span></span>
+        <div id="add-save" class="button">添加</div>
+    </div>
+
+
+</div>
+
+<div id="modal-permission" class="modal" style="display: none">
+
+    <div class="permission-line">
+        <table class="head-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="group-order">
+                        <div>订单管理</div>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="body-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-orderQuery">
+                        <div>订单查看</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-orderUpdate">
+                        <div>订单编辑</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-orderDelete">
+                        <div>订单删除</div>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    <div class="permission-line">
+        <table class="head-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="group-goods">
+                        <div>商品管理</div>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="body-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-goodsAdd">
+                        <div>商品添加</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-goodsUpdate">
+                        <div>商品编辑</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-goodsDelete">
+                        <div>商品删除</div>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="permission-line">
+        <table class="head-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="group-roomCard">
+                        <div>房卡管理</div>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="body-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-roomCardAdd">
+                        <div>房卡添加</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-roomCardUpdate">
+                        <div>房卡编辑</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-roomCardDelete">
+                        <div>房卡删除</div>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="permission-line">
+        <table class="head-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="group-finance">
+                        <div>财务管理</div>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="body-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-withdrawCashAuditAgree">
+                        <div>同意&emsp;&emsp;</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-withdrawCashAuditReject">
+                        <div>拒绝&emsp;&emsp;</div>
+                    </div>
+                </td>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="permission-line">
+        <table class="head-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="group-stock">
+                        <div>库存管理</div>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="body-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-stockQuery">
+                        <div>库存查看</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-stockUpdate">
+                        <div>库存编辑</div>
+                    </div>
+                </td>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="permission-line">
+        <table class="head-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="group-operate">
+                        <div>运营管理</div>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="body-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-bannerManage">
+                        <div>banner管理</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-choiceBannerManage">
+                        <div>会员专区</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-goodsHotWordsManage">
+                        <div>热词管理</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-imageTextAdd">
+                        <div>图文添加</div>
+                    </div>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="permission-line">
+        <table class="head-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="group-department">
+                        <div>部门管理</div>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="body-table">
+            <tr>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-departmentMemberQuery">
+                        <div>部门成员查看</div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="item-departmentMemberUpdate">
+                        <div>部门成员编辑</div>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="permission-save-line">
+        <div id="permission-save" class="button">保存</div>
+    </div>
+
+</div>
+
+<script src="../../jquery-3.2.1.min.js"></script>
+<script src="../../layer/layer.js"></script>
+<script src="../../common-web/common.js"></script>
+<script src="../../common-web/table-page.js"></script>
+<script src="../../global/global.js"></script>
+<script src="../../js/permission/department-management.js"></script>
 </body>
 </html>
