@@ -51,7 +51,7 @@ function requestOnePage(index, size) {
     var xmlhttp = post(params);
 
     xmlhttp.onreadystatechange = function () {
-        // console.log(xmlhttp.responseText);
+        console.log(xmlhttp.responseText);
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
             var json = JSON.parse(xmlhttp.responseText);
@@ -88,7 +88,7 @@ function requestOnePage(index, size) {
 
                 // console.log(json.data[i].pictures);
                 if (json.data[i].pictures.length > 0) {
-                    img.setAttribute("src", JSON.parse(json.data[i].pictures));
+                    img.src = JSON.parse(json.data[i].pictures)[0];
                 }
 
 
@@ -259,12 +259,25 @@ document.getElementById("add-good").onclick = function () {
     layer.open({
         type: 1
         , area: ['800px', '600px']
-        , title: '商品详情'
+        , title: '添加商品'
         , shade: 0.6
         , maxmin: false
         , anim: 1
         , content: $("#modal-add")
     });
+
+    document.getElementById("add-img1").src="../../img/upload-default.png";
+    document.getElementById("add-img2").src="../../img/upload-default.png";
+    document.getElementById("add-img3").src="../../img/upload-default.png";
+    document.getElementById("add-img4").src="../../img/upload-default.png";
+    document.getElementById("add-img5").src="../../img/upload-default.png";
+
+    document.getElementById("add-img1-file").files[0]=undefined;
+    document.getElementById("add-img2-file").files[0]=undefined;
+    document.getElementById("add-img3-file").files[0]=undefined;
+    document.getElementById("add-img4-file").files[0]=undefined;
+    document.getElementById("add-img5-file").files[0]=undefined;
+
 
     showGoodSelectList("add-select");
 }
@@ -283,6 +296,7 @@ document.getElementById("add-upload-button").onclick = function () {
     var file3 = document.getElementById("add-img3-file").files[0];
     var file4 = document.getElementById("add-img4-file").files[0];
     var file5 = document.getElementById("add-img5-file").files[0];
+
     var formData = new FormData();
     formData.append("file1", file1);
     formData.append("file2", file2);
@@ -302,7 +316,10 @@ document.getElementById("add-upload-button").onclick = function () {
             if (json.code == 0) {
                 uploaded = 1;
 
-                pictures[0] = json.data.url;
+                pictures = [];
+                for (var i in json.data) {
+                    pictures[i] = json.data[i].url;
+                }
 
 
                 feedback("add-upload-button", "上传成功");
@@ -362,6 +379,7 @@ document.getElementById("add-save").onclick = function () {
 
     var params = {
         "apiName": "Goods_Add_Api",
+        "type": 1,
         "categoryId": select.value,
         "name": name.value,
         "price": price.value,
@@ -372,6 +390,8 @@ document.getElementById("add-save").onclick = function () {
         "pictures": pictures,
         "detail": detail.value
     };
+
+
     var xmlhttp = post(params);
 
     xmlhttp.onreadystatechange = function () {
@@ -418,6 +438,8 @@ function showDetail() {
                 document.getElementById("detail-is-delete").value = (json.data.isDelete == 0 ? "正常" : "已删除");
                 document.getElementById("detail-detail").value = json.data.detail;
 
+
+
                 var images = JSON.parse(json.data.pictures);
                 if (images.length >= 1) {
                     document.getElementById("detail-img1").setAttribute("src", images[0]);
@@ -462,6 +484,17 @@ function showDetailBeforeUpdate() {
                 document.getElementById("update-gold-vip-price").value = json.data.goldVipPrice;
                 document.getElementById("update-detail").value = json.data.detail;
 
+
+                document.getElementById("update-img1").src="../../img/upload-default.png";
+                document.getElementById("update-img2").src="../../img/upload-default.png";
+                document.getElementById("update-img3").src="../../img/upload-default.png";
+                document.getElementById("update-img4").src="../../img/upload-default.png";
+                document.getElementById("update-img5").src="../../img/upload-default.png";
+                document.getElementById("update-img1-file").files[0]=undefined;
+                document.getElementById("update-img2-file").files[0]=undefined;
+                document.getElementById("update-img3-file").files[0]=undefined;
+                document.getElementById("update-img4-file").files[0]=undefined;
+                document.getElementById("update-img5-file").files[0]=undefined;
                 var images = JSON.parse(json.data.pictures);
 
                 if (images.length >= 1) {
@@ -520,7 +553,10 @@ document.getElementById("update-upload-button").onclick = function () {
             if (json.code == 0) {
                 uploaded = 1;
 
-                pictures[0] = json.data.url;
+                pictures = [];
+                for (var i in json.data) {
+                    pictures[i] = json.data[i].url;
+                }
 
 
                 feedback("update-upload-button", "上传成功");
@@ -555,6 +591,7 @@ document.getElementById("update-save").onclick = function () {
 
     var params = {
         "apiName": "Goods_Update_Api",
+        "goodsId": operateId,
         "categoryId": select.value,
         "name": name.value,
         "price": price.value,

@@ -16,9 +16,9 @@ function requestOnePage(index, size) {
         "pageSize": size
     }
 
-    // getParamsForSearch();
-    //
-    // params["searchKeyword"] = searchKeyword;
+    getParamsForSearch();
+
+    params["searchKeyword"] = searchKeyword;
 
     var xmlhttp = post(params);
 
@@ -53,25 +53,15 @@ function requestOnePage(index, size) {
 
                 };
 
-                var imgBox = appendTdAndData(tr, "");
-                var img = document.createElement("img");
 
-                img.setAttribute("src", json.data[i].goodsPicture);
-
-                img.style.width = "50px"
-                img.style.height = "50px"
-
-                imgBox.appendChild(img);
 
 
                 appendTdAndData(tr, json.data[i].goodsId);
                 appendTdAndData(tr, json.data[i].goodsName);
                 appendTdAndData(tr, new Date(json.data[i].dtCreate).Format("yyyy-MM-dd hh:mm:ss"));
-                appendTdAndData(tr, json.data[i].price);
-                appendTdAndData(tr, json.data[i].quantity);
-                appendTdAndData(tr, json.data[i].totalPrice);
-                appendTdAndData(tr, json.data[i].orderId);
-                appendTdAndData(tr, json.data[i].remainingStock);
+                appendTdAndData(tr, json.data[i].oldStock);
+                appendTdAndData(tr, json.data[i].newStock);
+                appendTdAndData(tr, json.data[i].amount);
 
                 // var cell = appendTd(tr);
                 // var show = document.createElement("a");

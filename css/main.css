@@ -31,6 +31,9 @@
     color: white;
     white-space: nowrap;
 }
+.top > .top-change-password :hover{
+    opacity:0.8;
+}
 
 .top > .top-exit {
 
@@ -38,6 +41,9 @@
     margin-right: 40px;
     color: white;
     white-space: nowrap;
+}
+.top > .top-exit :hover{
+    opacity:0.8;
 }
 
 .bottom {

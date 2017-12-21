@@ -24,6 +24,10 @@
     cursor: pointer;
 }
 
+.button:hover {
+    opacity: 0.8;
+}
+
 input {
 
     border: 1px solid #ccc;

@@ -42,7 +42,6 @@ function requestOnePage(index, size) {
     }
     params["searchStatus"] = searchStatus;
 
-    console.log(params)
 
     var xmlhttp = post(params);
 
@@ -77,88 +76,82 @@ function requestOnePage(index, size) {
 
                 };
 
+                var roomCardOrderDetail = JSON.parse(json.data[i].roomCardOrder_detail);
+                var imgBox = appendTdAndData(tr, "");
+                var img = document.createElement("img");
+                img.src = roomCardOrderDetail.coverImgUrl;
+                img.style.width = "50px"
+                img.style.height = "50px"
+                imgBox.appendChild(img);
 
-                // var imgBox = appendTdAndData(tr, "");
-                // var img = document.createElement("img");
-                //
-                // console.log(json.data[i].pictures);
-                // if (json.data[i].pictures.length > 0) {
-                //     img.setAttribute("src", JSON.parse(json.data[i].pictures));
-                // }
-                //
-                //
-                // img.style.width = "50px"
-                // img.style.height = "50px"
-                //
-                // imgBox.appendChild(img);
-
-                appendTdAndData(tr, json.data[i].name);
-                appendTdAndData(tr, json.data[i].price);
-                appendTdAndData(tr, json.data[i].vipPrice);
-                appendTdAndData(tr, json.data[i].goldVipPrice);
-                appendTdAndData(tr, "-");
-                appendTdAndData(tr, json.data[i].stock);
-                appendTdAndData(tr, "-");
+                appendTdAndData(tr, json.data[i].id);
                 appendTdAndData(tr, new Date(json.data[i].dtCreate).Format("yyyy-MM-dd"));
-                var cell = appendTd(tr);
-                var show = document.createElement("a");
-                var edit = document.createElement("a");
-                edit.style.margin = "8px";
-                var del = document.createElement("a");
-
-                show.setAttribute("href", "javascript:void(0)");
-                edit.setAttribute("href", "javascript:void(0)");
-                del.setAttribute("href", "javascript:void(0)");
+                appendTdAndData(tr, json.data[i].userId);
+                appendTdAndData(tr, roomCardOrderDetail.price);
+                appendTdAndData(tr, json.data[i].roomCardOrder_buyQuantity);
+                appendTdAndData(tr, json.data[i].roomCardOrder_orderAmount);
+                appendTdAndData(tr, getEnumValueByKey(OrderStatus, json.data[i].status));
 
 
-                show.innerHTML = "查看";
-                edit.innerHTML = "编辑";
-                del.innerHTML = "删除";
-                cell.appendChild(show);
-                cell.appendChild(edit);
-                cell.appendChild(del);
-
-                show.setAttribute("data-opeate", json.data[i].id);
-                edit.setAttribute("data-opeate", json.data[i].id);
-                del.setAttribute("data-opeate", json.data[i].id);
-
-                show.onclick = function () {
-                    console.log(this.getAttribute("data-opeate"));
-                    operateId = this.getAttribute("data-opeate");
-                    layer.open({
-                        type: 1
-                        , area: ['800px', '600px']
-                        , title: '商品详情'
-                        , shade: 0.6
-                        , maxmin: false
-                        , anim: 1
-                        , content: $(".modal-detail")
-                    });
-
-                    showDetail();
-                }
-                edit.onclick = function () {
-                    //alert(this.getAttribute("data-opeate"));
-                    operateId = this.getAttribute("data-opeate");
-                    layer.open({
-                        type: 1
-                        , area: ['800px', '600px']
-                        , title: '商品编辑'
-                        , shade: 0.6
-                        , maxmin: false
-                        , anim: 1
-                        , content: $(".modal-detail")
-                    });
-
-                    showDetailBeforeUpdate();
-                }
-                del.onclick = function () {
-                    //alert(this.getAttribute("data-opeate"));
-                    operateId = this.getAttribute("data-opeate");
-                    var dialogDel = document.getElementById("dialog-del");
-                    dialogDel.style.display = "block";
-
-                }
+                // var cell = appendTd(tr);
+                // var show = document.createElement("a");
+                // var edit = document.createElement("a");
+                // edit.style.margin = "8px";
+                // var del = document.createElement("a");
+                //
+                // show.setAttribute("href", "javascript:void(0)");
+                // edit.setAttribute("href", "javascript:void(0)");
+                // del.setAttribute("href", "javascript:void(0)");
+                //
+                //
+                // show.innerHTML = "查看";
+                // edit.innerHTML = "编辑";
+                // del.innerHTML = "删除";
+                // cell.appendChild(show);
+                // cell.appendChild(edit);
+                // cell.appendChild(del);
+                //
+                // show.setAttribute("data-opeate", json.data[i].id);
+                // edit.setAttribute("data-opeate", json.data[i].id);
+                // del.setAttribute("data-opeate", json.data[i].id);
+                //
+                // show.onclick = function () {
+                //     console.log(this.getAttribute("data-opeate"));
+                //     operateId = this.getAttribute("data-opeate");
+                //     layer.open({
+                //         type: 1
+                //         , area: ['800px', '600px']
+                //         , title: '商品详情'
+                //         , shade: 0.6
+                //         , maxmin: false
+                //         , anim: 1
+                //         , content: $(".modal-detail")
+                //     });
+                //
+                //     showDetail();
+                // }
+                // edit.onclick = function () {
+                //     //alert(this.getAttribute("data-opeate"));
+                //     operateId = this.getAttribute("data-opeate");
+                //     layer.open({
+                //         type: 1
+                //         , area: ['800px', '600px']
+                //         , title: '商品编辑'
+                //         , shade: 0.6
+                //         , maxmin: false
+                //         , anim: 1
+                //         , content: $(".modal-detail")
+                //     });
+                //
+                //     showDetailBeforeUpdate();
+                // }
+                // del.onclick = function () {
+                //     //alert(this.getAttribute("data-opeate"));
+                //     operateId = this.getAttribute("data-opeate");
+                //     var dialogDel = document.getElementById("dialog-del");
+                //     dialogDel.style.display = "block";
+                //
+                // }
 
             }
 

@@ -21,3 +21,40 @@ input,select{
 select{
     width: 160px;
 }
+
+
+
+
+
+
+
+
+
+.modal .table-box{
+    margin-bottom: 30px;
+}
+
+.modal th > div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.modal table
+{
+    border-collapse:collapse;
+}
+
+.modal table,.modal td, .modalth
+{
+    border:1px solid black;
+}
+
+.modal .space{
+    height: 100%;
+    flex-grow: 1;
+}
+.modal .button{
+    margin-right: 40px;
+}

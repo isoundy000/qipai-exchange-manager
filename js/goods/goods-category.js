@@ -40,7 +40,7 @@ function requestOnePage() {
     var xmlhttp = post(params);
 
     xmlhttp.onreadystatechange = function () {
-        // console.log(xmlhttp.responseText);
+        console.log(xmlhttp.responseText);
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var json = JSON.parse(xmlhttp.responseText);
 
@@ -86,7 +86,7 @@ function requestOnePage() {
                     imgBox.appendChild(img);
 
                     appendTdAndData(tr, json.data[i].name);
-                    appendTdAndData(tr,json.data[i].reorder);
+                    // appendTdAndData(tr,json.data[i].reorder);
 
 
 
@@ -206,8 +206,8 @@ function showDetailBeforeUpdate() {
             var json = JSON.parse(xmlhttp.responseText);
             if (json.code == 0) {
                 document.getElementById("update-name").value = json.data.name;
-                document.getElementById("update-reorder").value=json.data.reorder;
-                document.getElementById("update-img").value=json.data.picture;
+                // document.getElementById("update-order").value=json.data.reorder;
+                document.getElementById("update-img").src=json.data.picture;
 
 
             }

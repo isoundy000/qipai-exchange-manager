@@ -31,6 +31,16 @@ function feedback(elementId, msg) {
 
 }
 
+function feedback2(elementId, msg,time) {
+    var span = document.createElement("span");
+    span.innerHTML = msg;
+    after(span, document.getElementById(elementId));
+    setTimeout(function () {
+        span.style.display = "none";
+    }, time);
+
+}
+
 var OrderStatus = {
     "a1": "待付款",
     "a2": "待发货",

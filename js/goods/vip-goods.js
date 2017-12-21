@@ -52,7 +52,7 @@ function requestOnePage(index, size) {
     var xmlhttp = post(params);
 
     xmlhttp.onreadystatechange = function () {
-        // console.log(xmlhttp.responseText);
+        console.log(xmlhttp.responseText);
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
             var json = JSON.parse(xmlhttp.responseText);
@@ -89,7 +89,7 @@ function requestOnePage(index, size) {
 
                 // console.log(json.data[i].pictures);
                 if (json.data[i].pictures.length > 0) {
-                    img.setAttribute("src", JSON.parse(json.data[i].pictures));
+                    img.src = JSON.parse(json.data[i].pictures)[0];
                 }
 
 
@@ -99,7 +99,6 @@ function requestOnePage(index, size) {
                 imgBox.appendChild(img);
 
                 appendTdAndData(tr, json.data[i].name);
-                appendTdAndData(tr, json.data[i].price);
                 appendTdAndData(tr, json.data[i].vipPrice);
                 appendTdAndData(tr, json.data[i].goldVipPrice);
                 appendTdAndData(tr, "-");
@@ -169,7 +168,7 @@ function requestOnePage(index, size) {
                     });
 
                     showDetailBeforeUpdate();
-                    showGoodSelectList("update-select");
+                    // showGoodSelectList("update-select");
                 }
                 del.onclick = function () {
                     //alert(this.getAttribute("data-opeate"));
@@ -260,14 +259,26 @@ document.getElementById("add-good").onclick = function () {
     layer.open({
         type: 1
         , area: ['800px', '600px']
-        , title: '商品详情'
+        , title: '添加优选商品'
         , shade: 0.6
         , maxmin: false
         , anim: 1
         , content: $("#modal-add")
     });
 
-    showGoodSelectList("add-select");
+    document.getElementById("add-img1").src="../../img/upload-default.png";
+    document.getElementById("add-img2").src="../../img/upload-default.png";
+    document.getElementById("add-img3").src="../../img/upload-default.png";
+    document.getElementById("add-img4").src="../../img/upload-default.png";
+    document.getElementById("add-img5").src="../../img/upload-default.png";
+
+    document.getElementById("add-img1-file").files[0]=undefined;
+    document.getElementById("add-img2-file").files[0]=undefined;
+    document.getElementById("add-img3-file").files[0]=undefined;
+    document.getElementById("add-img4-file").files[0]=undefined;
+    document.getElementById("add-img5-file").files[0]=undefined;
+
+    // showGoodSelectList("add-select");
 }
 
 addUploadFunctionToImg("add-img1");
@@ -303,7 +314,10 @@ document.getElementById("add-upload-button").onclick = function () {
             if (json.code == 0) {
                 uploaded = 1;
 
-                pictures[0] = json.data.url;
+                pictures = [];
+                for (var i in json.data) {
+                    pictures[i] = json.data[i].url;
+                }
 
 
                 feedback("add-upload-button", "上传成功");
@@ -346,7 +360,7 @@ function showGoodSelectList(selectId) {
 document.getElementById("add-save").onclick = function () {
     var select = document.getElementById("add-select");
     var name = document.getElementById("add-name");
-    var price = document.getElementById("add-price");
+    // var price = document.getElementById("add-price");
     var vipPrice = document.getElementById("add-vip-price");
     var goldVipPrice = document.getElementById("add-gold-vip-price");
     var reorder = document.getElementById("add-reorder");
@@ -363,9 +377,8 @@ document.getElementById("add-save").onclick = function () {
 
     var params = {
         "apiName": "Goods_Add_Api",
-        "categoryId": select.value,
+        "type": 2,
         "name": name.value,
-        "price": price.value,
         "vipPrice": vipPrice.value,
         "goldVipPrice": goldVipPrice.value,
         "reorder": reorder.value,
@@ -410,8 +423,8 @@ function showDetail() {
 
             if (json.code == 0) {
                 document.getElementById("detail-name").value = json.data.name;
-                document.getElementById("detail-good-category").value = json.data.categoryName;
-                document.getElementById("detail-price").value = json.data.price;
+                // document.getElementById("detail-good-category").value = json.data.categoryName;
+                // document.getElementById("detail-price").value = json.data.price;
                 document.getElementById("detail-vip-price").value = json.data.vipPrice;
                 document.getElementById("detail-gold-vip-price").value = json.data.goldVipPrice;
                 document.getElementById("detail-stock").value = json.data.stock;
@@ -453,16 +466,25 @@ function showDetailBeforeUpdate() {
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            //console.log(xmlhttp.responseText);
+            console.log(xmlhttp.responseText);
             var json = JSON.parse(xmlhttp.responseText);
 
             if (json.code == 0) {
                 document.getElementById("update-name").value = json.data.name;
-                document.getElementById("update-price").value = json.data.price;
                 document.getElementById("update-vip-price").value = json.data.vipPrice;
                 document.getElementById("update-gold-vip-price").value = json.data.goldVipPrice;
                 document.getElementById("update-detail").value = json.data.detail;
 
+                document.getElementById("update-img1").src="../../img/upload-default.png";
+                document.getElementById("update-img2").src="../../img/upload-default.png";
+                document.getElementById("update-img3").src="../../img/upload-default.png";
+                document.getElementById("update-img4").src="../../img/upload-default.png";
+                document.getElementById("update-img5").src="../../img/upload-default.png";
+                document.getElementById("update-img1-file").files[0]=undefined;
+                document.getElementById("update-img2-file").files[0]=undefined;
+                document.getElementById("update-img3-file").files[0]=undefined;
+                document.getElementById("update-img4-file").files[0]=undefined;
+                document.getElementById("update-img5-file").files[0]=undefined;
                 var images = JSON.parse(json.data.pictures);
 
                 if (images.length >= 1) {
@@ -521,7 +543,10 @@ document.getElementById("update-upload-button").onclick = function () {
             if (json.code == 0) {
                 uploaded = 1;
 
-                pictures[0] = json.data.url;
+                pictures = [];
+                for (var i in json.data) {
+                    pictures[i] = json.data[i].url;
+                }
 
 
                 feedback("update-upload-button", "上传成功");
@@ -539,7 +564,6 @@ document.getElementById("update-upload-button").onclick = function () {
 document.getElementById("update-save").onclick = function () {
     var select = document.getElementById("update-select");
     var name = document.getElementById("update-name");
-    var price = document.getElementById("update-price");
     var vipPrice = document.getElementById("update-vip-price");
     var goldVipPrice = document.getElementById("update-gold-vip-price");
     var reorder = document.getElementById("update-reorder");
@@ -556,9 +580,8 @@ document.getElementById("update-save").onclick = function () {
 
     var params = {
         "apiName": "Goods_Update_Api",
-        "categoryId": select.value,
+        "goodsId": operateId,
         "name": name.value,
-        "price": price.value,
         "vipPrice": vipPrice.value,
         "goldVipPrice": goldVipPrice.value,
         "reorder": reorder.value,

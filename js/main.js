@@ -6,6 +6,30 @@
 // }
 document.getElementById("username").innerHTML="您好! "+getLoginData().name;
 
+document.getElementById("exit-system").onclick=function () {
+    var params = {
+        "apiName": "System_Logout_Api",
+        "token": getLoginData().token,
+
+    };
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var json = JSON.parse(xmlhttp.responseText);
+
+            if (json.code==0){
+                location.href="../index.html"
+            }
+
+
+        }
+    };
+};
+
+
+
 
 var title = document.getElementById("title");
 
@@ -334,12 +358,12 @@ function showNavSubMenu4UserManagement() {
     navSubItems[0].setAttribute("data-selected", "0600");
     navSubItems[0].setAttribute("data-title", title);
 
-    var title = "用户详情";
-    navSubItems[1].innerHTML = title;
-    navSubItems[1].style.display = "block";
-    navSubItems[1].setAttribute("data-url", "user/user-detail.html");
-    navSubItems[1].setAttribute("data-selected", "0601");
-    navSubItems[1].setAttribute("data-title", title);
+    // var title = "用户详情";
+    // navSubItems[1].innerHTML = title;
+    // navSubItems[1].style.display = "block";
+    // navSubItems[1].setAttribute("data-url", "user/user-detail.html");
+    // navSubItems[1].setAttribute("data-selected", "0601");
+    // navSubItems[1].setAttribute("data-title", title);
 }
 function showNavSubMenu4PermissionsManagement() {
     //部门列表
@@ -395,8 +419,8 @@ function hidenAllNavSubItems(navSubItems) {
 }
 
 //默认
-document.getElementById("nav-main-item3").click();
-document.getElementById("nav-sub-item1").click();
+document.getElementById("nav-main-item2").click();
+document.getElementById("nav-sub-item0").click();
 
 
 var toHide = document.getElementById("to-hide-main-nav");
