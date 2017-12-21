@@ -96,6 +96,9 @@ function showNavSubMenu(index) {
             // window.frames["nav-sub-iframe"].contentWindow.showNavSubMenu4PermissionsManagement();
             showNavSubMenu4PermissionsManagement();
             break;
+        case "8":
+            showNavSubMenu4System();
+            break;
     }
 
 }
@@ -410,6 +413,26 @@ function showNavSubMenu4PermissionsManagement() {
     // navSubItems[4].setAttribute("data-title", title);
 }
 
+function showNavSubMenu4System() {
+    var navSubItems = document.getElementById("nav-sub-menu").getElementsByTagName("li");
+    hidenAllNavSubItems(navSubItems);
+
+    if (selectedItem.substr(0, 2) == "08") {
+        var i = -1;
+        i = selectedItem.substr(2, 2);
+        navSubItems[Number(i)].style.backgroundColor = "#E0E5EB";
+    }
+
+    var title = "系统配置";
+    navSubItems[0].innerHTML = title;
+    navSubItems[0].style.display = "block";
+    navSubItems[0].setAttribute("data-url", "system/config.html");
+    navSubItems[0].setAttribute("data-selected", "0800");
+    navSubItems[0].setAttribute("data-title", title);
+
+
+}
+
 function hidenAllNavSubItems(navSubItems) {
     for (var i = 0; i < navSubItems.length; i++) {
         navSubItems[i].style.display = "none";
@@ -419,7 +442,7 @@ function hidenAllNavSubItems(navSubItems) {
 }
 
 //默认
-document.getElementById("nav-main-item2").click();
+document.getElementById("nav-main-item8").click();
 document.getElementById("nav-sub-item0").click();
 
 
