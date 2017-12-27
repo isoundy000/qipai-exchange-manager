@@ -70,7 +70,14 @@ function requestOnePage(index, size) {
             appendTdAndData(tr, json.data[i].wxNickname);
             // appendTdAndData(tr, json.data[i].id);
             appendTdAndData(tr, json.data[i].vvUserId);
-            appendTdAndData(tr, json.data[i].myLeaderId);
+
+
+            if(json.data[i].myLeaderVvUserId==undefined){
+                appendTdAndData(tr, "");
+            }else {
+                appendTdAndData(tr, json.data[i].myLeaderVvUserId);
+            }
+
 
             switch (json.data[i].level){
                 case 0:

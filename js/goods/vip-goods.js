@@ -400,6 +400,7 @@ function showDetail() {
     }
     var xmlhttp = post(params, function (json) {
         // console.log(JSON.stringify(json))
+        document.getElementById("detail-id").value = json.data.id;
         document.getElementById("detail-name").value = json.data.name;
         // document.getElementById("detail-good-category").value = json.data.categoryName;
         // document.getElementById("detail-price").value = json.data.price;
