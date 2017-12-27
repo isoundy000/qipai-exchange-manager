@@ -350,7 +350,7 @@ post(params, function (json) {
 var vparams = {
     "apiName": "ChoiceBanner_QueryAll_Api"
 };
-post(params, function (json) {
+post(vparams, function (json) {
     // console.log(JSON.stringify(json))
     vdata = json.data;
 
@@ -409,7 +409,7 @@ document.getElementById("save").onclick = function () {
         "apiName": "ChoiceBanner_UpdateAll_Api",
         "banners": vdata
     };
-    var xmlhttp = post(params, function (json) {
+    var xmlhttp = post(vparams, function (json) {
         // console.log(JSON.stringify(json))
         feedback("save", "上传成功");
     });
