@@ -1,7 +1,14 @@
-var baseUrl = "";
-function post(jsonObj) {
+//测试服务器
+// var apiUrl = "http://47.104.17.187:8081/qipai-exchange-manager-api";
+// var uploadUrl = "http://47.104.17.187:8082/micro-file-server";
+
+//正式服务器
+var apiUrl = "http://47.104.78.152:8081/qipai-exchange-manager-api";
+var uploadUrl = "http://47.104.78.152:8082/micro-file-server";
+
+function loginPost(jsonObj) {
     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-    xmlhttp.open("POST", "http://47.104.17.187:8081/qipai-exchange-manager-api");
+    xmlhttp.open("POST", apiUrl);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify(jsonObj));
     var stringify = JSON.stringify(jsonObj);
@@ -11,9 +18,41 @@ function post(jsonObj) {
 
 }
 
+function post(jsonObj,callback) {
+    jsonObj["token"] = getLoginData().token
+
+    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+    xmlhttp.open("POST", apiUrl);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(jsonObj));
+    var stringify = JSON.stringify(jsonObj);
+
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText)
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var json = JSON.parse(xmlhttp.responseText);
+
+            globalHandleResponse(json);
+
+            if (json.code==0){
+                callback(json);
+            }
+
+        }
+    }
+
+    return xmlhttp;
+
+
+}
+
+
+
+
 function upload(formData) {
     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-    xmlhttp.open("POST", "http://47.104.17.187:8082/micro-file-server");
+    xmlhttp.open("POST", uploadUrl);
     // xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     // xmlhttp.setRequestHeader("Content-type","multipart/form-data");
     xmlhttp.send(formData);
@@ -71,7 +110,6 @@ function getCssValue(key) {
 }
 
 
-
 function hexToRGB(hex, alpha) {
     hex = hex.trim();
     var r = parseInt(hex.slice(1, 3), 16),
@@ -85,7 +123,6 @@ function hexToRGB(hex, alpha) {
 }
 
 
-
 function before(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode);
 }
@@ -93,8 +130,8 @@ function after(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-HTMLElement.prototype.load=function (url) {
-    var container=this;
+HTMLElement.prototype.load = function (url) {
+    var container = this;
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", url, true);
@@ -118,6 +155,33 @@ function getEnumValueByKey(e, key) {
     }
 }
 
-function getLoginData(){
+function getLoginData() {
     return JSON.parse(localStorage.getItem("login-data"));
+}
+
+function toast(msg,isLongTime) {
+// <div id="toast" class="toast" style="display: none">
+//         </div>
+
+    var toast=document.createElement("div");
+    toast.id="toast";
+    toast.className="toast";
+    // toast.style.display="none";
+
+    toast.innerHTML=msg;
+    // toast.style.display="flex";
+    window.parent.document.body.appendChild(toast);
+
+
+    var time;
+    if (isLongTime){
+        time=2000;
+    }else {
+        time=1000;
+    }
+
+    setTimeout(function () {
+        // toast.style.display = "none";
+        window.parent.document.body.removeChild(toast);
+    }, time);
 }

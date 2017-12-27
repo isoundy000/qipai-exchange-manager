@@ -17,3 +17,16 @@ html, body {
 }
 
 
+
+.toast {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    right: 0px;
+    bottom: 0px;
+    width: 300px;
+    height: 100px;
+    background-color: #4FBDF9;
+}

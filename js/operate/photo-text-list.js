@@ -41,59 +41,58 @@ function requestOnePage(index, size) {
 
                 appendTdAndData(tr, json.data[i].title);
                 appendTdAndData(tr, new Date(json.data[i].dtCreate).Format("yyyy-MM-dd hh:mm:ss"));
-                appendTdAndData(tr, json.data[i].content);
 
                 var cell = appendTd(tr);
-                // var show = document.createElement("a");
+                var show = document.createElement("a");
                 var edit = document.createElement("a");
                 edit.style.margin = "8px";
                 var del = document.createElement("a");
 
-                // show.setAttribute("href", "javascript:void(0)");
+                show.setAttribute("href", "javascript:void(0)");
                 edit.setAttribute("href", "javascript:void(0)");
                 del.setAttribute("href", "javascript:void(0)");
 
 
-                // show.innerHTML = "设置权限";
-                edit.innerHTML = "编辑";
+                show.innerHTML = "编辑标题";
+                edit.innerHTML = "编辑富文本";
                 del.innerHTML = "删除";
-                // cell.appendChild(show);
+                cell.appendChild(show);
                 cell.appendChild(edit);
                 cell.appendChild(del);
 
-                // show.setAttribute("data-opeate", json.data[i].id);
+                show.setAttribute("data-opeate", json.data[i].id);
                 edit.setAttribute("data-opeate", json.data[i].id);
                 del.setAttribute("data-opeate", json.data[i].id);
 
-                // show.onclick = function () {
-                //     // console.log(this.getAttribute("data-opeate"));
-                //     operateId = this.getAttribute("data-opeate");
-                //     layer.open({
-                //         type: 1
-                //         , area: ['800px', '600px']
-                //         , title: '部门权限设置'
-                //         , shade: 0.6
-                //         , maxmin: false
-                //         , anim: 1
-                //         , content: $("#modal-permission")
-                //     });
-                //
-                //     showPermissionBeforeUpdate();
-                // }
+                show.onclick = function () {
+                    // console.log(this.getAttribute("data-opeate"));
+                    operateId = this.getAttribute("data-opeate");
+                    layer.open({
+                        type: 1
+                        , area: ['800px', '600px']
+                        , title: '图文标题编辑'
+                        , shade: 0.6
+                        , maxmin: false
+                        , anim: 1
+                        , content: $("#modal-editTitle")
+                    });
+
+                    showTitleBeforeUpdate();
+                }
                 edit.onclick = function () {
                     //alert(this.getAttribute("data-opeate"));
                     operateId = this.getAttribute("data-opeate");
                     layer.open({
                         type: 1
                         , area: ['800px', '600px']
-                        , title: '部门编辑'
+                        , title: '图文富文本编辑'
                         , shade: 0.6
                         , maxmin: false
                         , anim: 1
-                        , content: $("#modal-update")
+                        , content: $("#modal-richText")
                     });
 
-                    showDetailBeforeUpdate();
+                    showRichText();
                 }
                 del.onclick = function () {
                     //alert(this.getAttribute("data-opeate"));
@@ -154,7 +153,7 @@ document.getElementById("add-imageText").onclick = function () {
     layer.open({
         type: 1
         , area: ['800px', '600px']
-        , title: '添加部门'
+        , title: '添加图文'
         , shade: 0.6
         , maxmin: false
         , anim: 1
@@ -166,8 +165,7 @@ document.getElementById("add-imageText").onclick = function () {
 document.getElementById("add-save").onclick = function () {
     var params = {
         "apiName": "ImageText_Add_Api",
-        "title": document.getElementById("add-title").value,
-        "content": document.getElementById("add-content").value
+        "title": document.getElementById("add-title").value
     };
     var xmlhttp = post(params);
 
@@ -190,9 +188,7 @@ document.getElementById("add-save").onclick = function () {
     };
 }
 
-
-
-function showDetailBeforeUpdate() {
+function showTitleBeforeUpdate() {
     var params = {
         "apiName": "ImageText_QueryDetail_Api",
         "imageTextId": operateId
@@ -205,20 +201,20 @@ function showDetailBeforeUpdate() {
             var json = JSON.parse(xmlhttp.responseText);
 
             if (json.code == 0) {
-                document.getElementById("update-title").value = json.data.title;
-                document.getElementById("update-content").value = json.data.content;
+                document.getElementById("editTitle-title").value = json.data.title;
             }
 
 
         }
     }
 }
-document.getElementById("update-save").onclick = function () {
+
+
+document.getElementById("editTitle-save").onclick = function () {
     var params = {
         "apiName": "ImageText_Update_Api",
         "imageTextId": operateId,
-        "title": document.getElementById("update-title").value,
-        "content": document.getElementById("update-content").value
+        "title": document.getElementById("editTitle-title").value
     };
     var xmlhttp = post(params);
 
@@ -227,7 +223,7 @@ document.getElementById("update-save").onclick = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var json = JSON.parse(xmlhttp.responseText);
 
-            feedback("update-save", "保存成功");
+            feedback("editTitle-save", "保存成功");
 
 
             window.setTimeout(function () {
@@ -240,3 +236,60 @@ document.getElementById("update-save").onclick = function () {
         }
     };
 }
+
+
+function showRichText() {
+    var params = {
+        "apiName": "ImageText_QueryDetail_Api",
+        "imageTextId": operateId
+    }
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        // console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var json = JSON.parse(xmlhttp.responseText);
+
+            if (json.code == 0) {
+                var editor = window.frames["richText-box"].contentWindow.document.getElementById("editor");
+                editor.innerHTML = json.data.content;
+            }
+
+
+        }
+    }
+
+}
+
+
+document.getElementById("richText-save").onclick = function () {
+
+    var editor = window.frames["richText-box"].contentWindow.document.getElementById("editor");
+
+    var params = {
+        "apiName": "ImageText_Update_Api",
+        "imageTextId": operateId,
+        "content": editor.innerHTML
+    };
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var json = JSON.parse(xmlhttp.responseText);
+
+            feedback("richText-save", "保存成功");
+
+
+            // window.setTimeout(function () {
+            //     // window.location.reload();
+            //     layer.closeAll();
+            //     clearTable();
+            //     requestOnePage(pageIndex, 8);
+            // }, 2000);
+
+
+        }
+    };
+
+};

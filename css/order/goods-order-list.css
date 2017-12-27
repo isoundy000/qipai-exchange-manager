@@ -25,6 +25,7 @@
     width: 20px;
     min-width: 20px;
 }
+
 .filter-box > .space20 {
     height: 100%;
     flex-grow: 1;
@@ -35,5 +36,4 @@
     margin-right: 40px;
 
 }
-
 

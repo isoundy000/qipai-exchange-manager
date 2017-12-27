@@ -37,125 +37,114 @@ function requestOnePage() {
     var params = {
         "apiName": "GoodsCategory_QueryAll_Api"
     }
-    var xmlhttp = post(params);
+    var xmlhttp = post(params, function (json) {
+        // console.log(JSON.stringify(json))
+        var tbody = document.getElementById("tbody");
 
-    xmlhttp.onreadystatechange = function () {
-        console.log(xmlhttp.responseText);
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
-
-            if (json.code == 0) {
-                var tbody = document.getElementById("tbody");
-
-                for (var i = 0; i < json.data.length; i++) {
-                    var tr = appendTr(tbody);
+        for (var i = 0; i < json.data.length; i++) {
+            var tr = appendTr(tbody);
 
 
-                    if ((i % 2) != 0) {
-                        tr.style.backgroundColor = "#f4f4f4";
-                        tr.setAttribute("data-even-marker", "0");
-                    } else {
-                        tr.setAttribute("data-even-marker", "1");
-                    }
-
-                    tr.onmouseover = function () {
-                        this.style.backgroundColor = "#4FC3F7";
-                    };
-                    tr.onmouseout = function () {
-                        if (this.getAttribute("data-even-marker") == "0") {
-                            this.style.backgroundColor = "#f4f4f4";
-                        }
-                        if (this.getAttribute("data-even-marker") == "1") {
-                            this.style.backgroundColor = "#ffffff";
-                        }
-
-                    };
-
-
-
-                    var imgBox = appendTdAndData(tr, "");
-                    var img = document.createElement("img");
-
-                    // console.log(json.data[i].picture)
-                    img.setAttribute("src", json.data[i].picture);
-
-
-                    img.style.width = "50px"
-                    img.style.height = "50px"
-
-                    imgBox.appendChild(img);
-
-                    appendTdAndData(tr, json.data[i].name);
-                    // appendTdAndData(tr,json.data[i].reorder);
-
-
-
-                    var cell = appendTd(tr);
-                    //var show = document.createElement("a");
-                    var edit = document.createElement("a");
-                    edit.style.margin = "8px";
-                    // var del = document.createElement("a");
-
-                    //show.setAttribute("href", "javascript:void(0)");
-                    edit.setAttribute("href", "javascript:void(0)");
-                    // del.setAttribute("href", "javascript:void(0)");
-
-
-                    //show.innerHTML = "查看";
-                    edit.innerHTML = "编辑";
-                    // del.innerHTML = "删除";
-                    //cell.appendChild(show);
-                    cell.appendChild(edit);
-                    // cell.appendChild(del);
-
-                    //show.setAttribute("data-opeate", json.data[i].id);
-                    edit.setAttribute("data-opeate", json.data[i].id);
-                    // del.setAttribute("data-opeate", json.data[i].id);
-
-                    // show.onclick = function () {
-                    //     console.log(this.getAttribute("data-opeate"));
-                    //     operateId = this.getAttribute("data-opeate");
-                    //     layer.open({
-                    //         type: 1
-                    //         , area: ['800px', '600px']
-                    //         , title: '商品详情'
-                    //         , shade: 0.6
-                    //         , maxmin: false
-                    //         , anim: 1
-                    //         , content: $(".detail")
-                    //     });
-                    //
-                    //     showDetail();
-                    // }
-                    edit.onclick = function () {
-                        //alert(this.getAttribute("data-opeate"));
-                        operateId = this.getAttribute("data-opeate");
-                        layer.open({
-                            type: 1
-                            , area: ['800px', '600px']
-                            , title: '商品类别编辑'
-                            , shade: 0.6
-                            , maxmin: false
-                            , anim: 1
-                            , content: $("#modal-update")
-                        });
-
-                        showDetailBeforeUpdate();
-                    }
-                    // del.onclick = function () {
-                    //     //alert(this.getAttribute("data-opeate"));
-                    //     operateId = this.getAttribute("data-opeate");
-                    //     var dialogDel = document.getElementById("modal-del");
-                    //     dialogDel.style.display = "block";
-                    //
-                    // }
-
-                }
+            if ((i % 2) != 0) {
+                tr.style.backgroundColor = "#f4f4f4";
+                tr.setAttribute("data-even-marker", "0");
+            } else {
+                tr.setAttribute("data-even-marker", "1");
             }
 
+            tr.onmouseover = function () {
+                this.style.backgroundColor = "#4FC3F7";
+            };
+            tr.onmouseout = function () {
+                if (this.getAttribute("data-even-marker") == "0") {
+                    this.style.backgroundColor = "#f4f4f4";
+                }
+                if (this.getAttribute("data-even-marker") == "1") {
+                    this.style.backgroundColor = "#ffffff";
+                }
+
+            };
+
+
+            var imgBox = appendTdAndData(tr, "");
+            var img = document.createElement("img");
+
+            // console.log(json.data[i].picture)
+            img.setAttribute("src", json.data[i].picture);
+
+
+            img.style.width = "50px"
+            img.style.height = "50px"
+
+            imgBox.appendChild(img);
+
+            appendTdAndData(tr, json.data[i].name);
+            // appendTdAndData(tr,json.data[i].reorder);
+
+
+            var cell = appendTd(tr);
+            //var show = document.createElement("a");
+            var edit = document.createElement("a");
+            edit.style.margin = "8px";
+            // var del = document.createElement("a");
+
+            //show.setAttribute("href", "javascript:void(0)");
+            edit.setAttribute("href", "javascript:void(0)");
+            // del.setAttribute("href", "javascript:void(0)");
+
+
+            //show.innerHTML = "查看";
+            edit.innerHTML = "编辑";
+            // del.innerHTML = "删除";
+            //cell.appendChild(show);
+            cell.appendChild(edit);
+            // cell.appendChild(del);
+
+            //show.setAttribute("data-opeate", json.data[i].id);
+            edit.setAttribute("data-opeate", json.data[i].id);
+            // del.setAttribute("data-opeate", json.data[i].id);
+
+            // show.onclick = function () {
+            //     console.log(this.getAttribute("data-opeate"));
+            //     operateId = this.getAttribute("data-opeate");
+            //     layer.open({
+            //         type: 1
+            //         , area: ['800px', '600px']
+            //         , title: '商品详情'
+            //         , shade: 0.6
+            //         , maxmin: false
+            //         , anim: 1
+            //         , content: $(".detail")
+            //     });
+            //
+            //     showDetail();
+            // }
+            edit.onclick = function () {
+                //alert(this.getAttribute("data-opeate"));
+                operateId = this.getAttribute("data-opeate");
+                layer.open({
+                    type: 1
+                    , area: ['800px', '600px']
+                    , title: '商品类别编辑'
+                    , shade: 0.6
+                    , maxmin: false
+                    , anim: 1
+                    , content: $("#modal-update")
+                });
+
+                showDetailBeforeUpdate();
+            }
+            // del.onclick = function () {
+            //     //alert(this.getAttribute("data-opeate"));
+            //     operateId = this.getAttribute("data-opeate");
+            //     var dialogDel = document.getElementById("modal-del");
+            //     dialogDel.style.display = "block";
+            //
+            // }
 
         }
-    }
+    });
+
 }
 
 
@@ -197,24 +186,12 @@ function showDetailBeforeUpdate() {
         "apiName": "GoodsCategory_QueryDetail_Api",
         "categoryId": operateId
     }
-    var xmlhttp = post(params);
-
-    xmlhttp.onreadystatechange = function () {
-        console.log(xmlhttp.responseText);
-
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
-            if (json.code == 0) {
-                document.getElementById("update-name").value = json.data.name;
-                // document.getElementById("update-order").value=json.data.reorder;
-                document.getElementById("update-img").src=json.data.picture;
-
-
-            }
-
-
-        }
-    }
+    var xmlhttp = post(params, function (json) {
+        // console.log(JSON.stringify(json))
+        document.getElementById("update-name").value = json.data.name;
+        // document.getElementById("update-order").value=json.data.reorder;
+        document.getElementById("update-img").src = json.data.picture;
+    });
 
 
 }
@@ -231,12 +208,13 @@ document.getElementById("update-upload-button").onclick = function () {
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            // console.log(xmlhttp.responseText);
+            console.log(xmlhttp.responseText);
 
             var json = JSON.parse(xmlhttp.responseText);
             if (json.code == 0) {
                 uploaded = 1;
-                pictures[0] = json.data.url;
+
+                pictures[0] = json.data[0].url;
 
                 feedback("update-upload-button", "上传成功");
 
@@ -258,27 +236,20 @@ document.getElementById("update").onclick = function () {
         "apiName": "GoodsCategory_Update_Api",
         "categoryId": operateId,
         "name": name1.value,
-        "reorder": Number(order.value),
         "picture": pictures[0]
     };
-    var xmlhttp = post(params);
-
-    xmlhttp.onreadystatechange = function () {
-        // console.log(xmlhttp.responseText);
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
-
-            feedback("update", "保存成功");
+    var xmlhttp = post(params, function (json) {
+        // console.log(JSON.stringify(json))
+        feedback("update", "保存成功");
 
 
-            window.setTimeout(function () {
-                // window.location.reload();
-                layer.closeAll();
-                clearTable();
-                requestOnePage();
-            }, 2000);
+        window.setTimeout(function () {
+            // window.location.reload();
+            layer.closeAll();
+            clearTable();
+            requestOnePage();
+        }, 2000);
+    });
 
-        }
-    };
 }
 

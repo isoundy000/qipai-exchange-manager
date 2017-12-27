@@ -12,8 +12,8 @@
 <div class="root">
     <div class="filter-box">
         <label class="keys-label">输入搜索</label>
-        <input class="search-key" placeholder="订单编号">
-        <div class="button" style="cursor: pointer;margin-left: 40px">搜索</div>
+        <input id="searchKeyword" class="search-key" placeholder="订单号">
+        <div id="search" class="button" style="cursor: pointer;margin-left: 40px">搜索</div>
     </div>
 
     <div class="table-box">
@@ -21,9 +21,11 @@
             <thead>
             <tr id="thead-tr">
 
-                <th class="th">序号</th>
                 <th class="th">订单编号</th>
-                <th class="th">流水号</th>
+                <!--<th class="th">用户ID</th>-->
+                <th class="th">vv ID</th>
+                <th class="th">房卡名称</th>
+                <th class="th">购买数量</th>
                 <th class="th">订单金额(元)</th>
                 <th class="th">支付时间</th>
             </tr>

@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="../../global/modal.css">
     <link rel="stylesheet" href="../../css/goods/goods-list.css">
     <link rel="stylesheet" href="../../global/switch.css">
+
 </head>
 <body>
 <div class="root">
     <div class="filter-box">
         <label class="keys-label">输入搜索</label>
-        <input id="searchKeyword" class="search-key" placeholder="请输入关键字">
+        <input id="searchKeyword" class="search-key" placeholder="商品名">
         <div class="space20-fixed"></div>
         <label class="keys-label">时间</label>
         <input id="searchBeginTimestamp" class="search-time" type="date">
@@ -43,7 +44,7 @@
                 <th class="th">黄金会员价(元宝)</th>
                 <th class="th">排序</th>
                 <th class="th">库存</th>
-                <th class="th">兑换量</th>
+
                 <th class="th" style="min-width: 100px">添加时间</th>
                 <th class="th" style="min-width: 150px">操作</th>
             </tr>
@@ -123,10 +124,6 @@
         </form>
         <div id="add-upload-button" class="button upload-button">上传</div>
     </div>
-    <div class="line detail-line">
-        <span>详情</span>
-        <textarea id="add-detail" style="width: 500px;height: 94px;margin: 0px;display: inline"></textarea>
-    </div>
     <div class="line">
         <span></span>
         <span class="button" id="add-save">保存</span>
@@ -189,17 +186,13 @@
         <input id="detail-is-delete">
     </div>
 
-    <div class="line upload-line">
+    <div class="line upload-line" style="margin-bottom: 20px">
         <span>商品主图</span>
         <img id="detail-img1">
         <img id="detail-img2" style="margin-left: 6px">
         <img id="detail-img3" style="margin-left: 6px">
         <img id="detail-img4" style="margin-left: 6px">
         <img id="detail-img5" style="margin-left: 6px">
-    </div>
-    <div class="line detail-line" style="margin-bottom: 20px">
-        <span>详情</span>
-        <textarea id="detail-detail" style="width: 500px;height: 94px;margin: 0px;display: inline"></textarea>
     </div>
 
 
@@ -250,16 +243,11 @@
         </form>
         <div id="update-upload-button" class="button upload-button">上传</div>
     </div>
-    <div class="line detail-line">
-        <span>详情</span>
-        <textarea id="update-detail" style="width: 500px;height: 94px;margin: 0px;display: inline"></textarea>
-    </div>
     <div class="line">
         <span></span>
         <span class="button" id="update-save">保存</span>
     </div>
 </div>
-
 
 
 <div id="modal-prefer" class="modal" style="display: none">
@@ -291,7 +279,7 @@
         <input id="stock-name">
     </div>
     <div class="line">
-        <span>商品标题</span>
+        <span>剩余库存数量</span>
         <input id="stock-stock">
     </div>
     <div class="line">
@@ -301,6 +289,14 @@
     <div class="line">
         <span></span>
         <span class="button" id="stock-save">保存</span>
+    </div>
+</div>
+
+<div id="modal-richText" class="modal" style="display: none">
+    <iframe id="richText-box" src="../../bootstrap-wysiwyg-master/index.html"
+            style="width: 100%;height: 490px"></iframe>
+    <div style="display: flex;align-content: center;justify-content: center;width: 100%;height: 60px">
+        <div id="richText-save" class="button">保存</div>
     </div>
 </div>
 

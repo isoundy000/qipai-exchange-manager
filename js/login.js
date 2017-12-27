@@ -1,14 +1,22 @@
+//test
+
 var username = document.getElementById("username");
 var password = document.getElementById("password");
 var login = document.getElementById("login");
 
 login.onclick=function () {
+    if (username.value==""||password.value==""){
+        feedback2("login", "缺少必填项",2000);
+        return
+    }
+
+
     var params = {
         "apiName": "System_Login_Api",
         "loginName": username.value,
         "loginPassword": password.value
     };
-    var xmlhttp = post(params);
+    var xmlhttp = loginPost(params);
 
     xmlhttp.onreadystatechange = function () {
         console.log(xmlhttp.responseText);
@@ -44,10 +52,16 @@ login.onclick=function () {
 
                 location.href="main.html"
             }
-            if (json.code==3){
-                feedback2("login", "账号、密码不匹配或缺少必填项",3000);
+            if (json.code==1014){
+                //{"apiName":"System_Login_Api","code":1014,"message":"账号和密码不匹配","overByEngineTimestamp":0,"requestUuid":"07642d9f-7295-4d6a-9954-ae5886715722"}
 
+                feedback2("login", json.message,3000);
             }
+
+            // if (json.code==3){
+            //     feedback2("login", "账号、密码不匹配或缺少必填项",3000);
+            //
+            // }
 
 
         }
@@ -58,9 +72,3 @@ login.onclick=function () {
 
 };
 
-// test
-// pass
-//scp -r /home/besthyhy/temp/vv-vip-center-manager/ root@47.104.78.152:/usr/share/nginx/html
-//ssh root@47.104.78.152
-//2R1Qlian
-//http://47.104.78.152/vv-vip-center-manager/html/login.html

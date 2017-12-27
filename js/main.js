@@ -1,12 +1,38 @@
-// var loginData
-//
-// window.onload = function () {
-//     loginData=JSON.parse(localStorage.getItem("login-data"));
-//
-// }
-document.getElementById("username").innerHTML="您好! "+getLoginData().name;
+try{
+    getLoginData().token
+}catch (e){
+    // alert(e)
+    location.href = "../index.html"
+}
 
-document.getElementById("exit-system").onclick=function () {
+// var params = {
+//     "apiName": "System_IsValidToken_Api",
+//     "token": "9a4854ac-50b8-4004-a015-105ae0211e1a",
+//
+// };
+// var xmlhttp = post(params);
+//
+// xmlhttp.onreadystatechange = function () {
+//     console.log(xmlhttp.responseText);
+//     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+//         var json = JSON.parse(xmlhttp.responseText);
+//         // alert(json)
+//
+//         if (json.code == 0) {
+//             if(json.data==0){
+//                 // location.href = "../index.html"
+//             }
+//
+//         }
+//
+//
+//     }
+// };
+
+
+document.getElementById("username").innerHTML = "您好! " + getLoginData().name;
+
+document.getElementById("exit-system").onclick = function () {
     var params = {
         "apiName": "System_Logout_Api",
         "token": getLoginData().token,
@@ -19,8 +45,8 @@ document.getElementById("exit-system").onclick=function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var json = JSON.parse(xmlhttp.responseText);
 
-            if (json.code==0){
-                location.href="../index.html"
+            if (json.code == 0) {
+                location.href = "../index.html"
             }
 
 
@@ -28,7 +54,61 @@ document.getElementById("exit-system").onclick=function () {
     };
 };
 
+document.getElementById("change-password").onclick = function () {
+    layer.open({
+        type: 1
+        , area: ['800px', '600px']
+        , title: '编辑管理员'
+        , shade: 0.6
+        , maxmin: false
+        , anim: 1
+        , content: $("#modal-updateUser")
+    });
 
+};
+document.getElementById("updateUser-save").onclick = function () {
+    var oldLoginPassword = document.getElementById("updateUser-oldLoginPassword");
+    var newLoginPassword = document.getElementById("updateUser-newLoginPassword");
+    var newLoginPassword2 = document.getElementById("updateUser-newLoginPassword2");
+
+    if (newLoginPassword.value == "" || oldLoginPassword.value == "" || newLoginPassword2.value == "") {
+        feedback("updateUser-save", "密码不能为空");
+        return;
+    }
+
+    if (newLoginPassword.value != newLoginPassword2.value) {
+        feedback("updateUser-save", "两次输入的新密码不一致");
+        return;
+    }
+
+
+    var params = {
+        "apiName": "System_UpdateMyPassword_Api",
+        "token": getLoginData().token,
+        "oldLoginPassword": oldLoginPassword.value,
+        "newLoginPassword": newLoginPassword.value
+
+    };
+    var xmlhttp = post(params);
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var json = JSON.parse(xmlhttp.responseText);
+
+            if (json.code == 0) {
+                feedback("updateUser-save", "修改密码成功，请重新登录");
+
+                setTimeout(function () {
+                    location.href = "../index.html"
+                }, 2000);
+
+            }
+
+
+        }
+    };
+}
 
 
 var title = document.getElementById("title");
@@ -268,8 +348,6 @@ function showNavSubMenu4Stock() {
     navSubItems[1].setAttribute("data-title", title);
 
 
-
-
 }
 function showNavSubMenu4Operate() {
     //banner管理
@@ -307,12 +385,12 @@ function showNavSubMenu4Operate() {
     navSubItems[1].setAttribute("data-selected", "0401");
     navSubItems[1].setAttribute("data-title", title);
 
-    var title = "图文列表";
-    navSubItems[2].innerHTML = title;
-    navSubItems[2].style.display = "block";
-    navSubItems[2].setAttribute("data-url", "operate/photo-text-list.html");
-    navSubItems[2].setAttribute("data-selected", "0402");
-    navSubItems[2].setAttribute("data-title", title);
+    // var title = "图文列表";
+    // navSubItems[2].innerHTML = title;
+    // navSubItems[2].style.display = "block";
+    // navSubItems[2].setAttribute("data-url", "operate/photo-text-list.html");
+    // navSubItems[2].setAttribute("data-selected", "0402");
+    // navSubItems[2].setAttribute("data-title", title);
 
 
 }
@@ -398,12 +476,12 @@ function showNavSubMenu4PermissionsManagement() {
     navSubItems[1].setAttribute("data-title", title);
 
 
-    var title = "操作日志";
-    navSubItems[2].innerHTML = title;
-    navSubItems[2].style.display = "block";
-    navSubItems[2].setAttribute("data-url", "permission/operate-log.html");
-    navSubItems[2].setAttribute("data-selected", "0702");
-    navSubItems[2].setAttribute("data-title", title);
+    // var title = "操作日志";
+    // navSubItems[2].innerHTML = title;
+    // navSubItems[2].style.display = "block";
+    // navSubItems[2].setAttribute("data-url", "permission/operate-log.html");
+    // navSubItems[2].setAttribute("data-selected", "0702");
+    // navSubItems[2].setAttribute("data-title", title);
 
     // var title = "数据库管理";
     // navSubItems[4].innerHTML = title;
@@ -442,7 +520,8 @@ function hidenAllNavSubItems(navSubItems) {
 }
 
 //默认
-document.getElementById("nav-main-item8").click();
+document.getElementById("nav-main-item2").click();
+
 document.getElementById("nav-sub-item0").click();
 
 

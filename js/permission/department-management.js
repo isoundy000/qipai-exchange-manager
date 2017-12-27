@@ -5,146 +5,141 @@ function requestOnePage(index, size) {
         "pageIndex": index,
         "pageSize": size
     }
-    var xmlhttp = post(params);
+    post(params, function (json) {
+        // console.log(JSON.stringify(json))
+        var tbody = document.getElementById("tbody");
+        for (var i = 0; i < json.data.length; i++) {
 
-    xmlhttp.onreadystatechange = function () {
-        // console.log(xmlhttp.responseText);
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
-
-            var tbody = document.getElementById("tbody");
-            for (var i = 0; i < json.data.length; i++) {
-
-                var tr = appendTr(tbody);
+            var tr = appendTr(tbody);
 
 
-                if ((i % 2) != 0) {
-                    tr.style.backgroundColor = "#f4f4f4";
-                    tr.setAttribute("data-even-marker", "0");
+            if ((i % 2) != 0) {
+                tr.style.backgroundColor = "#f4f4f4";
+                tr.setAttribute("data-even-marker", "0");
+            } else {
+                tr.setAttribute("data-even-marker", "1");
+            }
+
+            tr.onmouseover = function () {
+                this.style.backgroundColor = "#4FC3F7";
+            };
+            tr.onmouseout = function () {
+                if (this.getAttribute("data-even-marker") == "0") {
+                    this.style.backgroundColor = "#f4f4f4";
+                }
+                if (this.getAttribute("data-even-marker") == "1") {
+                    this.style.backgroundColor = "#ffffff";
+                }
+
+            };
+
+
+            appendTdAndData(tr, json.data[i].name);
+            appendTdAndData(tr, json.data[i].desc);
+            appendTdAndData(tr, new Date(json.data[i].dtCreate).Format("yyyy-MM-dd hh:mm:ss"));
+
+            var enableCell = appendTd(tr);
+            var switcher = document.createElement("div");
+            switcher.className = "switch";
+            var checkbox = document.createElement("input");
+            checkbox.setAttribute("type", "checkbox");
+            checkbox.id = json.data[i].id;
+            switcher.appendChild(checkbox);
+            var label = document.createElement("label");
+            label.className = "choose-label";
+            label.setAttribute("for", json.data[i].id);
+
+
+            switcher.appendChild(label)
+            enableCell.appendChild(switcher);
+
+            checkbox.checked = (json.data[i].enable == 1 ? true : false);
+
+            checkbox.setAttribute("data-opeate", json.data[i].id);
+
+            checkbox.onclick = function () {
+                // console.log(this.checked)
+                operateId = this.getAttribute("data-opeate");
+                if (this.checked) {
+                    setEnable(1);
                 } else {
-                    tr.setAttribute("data-even-marker", "1");
+                    setEnable(0);
                 }
-
-                tr.onmouseover = function () {
-                    this.style.backgroundColor = "#4FC3F7";
-                };
-                tr.onmouseout = function () {
-                    if (this.getAttribute("data-even-marker") == "0") {
-                        this.style.backgroundColor = "#f4f4f4";
-                    }
-                    if (this.getAttribute("data-even-marker") == "1") {
-                        this.style.backgroundColor = "#ffffff";
-                    }
-
-                };
+            }
 
 
-                appendTdAndData(tr, json.data[i].name);
-                appendTdAndData(tr, json.data[i].desc);
-                appendTdAndData(tr, new Date(json.data[i].dtCreate).Format("yyyy-MM-dd hh:mm:ss"));
+            var cell = appendTd(tr);
+            var show = document.createElement("a");
+            var edit = document.createElement("a");
+            edit.style.margin = "8px";
+            var del = document.createElement("a");
 
-                var enableCell = appendTd(tr);
-                var switcher = document.createElement("div");
-                switcher.className = "switch";
-                var checkbox = document.createElement("input");
-                checkbox.setAttribute("type", "checkbox");
-                checkbox.id = json.data[i].id;
-                switcher.appendChild(checkbox);
-                var label = document.createElement("label");
-                label.className = "choose-label";
-                label.setAttribute("for", json.data[i].id);
+            show.setAttribute("href", "javascript:void(0)");
+            edit.setAttribute("href", "javascript:void(0)");
+            del.setAttribute("href", "javascript:void(0)");
 
 
-                switcher.appendChild(label)
-                enableCell.appendChild(switcher);
+            show.innerHTML = "设置权限";
+            edit.innerHTML = "编辑";
+            del.innerHTML = "删除";
+            cell.appendChild(show);
+            cell.appendChild(edit);
+            cell.appendChild(del);
 
-                checkbox.checked = (json.data[i].enable == 1 ? true : false);
+            show.setAttribute("data-opeate", json.data[i].id);
+            edit.setAttribute("data-opeate", json.data[i].id);
+            del.setAttribute("data-opeate", json.data[i].id);
 
-                checkbox.setAttribute("data-opeate", json.data[i].id);
+            show.onclick = function () {
+                // console.log(this.getAttribute("data-opeate"));
+                operateId = this.getAttribute("data-opeate");
+                layer.open({
+                    type: 1
+                    , area: ['800px', '600px']
+                    , title: '部门权限设置'
+                    , shade: 0.6
+                    , maxmin: false
+                    , anim: 1
+                    , content: $("#modal-permission")
+                });
 
-                checkbox.onclick = function () {
-                    // console.log(this.checked)
-                    operateId = this.getAttribute("data-opeate");
-                    if (this.checked) {
-                        setEnable(1);
-                    } else {
-                        setEnable(0);
-                    }
-                }
+                showPermissionBeforeUpdate();
+            }
+            edit.onclick = function () {
+                //alert(this.getAttribute("data-opeate"));
+                operateId = this.getAttribute("data-opeate");
+                layer.open({
+                    type: 1
+                    , area: ['800px', '600px']
+                    , title: '部门编辑'
+                    , shade: 0.6
+                    , maxmin: false
+                    , anim: 1
+                    , content: $("#modal-update")
+                });
 
-
-                var cell = appendTd(tr);
-                var show = document.createElement("a");
-                var edit = document.createElement("a");
-                edit.style.margin = "8px";
-                var del = document.createElement("a");
-
-                show.setAttribute("href", "javascript:void(0)");
-                edit.setAttribute("href", "javascript:void(0)");
-                del.setAttribute("href", "javascript:void(0)");
-
-
-                show.innerHTML = "设置权限";
-                edit.innerHTML = "编辑";
-                del.innerHTML = "删除";
-                cell.appendChild(show);
-                cell.appendChild(edit);
-                cell.appendChild(del);
-
-                show.setAttribute("data-opeate", json.data[i].id);
-                edit.setAttribute("data-opeate", json.data[i].id);
-                del.setAttribute("data-opeate", json.data[i].id);
-
-                show.onclick = function () {
-                    // console.log(this.getAttribute("data-opeate"));
-                    operateId = this.getAttribute("data-opeate");
-                    layer.open({
-                        type: 1
-                        , area: ['800px', '600px']
-                        , title: '部门权限设置'
-                        , shade: 0.6
-                        , maxmin: false
-                        , anim: 1
-                        , content: $("#modal-permission")
-                    });
-
-                    showPermissionBeforeUpdate();
-                }
-                edit.onclick = function () {
-                    //alert(this.getAttribute("data-opeate"));
-                    operateId = this.getAttribute("data-opeate");
-                    layer.open({
-                        type: 1
-                        , area: ['800px', '600px']
-                        , title: '部门编辑'
-                        , shade: 0.6
-                        , maxmin: false
-                        , anim: 1
-                        , content: $("#modal-update")
-                    });
-
-                    showDetailBeforeUpdate();
-                }
-                del.onclick = function () {
-                    //alert(this.getAttribute("data-opeate"));
-                    operateId = this.getAttribute("data-opeate");
-                    var dialogDel = document.getElementById("modal-del");
-                    dialogDel.style.display = "block";
-
-                }
+                showDetailBeforeUpdate();
+            }
+            del.onclick = function () {
+                //alert(this.getAttribute("data-opeate"));
+                operateId = this.getAttribute("data-opeate");
+                var dialogDel = document.getElementById("modal-del");
+                dialogDel.style.display = "block";
 
             }
 
-            isFirstPage = json.pager.isFirstPage;
-            isLastPage = json.pager.isLastPage;
-            pageIndex = json.pager.pageIndex;
-            pageSize = json.pager.pageSize;
-            totalPages = json.pager.totalPages;
-            totalRecords = json.pager.totalRecords;
-
-            updatePageMarkers();
         }
-    }
+
+        isFirstPage = json.pager.isFirstPage;
+        isLastPage = json.pager.isLastPage;
+        pageIndex = json.pager.pageIndex;
+        pageSize = json.pager.pageSize;
+        totalPages = json.pager.totalPages;
+        totalRecords = json.pager.totalRecords;
+
+        updatePageMarkers();
+    });
+
 }
 
 
@@ -155,25 +150,15 @@ document.getElementById("modal-del-ok").onclick = function () {
         "apiName": "Department_Delete_Api",
         "departmentId": operateId
     }
-    var xmlhttp = post(params);
+    post(params, function (json) {
+        // console.log(JSON.stringify(json))
+        layer.closeAll();
+        clearTable();
+        requestOnePage(pageIndex, 8);
 
-    xmlhttp.onreadystatechange = function () {
-        //console.log(xmlhttp.responseText);
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
-
-            if (json.code == 0) {
-                layer.closeAll();
-                clearTable();
-                requestOnePage(pageIndex, 8);
-
-                var dialogDel = document.getElementById("modal-del");
-                dialogDel.style.display = "none";
-            }
-
-
-        }
-    }
+        var dialogDel = document.getElementById("modal-del");
+        dialogDel.style.display = "none";
+    });
 }
 document.getElementById("modal-del-cancel").onclick = function () {
     var dialogDel = document.getElementById("modal-del");
@@ -185,21 +170,12 @@ function showDetailBeforeUpdate() {
         "apiName": "Department_QueryDetail_Api",
         "departmentId": operateId
     }
-    var xmlhttp = post(params);
+    post(params, function (json) {
+        // console.log(JSON.stringify(json))
+        document.getElementById("update-name").value = json.data.name;
+        document.getElementById("update-desc").value = json.data.desc;
+    });
 
-    xmlhttp.onreadystatechange = function () {
-        // console.log(xmlhttp.responseText);
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
-
-            if (json.code == 0) {
-                document.getElementById("update-name").value = json.data.name;
-                document.getElementById("update-desc").value = json.data.desc;
-            }
-
-
-        }
-    }
 }
 document.getElementById("update-save").onclick = function () {
     var params = {
@@ -208,25 +184,18 @@ document.getElementById("update-save").onclick = function () {
         "name": document.getElementById("update-name").value,
         "desc": document.getElementById("update-desc").value
     };
-    var xmlhttp = post(params);
-
-    xmlhttp.onreadystatechange = function () {
-        // console.log(xmlhttp.responseText);
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
-
-            feedback("update-save", "保存成功");
+    post(params, function (json) {
+        // console.log(JSON.stringify(json))
+        feedback("update-save", "保存成功");
 
 
-            window.setTimeout(function () {
-                // window.location.reload();
-                layer.closeAll();
-                clearTable();
-                requestOnePage(pageIndex, 8);
-            }, 2000);
-
-        }
-    };
+        window.setTimeout(function () {
+            // window.location.reload();
+            layer.closeAll();
+            clearTable();
+            requestOnePage(pageIndex, 8);
+        }, 2000);
+    });
 }
 
 function setEnable(enable) {
@@ -236,19 +205,14 @@ function setEnable(enable) {
         "departmentId": operateId,
         "enable": enable
     };
-    var xmlhttp = post(params);
-
-    xmlhttp.onreadystatechange = function () {
-        console.log(xmlhttp.responseText);
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
-            if (json.code == 0) {
-                clearTable();
-                requestOnePage(pageIndex, 8);
-            }
-
+    post(params, function (json) {
+        // console.log(JSON.stringify(json))
+        var json = JSON.parse(xmlhttp.responseText);
+        if (json.code == 0) {
+            clearTable();
+            requestOnePage(pageIndex, 8);
         }
-    };
+    });
 }
 
 
@@ -271,25 +235,18 @@ document.getElementById("add-save").onclick = function () {
         "name": document.getElementById("add-name").value,
         "desc": document.getElementById("add-desc").value
     };
-    var xmlhttp = post(params);
-
-    xmlhttp.onreadystatechange = function () {
-        // console.log(xmlhttp.responseText);
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
-
-            feedback("add-save", "保存成功");
+    post(params, function (json) {
+        // console.log(JSON.stringify(json))
+        feedback("add-save", "保存成功");
 
 
-            window.setTimeout(function () {
-                // window.location.reload();
-                layer.closeAll();
-                clearTable();
-                requestOnePage(pageIndex, 8);
-            }, 2000);
-
-        }
-    };
+        window.setTimeout(function () {
+            // window.location.reload();
+            layer.closeAll();
+            clearTable();
+            requestOnePage(pageIndex, 8);
+        }, 2000);
+    });
 }
 
 //["orderQuery","orderUpdate","orderDelete",
@@ -348,48 +305,39 @@ function showPermissionBeforeUpdate() {
         "apiName": "Department_QueryDetail_Api",
         "departmentId": operateId
     }
-    var xmlhttp = post(params);
+    post(params, function (json) {
+        // console.log(JSON.stringify(json))
+        var permissions = JSON.parse(json.data.permissions);
 
-    xmlhttp.onreadystatechange = function () {
-        console.log(xmlhttp.responseText);
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
+        itemOrderQuery.checked = (permissions[0] == "orderQuery" ? true : false);
+        itemOrderUpdate.checked = (permissions[1] == "orderUpdate" ? true : false);
+        itemOrderDelete.checked = (permissions[2] == "orderDelete" ? true : false);
 
-            if (json.code == 0) {
-                var permissions = JSON.parse(json.data.permissions);
+        itemGoodsAdd.checked = (permissions[3] == "goodsAdd" ? true : false);
+        itemGoodsUpdate.checked = (permissions[4] == "goodsUpdate" ? true : false);
+        itemGoodsDelete.checked = (permissions[5] == "goodsDelete" ? true : false);
 
-                itemOrderQuery.checked = (permissions[0] == "orderQuery" ? true : false);
-                itemOrderUpdate.checked = (permissions[1] == "orderUpdate" ? true : false);
-                itemOrderDelete.checked = (permissions[2] == "orderDelete" ? true : false);
+        itemRoomCardAdd.checked = (permissions[6] == "roomCardAdd" ? true : false);
+        itemRoomCardUpdate.checked = (permissions[7] == "roomCardUpdate" ? true : false);
+        itemRoomCardDelete.checked = (permissions[8] == "roomCardDelete" ? true : false);
 
-                itemGoodsAdd.checked = (permissions[3] == "goodsAdd" ? true : false);
-                itemGoodsUpdate.checked = (permissions[4] == "goodsUpdate" ? true : false);
-                itemGoodsDelete.checked = (permissions[5] == "goodsDelete" ? true : false);
+        itemWithdrawCashAuditAgree.checked = (permissions[9] == "withdrawCashAuditAgree" ? true : false);
+        itemWithdrawCashAuditReject.checked = (permissions[10] == "withdrawCashAuditReject" ? true : false);
 
-                itemRoomCardAdd.checked = (permissions[6] == "roomCardAdd" ? true : false);
-                itemRoomCardUpdate.checked = (permissions[7] == "roomCardUpdate" ? true : false);
-                itemRoomCardDelete.checked = (permissions[8] == "roomCardDelete" ? true : false);
+        itemStockQuery.checked = (permissions[11] == "stockQuery" ? true : false);
+        itemStockUpdate.checked = (permissions[12] == "stockUpdate" ? true : false);
 
-                itemWithdrawCashAuditAgree.checked = (permissions[9] == "withdrawCashAuditAgree" ? true : false);
-                itemWithdrawCashAuditReject.checked = (permissions[10] == "withdrawCashAuditReject" ? true : false);
+        itemBannerManage.checked = (permissions[13] == "bannerManage" ? true : false);
+        itemChoiceBannerManage.checked = (permissions[14] == "choiceBannerManage" ? true : false);
+        itemGoodsHotWordsManage.checked = (permissions[15] == "goodsHotWordsManage" ? true : false);
+        itemImageTextAdd.checked = (permissions[16] == "imageTextAdd" ? true : false);
 
-                itemStockQuery.checked = (permissions[11] == "stockQuery" ? true : false);
-                itemStockUpdate.checked = (permissions[12] == "stockUpdate" ? true : false);
+        itemDepartmentMemberQuery.checked = (permissions[17] == "departmentMemberQuery" ? true : false);
+        itemDepartmentMemberUpdate.checked = (permissions[18] == "departmentMemberUpdate" ? true : false);
 
-                itemBannerManage.checked = (permissions[13] == "bannerManage" ? true : false);
-                itemChoiceBannerManage.checked = (permissions[14] == "choiceBannerManage" ? true : false);
-                itemGoodsHotWordsManage.checked = (permissions[15] == "goodsHotWordsManage" ? true : false);
-                itemImageTextAdd.checked = (permissions[16] == "imageTextAdd" ? true : false);
-
-                itemDepartmentMemberQuery.checked = (permissions[17] == "departmentMemberQuery" ? true : false);
-                itemDepartmentMemberUpdate.checked = (permissions[18] == "departmentMemberUpdate" ? true : false);
+    });
 
 
-            }
-
-
-        }
-    }
 }
 
 document.getElementById("permission-save").onclick = function () {
@@ -426,26 +374,18 @@ document.getElementById("permission-save").onclick = function () {
         "departmentId": operateId,
         "permissions": JSON.stringify(permissions)
     };
-    var xmlhttp = post(params);
-
-    xmlhttp.onreadystatechange = function () {
-        console.log(xmlhttp.responseText);
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
-            if (json.code == 0) {
-                feedback("permission-save", "保存成功");
+    post(params, function (json) {
+        // console.log(JSON.stringify(json))
+        feedback("permission-save", "保存成功");
 
 
-                window.setTimeout(function () {
-                    // window.location.reload();
-                    layer.closeAll();
-                    clearTable();
-                    requestOnePage(pageIndex, 8);
-                }, 2000);
-            }
-
-        }
-    };
+        window.setTimeout(function () {
+            // window.location.reload();
+            layer.closeAll();
+            clearTable();
+            requestOnePage(pageIndex, 8);
+        }, 2000);
+    });
 }
 
 
