@@ -149,6 +149,8 @@ function requestOnePage(index, size) {
                     , content: $("#modal-detail")
                 });
 
+                document.getElementById("detail-form").reset();
+                pictures = [];
                 showDetail();
             }
             edit.onclick = function () {
@@ -164,6 +166,8 @@ function requestOnePage(index, size) {
                     , content: $("#modal-update")
                 });
 
+                document.getElementById("update-form").reset();
+                pictures = [];
                 showDetailBeforeUpdate();
                 // showGoodSelectList("update-select");
             }
@@ -268,17 +272,14 @@ document.getElementById("add-good").onclick = function () {
         , content: $("#modal-add")
     });
 
+    document.getElementById("add-form").reset();
+    pictures = [];
+
     document.getElementById("add-img1").src = "../../img/upload-default.png";
     document.getElementById("add-img2").src = "../../img/upload-default.png";
     document.getElementById("add-img3").src = "../../img/upload-default.png";
     document.getElementById("add-img4").src = "../../img/upload-default.png";
     document.getElementById("add-img5").src = "../../img/upload-default.png";
-
-    document.getElementById("add-img1-file").files[0] = undefined;
-    document.getElementById("add-img2-file").files[0] = undefined;
-    document.getElementById("add-img3-file").files[0] = undefined;
-    document.getElementById("add-img4-file").files[0] = undefined;
-    document.getElementById("add-img5-file").files[0] = undefined;
 
     // showGoodSelectList("add-select");
 }
@@ -408,6 +409,13 @@ function showDetail() {
         document.getElementById("detail-stock").value = json.data.stock;
         document.getElementById("detail-create-time").value = new Date(json.data.dtCreate).Format("yyyy-MM-dd hh:mm:ss");
         document.getElementById("detail-is-delete").value = (json.data.isDelete == 0 ? "正常" : "已删除");
+
+        document.getElementById("detail-img1").src = "../../img/white.png";
+        document.getElementById("detail-img2").src = "../../img/white.png";
+        document.getElementById("detail-img3").src = "../../img/white.png";
+        document.getElementById("detail-img4").src = "../../img/white.png";
+        document.getElementById("detail-img5").src = "../../img/white.png";
+
 
         var images = JSON.parse(json.data.pictures);
         if (images.length >= 1) {
@@ -655,17 +663,21 @@ document.getElementById("stock-save").onclick = function () {
 
 
 function showRichText() {
+    var intervalId = setInterval(function () {
 
+        if (window.frames["richText-box"].contentDocument.readyState == 'complete') {
+            run("http://" + host + "/vv-vip-center-goods-detail/" + operateId + ".html", function (json) {
+                // console.log(JSON.stringify(json))
+                var editor = window.frames["richText-box"].contentWindow.document.getElementById("editor");
+                if (json != 404) {
+                    editor.innerHTML = json;
+                }
+            });
 
-    var params = {
-        "apiName": "Goods_QueryDetail_Api",
-        "goodsId": operateId
-    }
-    var xmlhttp = post(params, function (json) {
-        // console.log(JSON.stringify(json))
-        var editor = window.frames["richText-box"].contentWindow.document.getElementById("editor");
-        editor.innerHTML = json.data.detail;
-    });
+            clearInterval(intervalId);
+        }
+    }, 200);
+
 }
 
 
@@ -673,7 +685,7 @@ document.getElementById("richText-save").onclick = function () {
     var editor = window.frames["richText-box"].contentWindow.document.getElementById("editor");
 
     var params = {
-        "apiName": "Goods_Update_Api",
+        "apiName": "Goods_UpdateRichText_Api",
         "goodsId": operateId,
         "detail": editor.innerHTML
     };

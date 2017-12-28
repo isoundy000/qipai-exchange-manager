@@ -43,7 +43,8 @@ function requestOnePage(index, size) {
 
 
     post(params, function (json) {
-        // console.log(JSON.stringify(json))
+        console.log(JSON.stringify(json));
+        // console.log(json);
         var tbody = document.getElementById("tbody");
         for (var i = 0; i < json.data.length; i++) {
 
@@ -117,10 +118,14 @@ function requestOnePage(index, size) {
 
 
             show.innerHTML = "订单详情";
-            edit.innerHTML = "编辑";
+            edit.innerHTML = "更新物流";
             del.innerHTML = "删除";
             cell.appendChild(show);
-            // cell.appendChild(edit);
+
+            if (json.data[i].transportIsDelivered==0){
+                cell.appendChild(edit);
+            }
+
             // cell.appendChild(del);
 
             show.setAttribute("data-opeate", json.data[i].id);
@@ -142,21 +147,21 @@ function requestOnePage(index, size) {
 
                 showDetail();
             }
-            // edit.onclick = function () {
-            //     //alert(this.getAttribute("data-opeate"));
-            //     operateId = this.getAttribute("data-opeate");
-            //     layer.open({
-            //         type: 1
-            //         , area: ['800px', '600px']
-            //         , title: '商品编辑'
-            //         , shade: 0.6
-            //         , maxmin: false
-            //         , anim: 1
-            //         , content: $(".modal-detail")
-            //     });
-            //
-            //     showDetailBeforeUpdate();
-            // }
+            edit.onclick = function () {
+                //alert(this.getAttribute("data-opeate"));
+                operateId = this.getAttribute("data-opeate");
+                layer.open({
+                    type: 1
+                    , area: ['800px', '600px']
+                    , title: '商品编辑'
+                    , shade: 0.6
+                    , maxmin: false
+                    , anim: 1
+                    , content: $("#modal-update")
+                });
+
+                showDetailBeforeUpdate();
+            }
             // del.onclick = function () {
             //     //alert(this.getAttribute("data-opeate"));
             //     operateId = this.getAttribute("data-opeate");
@@ -193,15 +198,31 @@ function showDetail() {
 
 
     var params = {
-        "apiName": "GoodsOrderItem_QueryAll_Api",
-        "goodsOrderId": operateId
+        "apiName": "MixOrder_QueryDetail_Api",
+        "mixOrderId": operateId
     }
 
     post(params, function (json) {
-        // console.log(JSON.stringify(json))
+        console.log(JSON.stringify(json));
+        // console.log(json);
+
         var data = json.data;
+        var transportReceiver = json.data.transportReceiver;
+        var transportPhone = json.data.transportPhone;
+        var transportAddr = json.data.transportAddr;
+        var transportCompany = json.data.transportCompany;
+        var transportNumber = json.data.transportNumber;
+
+        document.getElementById("detail-transportReceiver").value = (transportReceiver == undefined ? "" : transportReceiver);
+        document.getElementById("detail-transportPhone").value = (transportPhone == undefined ? "" : transportPhone);
+        document.getElementById("detail-transportAddr").value = (transportAddr == undefined ? "" : transportAddr);
+        document.getElementById("detail-transportCompany").value = (transportCompany == undefined ? "" : transportCompany);
+        document.getElementById("detail-transportNumber").value = (transportNumber == undefined ? "" : transportNumber);
+
+
+        var data = JSON.parse(json.data.goodsOrder_detail);
         var detailBox = document.getElementById("modal-detail");
-        for (var i = 0; i < json.data.length; i++) {
+        for (var i = 0; i < data.length; i++) {
             var j = Number(i) + 1;
 
             var line = document.createElement("div");
@@ -288,138 +309,62 @@ function showDetail() {
 
         }
     });
+}
 
 
-
-
-    // var data = [
-    //     {
-    //         "dtCreate": 1513758999670,
-    //         "goodsId": "146316ec-f890-4104-a47e-20f2def452bd",
-    //         "goodsName": "煎蛋模【款式随机】",
-    //         "goodsPicture": "https://img11.360buyimg.com/n1/jfs/t2287/359/1993093377/43724/119b5817/56e917c4N0f2d73b8.jpg",
-    //         "id": "880d8160-7174-4ba3-a95d-02cbd4124d39",
-    //         "orderId": "23567739-4581-4099-844e-fe7108b0d160",
-    //         "price": 9,
-    //         "quantity": 1,
-    //         "remainingStock": 0,
-    //         "totalPrice": 9,
-    //         "validStock": 999
-    //     },
-    //     {
-    //         "dtCreate": 1513758999670,
-    //         "goodsId": "146316ec-f890-4104-a47e-20f2def452bd",
-    //         "goodsName": "煎蛋模【款式随机】",
-    //         "goodsPicture": "https://img11.360buyimg.com/n1/jfs/t2287/359/1993093377/43724/119b5817/56e917c4N0f2d73b8.jpg",
-    //         "id": "880d8160-7174-4ba3-a95d-02cbd4124d39",
-    //         "orderId": "23567739-4581-4099-844e-fe7108b0d160",
-    //         "price": 9,
-    //         "quantity": 1,
-    //         "remainingStock": 0,
-    //         "totalPrice": 9,
-    //         "validStock": 999
-    //     },
-    //     {
-    //         "dtCreate": 1513758999670,
-    //         "goodsId": "146316ec-f890-4104-a47e-20f2def452bd",
-    //         "goodsName": "煎蛋模【款式随机】",
-    //         "goodsPicture": "https://img11.360buyimg.com/n1/jfs/t2287/359/1993093377/43724/119b5817/56e917c4N0f2d73b8.jpg",
-    //         "id": "880d8160-7174-4ba3-a95d-02cbd4124d39",
-    //         "orderId": "23567739-4581-4099-844e-fe7108b0d160",
-    //         "price": 9,
-    //         "quantity": 1,
-    //         "remainingStock": 0,
-    //         "totalPrice": 9,
-    //         "validStock": 999
-    //     }
-    // ];
-
-    // var detailBox = document.getElementById("modal-detail");
-    // for (var i in data) {
-    //     var j=Number(i)+1;
-    //
-    //     var line = document.createElement("div");
-    //     line.className="line";
-    //     var label=document.createElement("span");
-    //     label.innerHTML="商品项 "+j;
-    //     label.style.fontSize="20px"
-    //     line.appendChild(label);
-    //     detailBox.appendChild(line);
-    //
-    //     var line = document.createElement("div");
-    //     line.className="line upload-line";
-    //     var label=document.createElement("span");
-    //     label.innerHTML="商品图片";
-    //     var img=document.createElement("img");
-    //     img.src=data[i].goodsPicture;
-    //     line.appendChild(label);
-    //     line.appendChild(img);
-    //     detailBox.appendChild(line);
-    //
-    //     var line = document.createElement("div");
-    //     line.className="line";
-    //     var label=document.createElement("span");
-    //     label.innerHTML="商品ID";
-    //     var input=document.createElement("input");
-    //     input.value=data[i].goodsId;
-    //     line.appendChild(label);
-    //     line.appendChild(input);
-    //     detailBox.appendChild(line);
-    //
-    //     var line = document.createElement("div");
-    //     line.className="line";
-    //     var label=document.createElement("span");
-    //     label.innerHTML="商品标题";
-    //     var input=document.createElement("input");
-    //     input.value=data[i].goodsName;
-    //     line.appendChild(label);
-    //     line.appendChild(input);
-    //     detailBox.appendChild(line);
-    //
-    //     var line = document.createElement("div");
-    //     line.className="line";
-    //     var label=document.createElement("span");
-    //     label.innerHTML="商品单价(元)";
-    //     var input=document.createElement("input");
-    //     input.value=data[i].price;
-    //     line.appendChild(label);
-    //     line.appendChild(input);
-    //     detailBox.appendChild(line);
-    //
-    //     var line = document.createElement("div");
-    //     line.className="line";
-    //     var label=document.createElement("span");
-    //     label.innerHTML="商品数量";
-    //     var input=document.createElement("input");
-    //     input.value=data[i].quantity;
-    //     line.appendChild(label);
-    //     line.appendChild(input);
-    //     detailBox.appendChild(line);
-    //
-    //     var line = document.createElement("div");
-    //     line.className="line";
-    //     var label=document.createElement("span");
-    //     label.innerHTML="商品小记(元)";
-    //     var input=document.createElement("input");
-    //     input.value=data[i].totalPrice;
-    //     line.appendChild(label);
-    //     line.appendChild(input);
-    //     detailBox.appendChild(line);
-    //
-    //     var line = document.createElement("div");
-    //     line.className="line";
-    //     var label=document.createElement("span");
-    //     label.innerHTML="剩余库存";
-    //     var input=document.createElement("input");
-    //     input.value=data[i].remainingStock;
-    //     line.appendChild(label);
-    //     line.appendChild(input);
-    //     detailBox.appendChild(line);
-    //
-    //     var line = document.createElement("div");
-    //     line.className="line";
-    //     detailBox.appendChild(line);
+function showDetailBeforeUpdate() {
+    // var params = {
+    //     "apiName": "MixOrder_QueryDetail_Api",
+    //     "mixOrderId": operateId
     // }
+    //
+    // post(params, function (json) {
+    //     console.log(JSON.stringify(json));
+    //     // console.log(json);
+    //
+    //     var data = json.data;
+    //     var transportCompany = json.data.transportCompany;
+    //     var transportNumber = json.data.transportNumber;
+    //     var status = json.data.status;
+    //
+    //     document.getElementById("update-transportCompany").value = (transportCompany == undefined ? "" : transportCompany);
+    //     document.getElementById("update-transportNumber").value = (transportNumber == undefined ? "" : transportNumber);
+    //     var updateSave = document.getElementById("update-save");
+    //
+    //
+    //
+    //
+    //
+    // });
 
 }
 
+
+document.getElementById("update-save").onclick=function () {
+    var params = {
+        "apiName": "MixOrder_UpdateTransportStatus_Api",
+        "mixOrderId": operateId,
+        "transportCompany": document.getElementById("update-transportCompany").value,
+        "transportNumber": document.getElementById("update-transportNumber").value,
+    }
+
+    post(params, function (json) {
+        console.log(JSON.stringify(json));
+        // console.log(json);
+
+        feedback("update-save", "物流添加成功");
+
+
+        window.setTimeout(function () {
+            // window.location.reload();
+            layer.closeAll();
+            clearTable();
+            requestOnePage(pageIndex, 8);
+        }, 2000);
+
+
+
+
+    });
+
+}

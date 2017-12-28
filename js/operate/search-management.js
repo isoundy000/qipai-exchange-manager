@@ -27,15 +27,16 @@ save.onclick = function () {
     };
     post(params, function (json) {
         // console.log(JSON.stringify(json))
-        var addFeedback = document.getElementById("add-feedback");
-        addFeedback.style.display = "block";
-        addFeedback.innerHTML = "添加成功";
-
-
-        window.setTimeout(function () {
-            addFeedback.style.display = "none";
-            window.location.reload();
-        }, 1000);
+        // var addFeedback = document.getElementById("add-feedback");
+        // addFeedback.style.display = "block";
+        // addFeedback.innerHTML = "添加成功";
+        //
+        //
+        // window.setTimeout(function () {
+        //     addFeedback.style.display = "none";
+        //     window.location.reload();
+        // }, 1000);
+        feedback("save", "保存成功");
     });
 
 }

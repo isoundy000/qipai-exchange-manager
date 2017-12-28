@@ -393,25 +393,27 @@ post(vparams, function (json) {
 });
 
 
-document.getElementById("save").onclick = function () {
+document.getElementById("save-b").onclick = function () {
 
     var params = {
         "apiName": "Banner_UpdateAll_Api",
         "banners": bdata
     };
     var xmlhttp = post(params, function (json) {
-        // console.log(JSON.stringify(json))
-
+        console.log(JSON.stringify(json))
+        feedback("save-b", "保存成功");
     });
 
+}
 
+document.getElementById("save-v").onclick = function () {
     var vparams = {
         "apiName": "ChoiceBanner_UpdateAll_Api",
         "banners": vdata
     };
     var xmlhttp = post(vparams, function (json) {
-        // console.log(JSON.stringify(json))
-        feedback("save", "上传成功");
+        console.log(JSON.stringify(json))
+        feedback("save-v", "保存成功");
     });
 
 

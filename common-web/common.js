@@ -5,6 +5,7 @@
 //正式服务器
 var apiUrl = "http://47.104.78.152:8081/qipai-exchange-manager-api";
 var uploadUrl = "http://47.104.78.152:8082/micro-file-server";
+var host="47.104.78.152";
 
 function loginPost(jsonObj) {
     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
@@ -29,7 +30,7 @@ function post(jsonObj,callback) {
 
 
     xmlhttp.onreadystatechange = function () {
-        console.log(xmlhttp.responseText)
+        // console.log(xmlhttp.responseText)
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var json = JSON.parse(xmlhttp.responseText);
 
@@ -47,6 +48,40 @@ function post(jsonObj,callback) {
 
 }
 
+function run(url,callback) {
+    // jsonObj["token"] = getLoginData().token
+
+    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+    xmlhttp.open("GET", url);
+    // xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send();
+
+
+
+    xmlhttp.onreadystatechange = function () {
+        console.log(xmlhttp.responseText)
+        if (xmlhttp.status == 404) {
+            callback(404);
+        }
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            // alert(xmlhttp.responseText)
+            // var json = JSON.parse(xmlhttp.responseText);
+            //
+            // globalHandleResponse(json);
+            //
+            // if (json.code==0){
+            //     callback(json);
+            // }
+            // callback(xmlhttp.responseText);
+            callback(xmlhttp.responseText);
+
+        }
+    }
+
+    return xmlhttp;
+
+
+}
 
 
 

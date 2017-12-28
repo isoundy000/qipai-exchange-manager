@@ -75,54 +75,55 @@
 
 
 <div id="modal-add" class="modal" style="display: none">
-    <div class="line">
-        <span>商品标题</span>
-        <input id="add-name" placeholder="请输入商品标题">
-    </div>
-    <!--<div class="line">-->
+    <form id="add-form">
+        <div class="line">
+            <span>商品标题</span>
+            <input id="add-name" placeholder="请输入商品标题">
+        </div>
+        <!--<div class="line">-->
         <!--<span>商品类别</span>-->
         <!--&lt;!&ndash;<input id="add-category-id" class="dialog-input" style="width: 300px">&ndash;&gt;-->
         <!--<select id="add-select" class="select" style="width: 300px">-->
         <!--</select>-->
-    <!--</div>-->
-    <!--<div class="line">-->
+        <!--</div>-->
+        <!--<div class="line">-->
         <!--<span>商品价格</span>-->
         <!--<input id="add-price" type="number" value="0">-->
-    <!--</div>-->
-    <div class="line">
-        <span>价格</span>
-        <input id="add-vip-price" type="number" value="0">
-    </div>
-    <!--<div class="line">-->
+        <!--</div>-->
+        <div class="line">
+            <span>价格</span>
+            <input id="add-vip-price" type="number" value="0">
+        </div>
+        <!--<div class="line">-->
         <!--<span>黄金会员价</span>-->
         <!--<input id="add-gold-vip-price" type="number" value="0">-->
-    <!--</div>-->
-    <div class="line">
-        <span>排序</span>
-        <input id="add-reorder" type="number" value="0">
-    </div>
+        <!--</div>-->
+        <div class="line">
+            <span>排序</span>
+            <input id="add-reorder" type="number" value="0">
+        </div>
 
-    <div class="line upload-line">
-        <span>商品主图</span>
-        <img id="add-img1" src="../../img/upload-default.png">
-        <img id="add-img2" src="../../img/upload-default.png">
-        <img id="add-img3" src="../../img/upload-default.png">
-        <img id="add-img4" src="../../img/upload-default.png">
-        <img id="add-img5" src="../../img/upload-default.png">
-        <form hidden="hidden" id="add-form" enctype="multipart/form-data" method="post"
-              action="http://47.104.17.187:8082/micro-file-server" target="#no-iframe">
-            <input type="file" name="file1" id="add-img1-file" hidden="hidden">
-            <input type="file" name="file1" id="add-img2-file" hidden="hidden">
-            <input type="file" name="file1" id="add-img3-file" hidden="hidden">
-            <input type="file" name="file1" id="add-img4-file" hidden="hidden">
-            <input type="file" name="file1" id="add-img5-file" hidden="hidden">
-        </form>
-        <div id="add-upload-button" class="button upload-button">上传</div>
-    </div>
-    <div class="line">
-        <span></span>
-        <span class="button" id="add-save">保存</span>
-    </div>
+        <div class="line upload-line">
+            <span>商品主图</span>
+            <img id="add-img1" src="../../img/upload-default.png">
+            <img id="add-img2" src="../../img/upload-default.png">
+            <img id="add-img3" src="../../img/upload-default.png">
+            <img id="add-img4" src="../../img/upload-default.png">
+            <img id="add-img5" src="../../img/upload-default.png">
+
+            <input type="file" name="file1" id="add-img1-file" style="display: none">
+            <input type="file" name="file1" id="add-img2-file" style="display: none">
+            <input type="file" name="file1" id="add-img3-file" style="display: none">
+            <input type="file" name="file1" id="add-img4-file" style="display: none">
+            <input type="file" name="file1" id="add-img5-file" style="display: none">
+
+            <div id="add-upload-button" class="button upload-button">上传</div>
+        </div>
+        <div class="line">
+            <span></span>
+            <span class="button" id="add-save">保存</span>
+        </div>
+    </form>
 </div>
 
 <div id="modal-del" class="modal-del" style="display: none">
@@ -144,103 +145,103 @@
 </div>
 
 <div id="modal-detail" class="modal" style="display: none">
-    <div class="line">
-        <span>商品ID</span>
-        <input id="detail-id">
-    </div>
-    <div class="line">
-        <span>商品标题</span>
-        <input id="detail-name">
-    </div>
-    <!--<div class="line">-->
+    <form id="detail-form">
+        <div class="line">
+            <span>商品ID</span>
+            <input id="detail-id">
+        </div>
+        <div class="line">
+            <span>商品标题</span>
+            <input id="detail-name">
+        </div>
+        <!--<div class="line">-->
         <!--<span>商品类别</span>-->
         <!--<input id="detail-good-category">-->
-    <!--</div>-->
-    <!--<div class="line">-->
+        <!--</div>-->
+        <!--<div class="line">-->
         <!--<span>商品价格</span>-->
         <!--<input id="detail-price" type="number" value="0">-->
-    <!--</div>-->
-    <div class="line">
-        <span>价格(元宝)</span>
-        <input id="detail-vip-price" type="number" value="0">
-    </div>
-    <div class="line">
-        <span>排序</span>
-        <input id="detail-reorder" type="number" value="0">
-    </div>
-    <div class="line">
-        <span>库存</span>
-        <input id="detail-stock">
-    </div>
-    <div class="line">
-        <span>创建时间</span>
-        <input id="detail-create-time">
-    </div>
-    <div class="line">
-        <span>是否删除</span>
-        <input id="detail-is-delete">
-    </div>
+        <!--</div>-->
+        <div class="line">
+            <span>价格(元宝)</span>
+            <input id="detail-vip-price" type="number" value="0">
+        </div>
+        <div class="line">
+            <span>排序</span>
+            <input id="detail-reorder" type="number" value="0">
+        </div>
+        <div class="line">
+            <span>库存</span>
+            <input id="detail-stock">
+        </div>
+        <div class="line">
+            <span>创建时间</span>
+            <input id="detail-create-time">
+        </div>
+        <div class="line">
+            <span>是否删除</span>
+            <input id="detail-is-delete">
+        </div>
 
-    <div class="line upload-line" style="margin-bottom: 20px">
-        <span>商品主图</span>
-        <img id="detail-img1">
-        <img id="detail-img2" style="margin-left: 6px">
-        <img id="detail-img3" style="margin-left: 6px">
-        <img id="detail-img4" style="margin-left: 6px">
-        <img id="detail-img5" style="margin-left: 6px">
-    </div>
+        <div class="line upload-line" style="margin-bottom: 20px">
+            <span>商品主图</span>
+            <img id="detail-img1" src="../../img/white.png">
+            <img id="detail-img2" style="margin-left: 6px" src="../../img/white.png">
+            <img id="detail-img3" style="margin-left: 6px" src="../../img/white.png">
+            <img id="detail-img4" style="margin-left: 6px" src="../../img/white.png">
+            <img id="detail-img5" style="margin-left: 6px" src="../../img/white.png">
+        </div>
 
-
-
+    </form>
 </div>
 
 <div id="modal-update" class="modal" style="display: none">
-    <div class="line">
-        <span>商品标题</span>
-        <input id="update-name" placeholder="请输入商品标题">
-    </div>
-    <!--<div class="line">-->
+    <form id="update-form">
+        <div class="line">
+            <span>商品标题</span>
+            <input id="update-name" placeholder="请输入商品标题">
+        </div>
+        <!--<div class="line">-->
         <!--<span>商品类别</span>-->
         <!--&lt;!&ndash;<input id="add-category-id" class="dialog-input" style="width: 300px">&ndash;&gt;-->
         <!--<select id="update-select" class="select" style="width: 300px">-->
         <!--</select>-->
-    <!--</div>-->
-    <!--<div class="line">-->
+        <!--</div>-->
+        <!--<div class="line">-->
         <!--<span>商品价格</span>-->
         <!--<input id="update-price" type="number" value="0">-->
-    <!--</div>-->
-    <div class="line">
-        <span>价格(元宝)</span>
-        <input id="update-vip-price" type="number" value="0">
-    </div>
-    <div class="line">
-        <span>排序</span>
-        <input id="update-reorder" type="number" value="0">
-    </div>
+        <!--</div>-->
+        <div class="line">
+            <span>价格(元宝)</span>
+            <input id="update-vip-price" type="number" value="0">
+        </div>
+        <div class="line">
+            <span>排序</span>
+            <input id="update-reorder" type="number" value="0">
+        </div>
 
-    <div class="line upload-line">
-        <span>商品主图</span>
-        <img id="update-img1" src="../../img/upload-default.png">
-        <img id="update-img2" src="../../img/upload-default.png">
-        <img id="update-img3" src="../../img/upload-default.png">
-        <img id="update-img4" src="../../img/upload-default.png">
-        <img id="update-img5" src="../../img/upload-default.png">
-        <form hidden="hidden" id="update-form" enctype="multipart/form-data" method="post"
-              action="http://47.104.17.187:8082/micro-file-server" target="#no-iframe">
-            <input type="file" name="file1" id="update-img1-file" hidden="hidden">
-            <input type="file" name="file1" id="update-img2-file" hidden="hidden">
-            <input type="file" name="file1" id="update-img3-file" hidden="hidden">
-            <input type="file" name="file1" id="update-img4-file" hidden="hidden">
-            <input type="file" name="file1" id="update-img5-file" hidden="hidden">
-        </form>
-        <div id="update-upload-button" class="button upload-button">上传</div>
-    </div>
-    <div class="line">
-        <span></span>
-        <span class="button" id="update-save">保存</span>
-    </div>
+        <div class="line upload-line">
+            <span>商品主图</span>
+            <img id="update-img1" src="../../img/upload-default.png">
+            <img id="update-img2" src="../../img/upload-default.png">
+            <img id="update-img3" src="../../img/upload-default.png">
+            <img id="update-img4" src="../../img/upload-default.png">
+            <img id="update-img5" src="../../img/upload-default.png">
+
+            <input type="file" name="file1" id="update-img1-file" style="display: none">
+            <input type="file" name="file1" id="update-img2-file" style="display: none">
+            <input type="file" name="file1" id="update-img3-file" style="display: none">
+            <input type="file" name="file1" id="update-img4-file" style="display: none">
+            <input type="file" name="file1" id="update-img5-file" style="display: none">
+
+            <div id="update-upload-button" class="button upload-button">上传</div>
+        </div>
+        <div class="line">
+            <span></span>
+            <span class="button" id="update-save">保存</span>
+        </div>
+    </form>
 </div>
-
 
 
 <div id="modal-prefer" class="modal" style="display: none">
@@ -286,7 +287,8 @@
 </div>
 
 <div id="modal-richText" class="modal" style="display: none">
-    <iframe id="richText-box" src="../../bootstrap-wysiwyg-master/index.html" style="width: 100%;height: 490px"></iframe>
+    <iframe id="richText-box" src="../../bootstrap-wysiwyg-master/index.html"
+            style="width: 100%;height: 490px"></iframe>
     <div style="display: flex;align-content: center;justify-content: center;width: 100%;height: 60px">
         <div id="richText-save" class="button">保存</div>
     </div>

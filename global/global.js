@@ -43,10 +43,9 @@ function feedback2(elementId, msg, time) {
 
 var OrderStatus = {
     "a1": "待付款",
-    "a2": "待发货",
-    "a3": "待收货",
-    "a4": "已完成",
-    "a5": "已关闭"
+    "a2": "待收货",
+    "a3": "已完成",
+    "a4": "已取消"
 };
 
 var ApplyStatus = {
@@ -62,6 +61,12 @@ function globalHandleResponse(json) {
     }
 
     if (json.code == 1017) {
-        toast(json.message,true)
+        toast(json.message,true);
+        return;
+    }
+
+    if (json.code == 1019) {
+        toast(json.message,true);
+        return;
     }
 }

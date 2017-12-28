@@ -50,7 +50,7 @@ function requestOnePage(index, size) {
             appendTdAndData(tr, json.data[i].price);
             appendTdAndData(tr, json.data[i].goldCoin);
             // appendTdAndData(tr, json.data[i].salesVolume);
-            appendTdAndData(tr, (json.data[i].enable) == 1 ? "启用" : "禁用");
+            // appendTdAndData(tr, (json.data[i].enable) == 1 ? "启用" : "禁用");
             var cell = appendTd(tr);
             var show = document.createElement("a");
             var edit = document.createElement("a");
