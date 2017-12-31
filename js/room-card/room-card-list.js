@@ -322,6 +322,13 @@ document.getElementById("update").onclick = function () {
         "goldCoin": Number(goldCoin.value),
         "coverImgUrl": pictures[0]
     };
+
+    // if (pictures.length>0){
+    //     params["pictures"]=pictures[0]
+    // }
+
+    console.log(params)
+
     post(params, function (json) {
         // console.log(JSON.stringify(json))
         feedback("update", "保存成功");

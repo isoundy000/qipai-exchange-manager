@@ -1,8 +1,14 @@
+
+
+showGoodSelectList4Filter("filter-select");
+
+
 var searchKeyword;
 var searchBeginTimestamp;
 var searchEndTimestamp;
 var searchMinStock;
 var searchMaxStock;
+var searchCategoryId;
 
 
 function getParamsForSearch() {
@@ -11,6 +17,7 @@ function getParamsForSearch() {
     searchEndTimestamp = new Date(document.getElementById("searchEndTimestamp").value).getTime();
     searchMinStock = document.getElementById("searchMinStock").value;
     searchMaxStock = document.getElementById("searchMaxStock").value;
+    searchCategoryId = document.getElementById("filter-select").value;
 }
 
 document.getElementById("search").onclick = function () {
@@ -48,6 +55,10 @@ function requestOnePage(index, size) {
     }
     params["searchMinStock"] = searchMinStock;
     params["searchMaxStock"] = searchMaxStock;
+
+    if (searchCategoryId!=""){
+        params["searchCategoryId"] = searchCategoryId;
+    }
 
 
     var xmlhttp = post(params, function (json) {
@@ -171,8 +182,9 @@ function requestOnePage(index, size) {
 
                 document.getElementById("update-form").reset();
                 pictures = [];
-                showDetailBeforeUpdate();
+
                 showGoodSelectList("update-select");
+                showDetailBeforeUpdate();
             }
             del.onclick = function () {
                 //alert(this.getAttribute("data-opeate"));
@@ -312,7 +324,7 @@ document.getElementById("add-upload-button").onclick = function () {
 
 
     xmlhttp.onreadystatechange = function () {
-        console.log(xmlhttp.responseText);
+        // console.log(xmlhttp.responseText);
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
 
@@ -337,14 +349,41 @@ document.getElementById("add-upload-button").onclick = function () {
 
 };
 
+function showGoodSelectList4Filter(selectId) {
+    var select = document.getElementById(selectId);
+    select.innerHTML="";
 
-function showGoodSelectList(selectId) {
+    var option = document.createElement("option");
+    option.value = "";
+    option.innerHTML = "全部";
+    select.appendChild(option);
+
     var params = {
         "apiName": "GoodsCategory_QueryAll_Api"
     }
     var xmlhttp = post(params, function (json) {
         // console.log(JSON.stringify(json))
-        var select = document.getElementById(selectId);
+
+        for (var i in json.data) {
+            var option = document.createElement("option");
+            option.value = json.data[i].id;
+            option.innerHTML = json.data[i].name;
+            select.appendChild(option);
+        }
+    });
+
+}
+
+function showGoodSelectList(selectId) {
+    var select = document.getElementById(selectId);
+    select.innerHTML="";
+
+    var params = {
+        "apiName": "GoodsCategory_QueryAll_Api"
+    }
+    var xmlhttp = post(params, function (json) {
+        // console.log(JSON.stringify(json))
+
         for (var i in json.data) {
             var option = document.createElement("option");
             option.value = json.data[i].id;
@@ -449,6 +488,7 @@ function showDetailBeforeUpdate() {
         document.getElementById("update-price").value = json.data.price;
         document.getElementById("update-vip-price").value = json.data.vipPrice;
         document.getElementById("update-gold-vip-price").value = json.data.goldVipPrice;
+        document.getElementById("update-select").value=json.data.categoryId;
 
 
         document.getElementById("update-img1").src = "../../img/upload-default.png";
@@ -556,9 +596,16 @@ document.getElementById("update-save").onclick = function () {
         "vipPrice": vipPrice.value,
         "goldVipPrice": goldVipPrice.value,
         "reorder": reorder.value,
-        "stock": 0,
-        "pictures": pictures
+        "stock": 0
     };
+
+    if (pictures.length>0){
+        params["pictures"]=pictures
+    }
+
+
+    console.log(params)
+
     var xmlhttp = post(params, function (json) {
         // console.log(JSON.stringify(json))
         feedback("update-save", "添加成功");

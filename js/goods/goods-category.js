@@ -187,7 +187,10 @@ function showDetailBeforeUpdate() {
         "categoryId": operateId
     }
     var xmlhttp = post(params, function (json) {
-        // console.log(JSON.stringify(json))
+        // console.log(json)
+
+        pictures[0] = json.data.picture;
+
         document.getElementById("update-name").value = json.data.name;
         // document.getElementById("update-order").value=json.data.reorder;
         document.getElementById("update-img").src = json.data.picture;
@@ -235,9 +238,15 @@ document.getElementById("update").onclick = function () {
     var params = {
         "apiName": "GoodsCategory_Update_Api",
         "categoryId": operateId,
-        "name": name1.value,
-        "picture": pictures[0]
+        "name": name1.value
     };
+
+    if (pictures.length>0){
+        params["pictures"]=pictures[0]
+    }
+
+    console.log(params)
+
     var xmlhttp = post(params, function (json) {
         // console.log(JSON.stringify(json))
         feedback("update", "保存成功");

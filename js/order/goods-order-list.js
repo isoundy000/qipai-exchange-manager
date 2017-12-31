@@ -122,7 +122,7 @@ function requestOnePage(index, size) {
             del.innerHTML = "删除";
             cell.appendChild(show);
 
-            if (json.data[i].transportIsDelivered==0){
+            if (json.data[i].transportIsDelivered != 1) {
                 cell.appendChild(edit);
             }
 
@@ -185,16 +185,8 @@ function requestOnePage(index, size) {
 
 
 function showDetail() {
-    // document.getElementById("detail-dtCreate").value = new Date(dataDetail.dtCreate).Format("yyyy-MM-dd hh:mm:ss");
-    // document.getElementById("detail-orderId").value = dataDetail.orderId;
-    // document.getElementById("detail-goodsName").value = dataDetail.goodsName;
-    // document.getElementById("detail-img").src = dataDetail.goodsPicture;
-    // document.getElementById("detail-goodsId").value = dataDetail.goodsId;
-    // document.getElementById("detail-quantity").value = dataDetail.quantity;
-    // document.getElementById("detail-price").value = dataDetail.price;
-    // document.getElementById("detail-totalPrice").value = dataDetail.totalPrice;
-    // document.getElementById("detail-remainingStock").value = dataDetail.remainingStock;
-    // document.getElementById("detail-validStock").value = dataDetail.validStock;
+    var detailBox = document.getElementById("modal-detail");
+    detailBox.innerHTML = "";
 
 
     var params = {
@@ -213,15 +205,88 @@ function showDetail() {
         var transportCompany = json.data.transportCompany;
         var transportNumber = json.data.transportNumber;
 
-        document.getElementById("detail-transportReceiver").value = (transportReceiver == undefined ? "" : transportReceiver);
-        document.getElementById("detail-transportPhone").value = (transportPhone == undefined ? "" : transportPhone);
-        document.getElementById("detail-transportAddr").value = (transportAddr == undefined ? "" : transportAddr);
-        document.getElementById("detail-transportCompany").value = (transportCompany == undefined ? "" : transportCompany);
-        document.getElementById("detail-transportNumber").value = (transportNumber == undefined ? "" : transportNumber);
+        // document.getElementById("detail-transportReceiver").value = (transportReceiver == undefined ? "" : transportReceiver);
+        // document.getElementById("detail-transportPhone").value = (transportPhone == undefined ? "" : transportPhone);
+        // document.getElementById("detail-transportAddr").value = (transportAddr == undefined ? "" : transportAddr);
+        // document.getElementById("detail-transportCompany").value = (transportCompany == undefined ? "" : transportCompany);
+        // document.getElementById("detail-transportNumber").value = (transportNumber == undefined ? "" : transportNumber);
+
+
+        var div = document.createElement("div");
+        div.className = "line";
+        var span = document.createElement("span");
+        span.innerHTML="收货人";
+        div.appendChild(span);
+        var input = document.createElement("input");
+        input.value=(transportReceiver == undefined ? "" : transportReceiver);
+        div.appendChild(input);
+        detailBox.appendChild(div);
+
+        var div = document.createElement("div");
+        div.className = "line";
+        var span = document.createElement("span");
+        span.innerHTML="收货人手机号";
+        div.appendChild(span);
+        var input = document.createElement("input");
+        input.value=(transportPhone == undefined ? "" : transportPhone);
+        div.appendChild(input);
+        detailBox.appendChild(div);
+
+        var div = document.createElement("div");
+        div.className = "line";
+        var span = document.createElement("span");
+        span.innerHTML="收货地址";
+        div.appendChild(span);
+        var input = document.createElement("input");
+        input.value=(transportAddr == undefined ? "" : transportAddr);
+        div.appendChild(input);
+        detailBox.appendChild(div);
+
+        var div = document.createElement("div");
+        div.className = "line";
+        var span = document.createElement("span");
+        span.innerHTML="物流公司";
+        div.appendChild(span);
+        var input = document.createElement("input");
+        input.value=(transportCompany == undefined ? "" : transportCompany);
+        div.appendChild(input);
+        detailBox.appendChild(div);
+
+        var div = document.createElement("div");
+        div.className = "line";
+        var span = document.createElement("span");
+        span.innerHTML="物流单号";
+        div.appendChild(span);
+        var input = document.createElement("input");
+        input.value=(transportNumber == undefined ? "" : transportNumber);
+        div.appendChild(input);
+        detailBox.appendChild(div);
+
+
+        // <div class="line">
+        //     <span>收货人</span>
+        //     <input id="detail-transportReceiver" >
+        //     </div>
+        //     <div class="line">
+        //     <span>收货人手机号</span>
+        //     <input id="detail-transportPhone" >
+        //     </div>
+        //     <div class="line">
+        //     <span>收货地址</span>
+        //     <input id="detail-transportAddr" >
+        //     </div>
+        //     <div class="line">
+        //     <span>物流公司</span>
+        //     <input id="detail-transportCompany" >
+        //     </div>
+        //     <div class="line">
+        //     <span> 物流单号</span>
+        //     <input id="detail-transportNumber" >
+        //     </div>
 
 
         var data = JSON.parse(json.data.goodsOrder_detail);
-        var detailBox = document.getElementById("modal-detail");
+        // var detailBox = document.getElementById("modal-detail");
         for (var i = 0; i < data.length; i++) {
             var j = Number(i) + 1;
 
@@ -340,7 +405,7 @@ function showDetailBeforeUpdate() {
 }
 
 
-document.getElementById("update-save").onclick=function () {
+document.getElementById("update-save").onclick = function () {
     var params = {
         "apiName": "MixOrder_UpdateTransportStatus_Api",
         "mixOrderId": operateId,
@@ -361,8 +426,6 @@ document.getElementById("update-save").onclick=function () {
             clearTable();
             requestOnePage(pageIndex, 8);
         }, 2000);
-
-
 
 
     });

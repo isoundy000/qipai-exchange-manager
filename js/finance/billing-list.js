@@ -72,7 +72,7 @@ function requestOnePage(index, size) {
             appendTdAndData(tr, data.bankCardNumber);
             // appendTdAndData(tr, data.userId);
             appendTdAndData(tr, data.vvUserId);
-            appendTdAndData(tr, data.amount);
+            appendTdAndData(tr, (Number(data.amount)/100).toFixed(2));
             appendTdAndData(tr, new Date(data.dtCreate).Format("yyyy-MM-dd hh:mm:ss"));
 
 

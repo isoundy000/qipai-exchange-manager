@@ -549,9 +549,14 @@ document.getElementById("update-save").onclick = function () {
         "name": name.value,
         "price": vipPrice.value,
         "reorder": reorder.value,
-        "stock": 0,
-        "pictures": pictures
+        "stock": 0
     };
+
+    if (pictures.length>0){
+        params["pictures"]=pictures
+    }
+
+
     var xmlhttp = post(params, function (json) {
         // console.log(JSON.stringify(json))
         feedback("update-save", "添加成功");
