@@ -38,7 +38,7 @@ function requestOnePage() {
         "apiName": "GoodsCategory_QueryAll_Api"
     }
     var xmlhttp = post(params, function (json) {
-        // console.log(JSON.stringify(json))
+        console.log(json)
         var tbody = document.getElementById("tbody");
 
         for (var i = 0; i < json.data.length; i++) {
@@ -187,7 +187,7 @@ function showDetailBeforeUpdate() {
         "categoryId": operateId
     }
     var xmlhttp = post(params, function (json) {
-        // console.log(json)
+        console.log(json)
 
         pictures[0] = json.data.picture;
 
@@ -221,7 +221,7 @@ document.getElementById("update-upload-button").onclick = function () {
 
                 feedback("update-upload-button", "上传成功");
 
-
+console.log(pictures)
             }
 
         }
@@ -242,7 +242,7 @@ document.getElementById("update").onclick = function () {
     };
 
     if (pictures.length>0){
-        params["pictures"]=pictures[0]
+        params["picture"]=pictures[0]
     }
 
     console.log(params)
