@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<iframe id="iframe" src="../bootstrap-wysiwyg-master/index.html"></iframe>
+
+<script src="../jquery-3.2.1.min.js">
+
+</script>
+
+<script>
+
+
+        var intervalId=setInterval(function () {
+
+            if (window.frames["iframe"].contentDocument.readyState == 'complete') {
+                console.log(window.frames["iframe"].contentDocument.readyState);
+
+                clearInterval(intervalId);
+            }
+        },200);
+//    document.getElementById("iframe").onreadystatechange = function () {
+//    window.frames["iframe"].contentDocument.onreadystatechange = function () {
+//        if (this.readyState == 'complete') {
+//            alert(this.readyState);
+//        }
+//
+//    }
+</script>
+
+</body>
+</html>

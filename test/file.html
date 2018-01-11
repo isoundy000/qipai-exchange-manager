@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="myfileinput" type="file">
+<button id="btn">保存</button>
+<script>
+   document.getElementById("btn").onclick=function () {
+       var fileInput = document.getElementById("myfileinput");
+       var files = fileInput.files;
+       console.log(files)
+       var file;
+fileInput.files=[];
+       //遍历所有文件
+       console.log(files.length)
+       for (var i = 0; i < files.length; i++) {
+
+           // 取得一个文件
+           file = files.item(i);
+           // 这样也行
+           file = files[i];
+           // 取得文件名
+           console.log(file.name);
+       }
+   }
+
+</script>
+</body>
+</html>

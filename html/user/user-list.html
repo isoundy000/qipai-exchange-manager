@@ -13,6 +13,18 @@
     <div class="filter-box">
         <label class="keys-label">输入搜索</label>
         <input id="searchUserId" class="search-key" placeholder="用户游戏ID">
+        <!--value="9126196"-->
+
+
+        <label class="keys-label">商品类别</label>
+        <select id="filter-select" class="select" style="width: 150px">
+            <option value="">全部</option>
+            <option value="0">游客</option>
+            <option value="1">会员</option>
+            <option value="2">钻石会员</option>
+        </select>
+
+
         <div id="search" class="button" style="cursor: pointer;margin-left: 20px">搜索</div>
     </div>
 
@@ -63,111 +75,116 @@
 
 
 <div id="modal-detail" class="modal" style="display: none">
-
-    <!--<div class="table-box" style="margin-top: 20px">-->
-    <!--<table  class="table">-->
-    <!--<thead>-->
-    <!--<tr>-->
-
-    <!--<th class="th" colspan="6">-->
-    <!--<div>-->
-    <!--<div style="margin-left: 20px">用户信息</div>-->
-
-    <!--</div>-->
-    <!--</th>-->
-
-    <!--</tr>-->
-    <!--</thead>-->
-    <!--<tbody >-->
-    <!--<tr>-->
-    <!--<td>fdfd</td>-->
-    <!--<td>fdfd</td>-->
-    <!--<td>fdfd</td>-->
-    <!--<td>fdfd</td>-->
-    <!--<td>fdfd</td>-->
-    <!--<td>fdfd</td>-->
-    <!--</tr>-->
-    <!--</tbody>-->
-    <!--</table>-->
-    <!--</div>-->
-    <div class="table-box" style="margin-top: 20px">
-        <table class="table">
-            <thead>
-            <tr>
-
-                <th class="th" colspan="3">
-                    <div>
-                        <div style="margin-left: 20px">一级邀请用户ID</div>
-                        <div class="space"></div>
-                        <!--<div class="button">上一页</div>-->
-                        <!--<div class="button">下一页</div>-->
-                    </div>
-                </th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>fdfd</td>
-                <td>fdfd</td>
-                <td>fdfd</td>
-
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="table-box">
-        <table class="table">
-            <thead>
-            <tr>
-
-                <th class="th" colspan="6">
-                    <div>
-                        <div style="margin-left: 20px">二级邀请用户ID</div>
-                        <div class="space"></div>
-                        <!--<div class="button">上一页</div>-->
-                        <!--<div class="button">下一页</div>-->
-                    </div>
-                </th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>fdfd</td>
-                <td>fdfd</td>
-                <td>fdfd</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="table-box">
-        <table class="table">
-            <thead>
-            <tr>
-
-                <th class="th" colspan="6">
-                    <div>
-                        <div style="margin-left: 20px">三级邀请用户ID</div>
-                        <div class="space"></div>
-                        <!--<div class="button">上一页</div>-->
-                        <!--<div class="button">下一页</div>-->
-                    </div>
-                </th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>fdfd</td>
-                <td>fdfd</td>
-                <td>fdfd</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
+    <iframe id="detail-iframe" src="user-detail.html" style="width: 100%;height: 500px;border: none"></iframe>
+    <!--<iframe id="detail-iframe" style="width: 100%;height: 400px"></iframe>-->
 </div>
+
+<!--<div id="modal-detail" class="modal" style="display: none">-->
+
+    <!--&lt;!&ndash;<div class="table-box" style="margin-top: 20px">&ndash;&gt;-->
+    <!--&lt;!&ndash;<table  class="table">&ndash;&gt;-->
+    <!--&lt;!&ndash;<thead>&ndash;&gt;-->
+    <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<th class="th" colspan="6">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div style="margin-left: 20px">用户信息</div>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</th>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;</thead>&ndash;&gt;-->
+    <!--&lt;!&ndash;<tbody >&ndash;&gt;-->
+    <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>fdfd</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>fdfd</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>fdfd</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>fdfd</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>fdfd</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>fdfd</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;</tbody>&ndash;&gt;-->
+    <!--&lt;!&ndash;</table>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--<div class="table-box" style="margin-top: 20px">-->
+        <!--<table class="table">-->
+            <!--<thead>-->
+            <!--<tr>-->
+
+                <!--<th class="th" colspan="3">-->
+                    <!--<div>-->
+                        <!--<div style="margin-left: 20px">一级邀请用户ID</div>-->
+                        <!--<div class="space"></div>-->
+                        <!--&lt;!&ndash;<div class="button">上一页</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="button">下一页</div>&ndash;&gt;-->
+                    <!--</div>-->
+                <!--</th>-->
+
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td>fdfd</td>-->
+                <!--<td>fdfd</td>-->
+                <!--<td>fdfd</td>-->
+
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    <!--</div>-->
+    <!--<div class="table-box">-->
+        <!--<table class="table">-->
+            <!--<thead>-->
+            <!--<tr>-->
+
+                <!--<th class="th" colspan="6">-->
+                    <!--<div>-->
+                        <!--<div style="margin-left: 20px">二级邀请用户ID</div>-->
+                        <!--<div class="space"></div>-->
+                        <!--&lt;!&ndash;<div class="button">上一页</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="button">下一页</div>&ndash;&gt;-->
+                    <!--</div>-->
+                <!--</th>-->
+
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td>fdfd</td>-->
+                <!--<td>fdfd</td>-->
+                <!--<td>fdfd</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    <!--</div>-->
+    <!--<div class="table-box">-->
+        <!--<table class="table">-->
+            <!--<thead>-->
+            <!--<tr>-->
+
+                <!--<th class="th" colspan="6">-->
+                    <!--<div>-->
+                        <!--<div style="margin-left: 20px">三级邀请用户ID</div>-->
+                        <!--<div class="space"></div>-->
+                        <!--&lt;!&ndash;<div class="button">上一页</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="button">下一页</div>&ndash;&gt;-->
+                    <!--</div>-->
+                <!--</th>-->
+
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td>fdfd</td>-->
+                <!--<td>fdfd</td>-->
+                <!--<td>fdfd</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    <!--</div>-->
+
+<!--</div>-->
 
 <div id="modal-level1" class="modal" style="display: none">
     <div class="table-box" style="margin-top: 20px">

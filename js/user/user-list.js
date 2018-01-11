@@ -1,7 +1,9 @@
 var searchUserId;
+var searchUserLevel;
 
 function getParamsForSearch() {
     searchUserId = document.getElementById("searchUserId").value;
+    searchUserLevel = document.getElementById("filter-select").value;
 }
 
 document.getElementById("search").onclick = function () {
@@ -29,8 +31,16 @@ function requestOnePage(index, size) {
     getParamsForSearch();
 
     params["searchUserId"] = searchUserId;
+    if (searchUserLevel!=""){
+        params["searchUserLevel"] = Number(searchUserLevel);
+    }
+
+    // console.log(params)
+    // console.log(JSON.stringify(params))
+
 
     post(params, function (json) {
+        console.log(json);
         // console.log(JSON.stringify(json))
         var tbody = document.getElementById("tbody");
         for (var i = 0; i < json.data.length; i++) {
@@ -94,6 +104,8 @@ function requestOnePage(index, size) {
             appendTdAndData(tr, new Date(json.data[i].dtCreate).Format("yyyy-MM-dd hh:mm:ss"));
             appendTdAndData(tr, (json.data[i].enable == "1" ? "正常" : "已经删除"));
             var cell = appendTd(tr);
+            var backmoney = document.createElement("a");
+            backmoney.style.marginRight = "8px";
             var show = document.createElement("a");
             var edit = document.createElement("a");
             edit.style.margin = "8px";
@@ -103,6 +115,7 @@ function requestOnePage(index, size) {
             // var stock = document.createElement("a");
             // stock.style.margin = "8px";
 
+            backmoney.setAttribute("href", "javascript:void(0)");
             show.setAttribute("href", "javascript:void(0)");
             edit.setAttribute("href", "javascript:void(0)");
             del.setAttribute("href", "javascript:void(0)");
@@ -110,22 +123,50 @@ function requestOnePage(index, size) {
             // stock.setAttribute("href", "javascript:void(0)");
 
 
+            backmoney.innerHTML = "查看返利";
             show.innerHTML = "一级邀请用户";
             edit.innerHTML = "二级邀请用户";
             del.innerHTML = "三级邀请用户";
             // prefer.innerHTML = "优选";
             // stock.innerHTML = "新增库存";
+            cell.appendChild(backmoney);
             cell.appendChild(show);
             cell.appendChild(edit);
             cell.appendChild(del);
             // cell.appendChild(prefer);
             // cell.appendChild(stock);
 
+            backmoney.setAttribute("data-opeate", json.data[i].id);
             show.setAttribute("data-opeate", json.data[i].id);
             edit.setAttribute("data-opeate", json.data[i].id);
             del.setAttribute("data-opeate", json.data[i].id);
             // prefer.setAttribute("data-opeate", json.data[i].id);
             // stock.setAttribute("data-opeate", json.data[i].id);
+
+            backmoney.onclick = function () {
+                // console.log(this.getAttribute("data-opeate"));
+                operateId = this.getAttribute("data-opeate");
+                layer.open({
+                    type: 1
+                    , area: ['800px', '600px']
+                    , title: '查看返利'
+                    , shade: 0.6
+                    , maxmin: false
+                    , anim: 1
+                    , content: $("#modal-detail")
+                });
+
+                var intervalId = setInterval(function () {
+
+                    if (window.frames["detail-iframe"].contentDocument.readyState == 'complete') {
+
+                        window.frames["detail-iframe"].contentWindow.setOperateId(operateId);
+                        window.frames["detail-iframe"].contentWindow.requestOnePage(pageIndex, 8);
+                        clearInterval(intervalId);
+                    }
+                }, 200);
+
+            }
 
             show.onclick = function () {
                 console.log(this.getAttribute("data-opeate"));
@@ -319,5 +360,6 @@ function showDetailLevel3() {
     });
 
 }
+
 
 
